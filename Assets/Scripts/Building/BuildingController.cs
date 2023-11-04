@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public class BuildingController : MonoBehaviour
 {
     [SerializeField] private BuildingDataSO _buildingData;
     [SerializeField] private EmployeeSpawner _employeeSpawner;
@@ -18,9 +18,10 @@ public class Building : MonoBehaviour
         }
 
         // Then initiate the steps
-        if (_employeeSpawner != null) _employeeSpawner.SpawnEmployees();
-        // Once employees are spawned, take out the first employee
-        Employee nextEmployee = _elevatorQueue.GetNextInQueue();
+        if (_employeeSpawner != null) _employeeSpawner.SpawnEmployees(_buildingData.NumFloors);
+        
+        // Once employees are spawned, take out the first employee to be displayed in game
+        _elevatorQueue.GetNextInQueue();
     }
 
     // Update is called once per frame

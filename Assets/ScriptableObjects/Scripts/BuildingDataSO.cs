@@ -7,4 +7,6 @@ public class BuildingDataSO : ScriptableObject
 {
     [SerializeField] private string _name;
     [SerializeField] private int _numFloors;
+
+    public int NumFloors => _numFloors;
 }

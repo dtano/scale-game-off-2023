@@ -663,6 +663,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elevator (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2660987399280144955, guid: 95528e22c6807144a9955716c93e5506, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95528e22c6807144a9955716c93e5506, type: 3}
 --- !u!4 &745828047 stripped
@@ -1046,6 +1050,10 @@ PrefabInstance:
     - target: {fileID: 2660987399280144955, guid: 95528e22c6807144a9955716c93e5506, type: 3}
       propertyPath: m_Name
       value: Elevator (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660987399280144955, guid: 95528e22c6807144a9955716c93e5506, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95528e22c6807144a9955716c93e5506, type: 3}
@@ -1453,7 +1461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1761645811030872597, guid: b5a3a809765ae164b98667d061367a8a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1761645811030872599, guid: b5a3a809765ae164b98667d061367a8a, type: 3}
       propertyPath: m_RootOrder

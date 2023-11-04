@@ -23,15 +23,15 @@ public class EmployeeSpawner : MonoBehaviour
         
     }
 
-    public void SpawnEmployees()
+    public void SpawnEmployees(int numFloors)
     {
         for(int i = 0; i < _numEmployeesToSpawn; i++)
         {
-            CreateEmployee(false);
+            CreateEmployee(numFloors, false);
         }
     }
 
-    public void CreateEmployee(bool isContinuousSpawn = true)
+    public void CreateEmployee(int numFloors, bool isContinuousSpawn = true)
     {
         // Determine a random BodyType
         int randomBodyTypeIndex = UnityEngine.Random.Range(0, _bodyTypeDataCollection.Count);
@@ -41,7 +41,7 @@ public class EmployeeSpawner : MonoBehaviour
         int weight = RandomUtils.GetRandomValueFromRange(bodyTypeData.MinWeight, bodyTypeData.MaxWeight);
 
         // Determine a random Destination Floor
-        int destinationFloor = 12;
+        int destinationFloor = RandomUtils.GetRandomValueFromRange(numFloors > 1 ? 1 : 0, numFloors);
 
         // Set the results in the instantiated employee object
         GameObject employeeObject = Instantiate(_employeePrefab, _employeeObjParent.transform.position, Quaternion.identity, _employeeObjParent);

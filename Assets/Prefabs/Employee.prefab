@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 176909916}
   - component: {fileID: 176909915}
   - component: {fileID: 176909914}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DetailsUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 1761645811030872600}
   - component: {fileID: 1761645811030872601}
   - component: {fileID: 1653328906}
+  - component: {fileID: 621611100684013436}
   m_Layer: 0
   m_Name: Employee
   m_TagString: Untagged
@@ -241,3 +242,15 @@ MonoBehaviour:
   _destinationFloor: 0
   _satisfactionLevel: 100
   _bodyType: 0
+--- !u!114 &621611100684013436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761645811030872597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be189313a8ba86f49ac5f4712eb5e7b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
