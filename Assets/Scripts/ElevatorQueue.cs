@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ElevatorQueue : MonoBehaviour
 {
-    private List<Employee> _queue;
+    [SerializeField] private List<Employee> _queue;
 
     void Awake()
     {
@@ -19,17 +19,15 @@ public class ElevatorQueue : MonoBehaviour
 
     public void AddToQueue(Employee employee)
     {
+        employee.gameObject.SetActive(false);
         _queue.Add(employee);
     }
 
     public Employee GetNextInQueue()
     {
         if (_queue.Count == 0) return null;
+
+        _queue[0].gameObject.SetActive(true);
         return _queue[0];
     }
-
-    //public Employee RemoveFromQueue(Employee employee)
-    //{
-    //    Employee employeeToRemove = _queue.Find(_employee => _employee == employee);
-    //}
 }

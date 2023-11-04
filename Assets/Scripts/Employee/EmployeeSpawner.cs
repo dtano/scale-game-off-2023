@@ -12,12 +12,9 @@ public class EmployeeSpawner : MonoBehaviour
     [SerializeField] private List<BodyTypeDataSO> _bodyTypeDataCollection;
     [SerializeField] private ElevatorQueue _elevatorQueue;
 
-    private List<Employee> _employees = new List<Employee>();
-
     // Start is called before the first frame update
     void Start()
     {
-        SpawnEmployees();
     }
 
     // Update is called once per frame
@@ -41,7 +38,7 @@ public class EmployeeSpawner : MonoBehaviour
         BodyTypeDataSO bodyTypeData = _bodyTypeDataCollection[randomBodyTypeIndex];
 
         // Determine random weight
-        int weight = EmployeeUtils.DetermineRandomWeight(bodyTypeData.MinWeight, bodyTypeData.MaxWeight);
+        int weight = RandomUtils.GetRandomValueFromRange(bodyTypeData.MinWeight, bodyTypeData.MaxWeight);
 
         // Determine a random Destination Floor
         int destinationFloor = 12;
@@ -52,7 +49,7 @@ public class EmployeeSpawner : MonoBehaviour
         {
             Guid employeeId = Guid.NewGuid();
             employee.SetEmployeeData(employeeId, bodyTypeData.BodyType, weight, destinationFloor, bodyTypeData.Sprite);
-            _employees.Add(employee);
+            if(_elevatorQueue != null) _elevatorQueue.AddToQueue(employee);
         }
 
         if (isContinuousSpawn)
