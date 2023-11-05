@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// How can I tell if the game is over?
 public class BuildingController : MonoBehaviour
 {
     [SerializeField] private BuildingDataSO _buildingData;
