@@ -14,11 +14,15 @@ public class Elevator : MonoBehaviour, IDroppable
     [SerializeField] private HashSet<Employee> _passengers = new HashSet<Employee>();
     [SerializeField] private Direction _currentDirection = Direction.Up;
     [SerializeField] private ElevatorDisplayUI _elevatorDisplayUI;
+    [SerializeField] private FloorNumberIndicator _floorNumberIndicator;
 
     private DroppableArea droppableArea;
-    private int _currentCapacity;
     private Dictionary<int, List<Employee>> _destinationMap = new Dictionary<int, List<Employee>>();
-    private bool _shouldMove = false;
+    
+    private bool _isMoving = false;
+    private int _currentCapacity;
+    private int _currentFloor;
+    private int _totalFloors;
 
     public HashSet<Employee> Passengers => _passengers;
 
@@ -29,6 +33,7 @@ public class Elevator : MonoBehaviour, IDroppable
         droppableArea.OnDropObjectEvent += OnDropObject;
 
         if(_elevatorDisplayUI != null) _elevatorDisplayUI.SetInformation(_currentCapacity, _elevatorData.MaxCapacity);
+        if(_floorNumberIndicator != null) _floorNumberIndicator.SetFloorNumber(_currentFloor);
     }
 
     // Update is called once per frame
@@ -39,12 +44,12 @@ public class Elevator : MonoBehaviour, IDroppable
 
     private bool CanAddToElevator(int weightToAdd)
     {
-        return _currentCapacity + weightToAdd < _elevatorData.MaxCapacity;
+        return !_isMoving && (_currentCapacity + weightToAdd < _elevatorData.MaxCapacity);
     }
 
     public void InitiateMovement()
     {
-        _shouldMove = true;
+        _isMoving = true;
     }
 
     // Before calling this, the employee must be removed from whatever queue they were in
@@ -100,21 +105,106 @@ public class Elevator : MonoBehaviour, IDroppable
         if (_elevatorDisplayUI != null) _elevatorDisplayUI.SetInformation(_currentCapacity, _elevatorData.MaxCapacity);
     }
 
+    private void ReleasePassengersAtGivenFloor(int floorNumber)
+    {
+        if (!_destinationMap.ContainsKey(floorNumber)) return;
+
+        List<Employee> passengersToRelease = new List<Employee>(_destinationMap[floorNumber]);
+        foreach (Employee passenger in passengersToRelease)
+        {
+            RemoveFromElevator(passenger);
+            Destroy(passenger.gameObject);
+        }
+
+        _destinationMap[floorNumber].Clear();
+        _destinationMap.Remove(floorNumber);
+    }
+
+    private void OnReachedFloor(int floorNumber)
+    {
+        // Play some sort of sound
+        ReleasePassengersAtGivenFloor(floorNumber);
+    }
+
     public void StartJourney()
     {
-        if(_passengers.Count == 0)
+        if (_isMoving) return;
+        if(_currentDirection == Direction.Up && _passengers.Count == 0)
         {
             Debug.Log("Can't start since lift is empty");
             return;
         }
 
+        if (_currentDirection == Direction.Down && _currentFloor == 0) return;
+
         Debug.Log("Starting Journey");
         if (_elevatorDisplayUI != null) _elevatorDisplayUI.Hide();
+        _isMoving = true;
 
+        StartCoroutine(ProcessTrip());
+    }
+
+    private void OnElevatorReturn()
+    {
+        // Trigger Open elevator animation
+        if (_elevatorDisplayUI != null) _elevatorDisplayUI.Show();
+        _isMoving = false;
+    }
+
+    private void OnReachTop()
+    {
+        _currentDirection = Direction.Down;
+        StartCoroutine(ProcessTrip());
+    }
+
+    private IEnumerator ProcessTrip()
+    {
+        if(_currentDirection == Direction.Up)
+        {
+            while (_currentFloor != _totalFloors)
+            {
+                Debug.Log($"Currently at floor {_currentFloor}");
+                // After 2 seconds the elevator has reached a floor
+                if (_destinationMap.ContainsKey(_currentFloor))
+                {
+                    Debug.Log($"Stopping at floor {_currentFloor}");
+                    OnReachedFloor(_currentFloor);
+                    yield return new WaitForSeconds(1f);
+                    Debug.Log("Moving On...");
+                }
+                
+                if (_destinationMap.Keys.Count == 0)
+                {
+                    // Means that all of the destination floors have been visited
+                    break;
+                }
+
+                yield return new WaitForSeconds(2f); // This time depends on the elevator type
+                _currentFloor++;
+                if (_floorNumberIndicator != null) _floorNumberIndicator.SetFloorNumber(_currentFloor);
+            }
+
+            OnReachTop();
+        }
+        else if(_currentDirection == Direction.Down)
+        {
+            while(_currentFloor != 0)
+            {
+                yield return new WaitForSeconds(2f);
+                _currentFloor--;
+                if (_floorNumberIndicator != null) _floorNumberIndicator.SetFloorNumber(_currentFloor);
+            }
+
+            // Once we've reached the bottom floor, trigger some function
+            OnElevatorReturn();
+        }
+
+        Debug.Log("Trip Over");
     }
 
     public bool OnDropObject(DraggableObject draggableObject)
     {
+        if (_isMoving) return false;
         // Need to get component from draggableObject
         if (draggableObject == null) return false;
 
@@ -133,5 +223,10 @@ public class Elevator : MonoBehaviour, IDroppable
         }
 
         return false;
+    }
+
+    public void SetTotalFloors(int totalFloors)
+    {
+        _totalFloors = totalFloors;
     }
 }

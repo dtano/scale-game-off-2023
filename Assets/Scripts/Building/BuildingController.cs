@@ -27,6 +27,10 @@ public class BuildingController : MonoBehaviour
 
         // Then initiate the steps
         if (_employeeSpawner != null) _employeeSpawner.SpawnEmployees(_buildingData.NumFloors);
+
+        foreach(Elevator elevator in _elevators){
+            elevator.SetTotalFloors(_buildingData.NumFloors);
+        }
         
         // Once employees are spawned, take out the first employee to be displayed in game
         _currentFirstEmployee = _elevatorQueue.GetNextInQueue();
