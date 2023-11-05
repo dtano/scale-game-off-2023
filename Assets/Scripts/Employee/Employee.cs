@@ -19,17 +19,40 @@ public class Employee : MonoBehaviour
     [SerializeField] private int _destinationFloor;
     [SerializeField] private float _satisfactionLevel = 100f;
     [SerializeField] private BodyType _bodyType;
+    [SerializeField] private EmployeeInfoUI _employeeInfoUI;
+    [SerializeField] private DragAndDropEventChannel _dragAndDropEventChannel;
+
+    private SpriteRenderer _spriteRenderer;
+    private DraggableObject _draggableComponent;
 
     public Guid Id => _id;
     public int Weight => _weight;
     public int DestinationFloor => _destinationFloor;
     public float SatisfactionLevel => _satisfactionLevel;
     public BodyType BodyType => _bodyType;
+    public EmployeeInfoUI EmployeeInfoUI => _employeeInfoUI;
+    public SpriteRenderer SpriteRenderer => _spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _draggableComponent = GetComponent<DraggableObject>();
+        if(_draggableComponent != null)
+        {
+            _draggableComponent.OnDragStarted += OnDrag;
+            _draggableComponent.OnDragFailed += OnDragFailed;
+        }
+    }
+
+    private void OnDrag()
+    {
+        if (_employeeInfoUI != null) _employeeInfoUI.Hide();
+    }
+
+    private void OnDragFailed()
+    {
+        if (_employeeInfoUI != null) _employeeInfoUI.Show();
     }
 
     // Update is called once per frame
@@ -46,6 +69,11 @@ public class Employee : MonoBehaviour
         _weight = weight;
         _destinationFloor = destinationFloor;
         _satisfactionLevel = satisfactionLevel;
+
+        if(_employeeInfoUI != null) _employeeInfoUI.SetInformation(weight, destinationFloor);
+        if (sprite != null) _spriteRenderer.sprite = sprite;
+
+        // Need to trigger some sort of fade in animation so that the player can tell that the employee has changed
     }
 
     public override bool Equals(object obj)

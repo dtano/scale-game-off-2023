@@ -9,6 +9,12 @@ public class DraggableObject : MonoBehaviour
     private Collider2D _collider;
     private Vector3 _originalPosition;
 
+    public delegate void OnDragStartedDelegate();
+    public event OnDragStartedDelegate OnDragStarted;
+
+    public delegate void OnDragFailedDelegate();
+    public event OnDragFailedDelegate OnDragFailed;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -20,6 +26,7 @@ public class DraggableObject : MonoBehaviour
     void OnMouseDown()
     {
         _offset = transform.position - MouseToWorldPosition();
+        OnDragStarted?.Invoke();
     }
 
     void OnMouseDrag()
@@ -67,5 +74,8 @@ public class DraggableObject : MonoBehaviour
     public void SetToOriginalPosition()
     {
         transform.position = _originalPosition;
+
+        // Need to trigger some event
+        OnDragFailed?.Invoke();
     }
 }
