@@ -36,56 +36,25 @@ public class DraggableObject : MonoBehaviour
     void OnMouseUp()
     {
         _collider.enabled = false;
-        var rayOrigin = Camera.main.transform.position;
-        var rayDirection = MouseToWorldPosition() - rayOrigin;
-        Debug.Log("Ray origin " + rayOrigin);
-        Debug.Log("Ray direction " + rayDirection);
+        var rayOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        //RaycastHit raycastHit;
-        //Debug.DrawRay(rayOrigin, rayDirection, Color.red);
-        //if (Physics.Raycast(rayOrigin, rayDirection, out raycastHit))
-        //{
-        //    Debug.Log("Hit " + raycastHit.collider.gameObject.name);
-        //    if (raycastHit.collider.TryGetComponent(out DroppableArea droppable))
-        //    {
-        //        Debug.Log("Dropped in a droppable area " + raycastHit.collider.name);
-        //    }
-        //    else
-        //    {
-        //        transform.position = _originalPosition;
-        //    }
-        //}
-        //else
-        //{
-        //    transform.position = _originalPosition;
-        //}
-
-        RaycastHit2D hitInfo = Physics2D.Raycast(rayOrigin, rayDirection);
-        Debug.DrawRay(new Vector2(rayOrigin.x, rayOrigin.y), new Vector2(rayDirection.x, rayDirection.y), Color.red);
+        RaycastHit2D hitInfo = Physics2D.Raycast(rayOrigin, Vector2.zero);
+        Debug.DrawRay(new Vector2(rayOrigin.x, rayOrigin.y), Vector2.zero, Color.red);
         if (hitInfo && hitInfo.collider != null && hitInfo.collider.TryGetComponent(out DroppableArea droppableArea))
         {
-            Debug.Log("Dropped in a droppable area " + hitInfo.collider.name);
-            Debug.Log("Hit at " + hitInfo.point);
+            bool success = droppableArea.OnDropObject(this);
+            if (!success) SetToOriginalPosition();
         }
         else
         {
-            transform.position = _originalPosition;
+            SetToOriginalPosition();
         }
         _collider.enabled = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private Vector3 MouseToWorldPosition()
     {
         var mouseScreenPosition = Input.mousePosition;
-        //Debug.Log("World to screen point " + Camera.main.WorldToScreenPoint(transform.position));
-        //Debug.Log("Z for mouse to world pos " + Camera.main.WorldToScreenPoint(transform.position).z);
-        //Debug.Log("Mouse screen position " + mouseScreenPosition);
         mouseScreenPosition.z = Camera.main.WorldToScreenPoint(transform.position).z;
         return Camera.main.ScreenToWorldPoint(mouseScreenPosition);
     }
@@ -93,5 +62,10 @@ public class DraggableObject : MonoBehaviour
     public void ResetOriginalPosition()
     {
         _originalPosition = transform.position;
+    }
+
+    public void SetToOriginalPosition()
+    {
+        transform.position = _originalPosition;
     }
 }

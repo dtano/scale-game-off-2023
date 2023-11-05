@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c58969ac64b74459cf624e84f2e1b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: 610fa0b803db06443b1b1e47e88ea8e3, type: 2}
 --- !u!61 &2040404078
 BoxCollider2D:
   m_ObjectHideFlags: 0
