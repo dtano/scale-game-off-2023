@@ -25,6 +25,10 @@ public class Elevator : MonoBehaviour, IDroppable
     private int _totalFloors;
 
     public HashSet<Employee> Passengers => _passengers;
+    public Dictionary<int, List<Employee>> DestinationMap => _destinationMap;
+    public string Name => _elevatorData.Model;
+    public int CurrentCapacity => _currentCapacity;
+    public int MaxCapacity => _elevatorData.MaxCapacity;
 
     // Start is called before the first frame update
     void Awake()
@@ -149,6 +153,7 @@ public class Elevator : MonoBehaviour, IDroppable
         // Trigger Open elevator animation
         if (_elevatorDisplayUI != null) _elevatorDisplayUI.Show();
         _isMoving = false;
+        _currentDirection = Direction.Up;
     }
 
     private void OnReachTop()

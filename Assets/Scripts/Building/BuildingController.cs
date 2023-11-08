@@ -13,6 +13,8 @@ public class BuildingController : MonoBehaviour
 
     private Employee _currentFirstEmployee;
 
+    public List<Elevator> Elevators => _elevators;
+
     // Start is called before the first frame update
     void Start()
     {

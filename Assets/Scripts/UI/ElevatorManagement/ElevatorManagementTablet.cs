@@ -11,6 +11,8 @@ public class ElevatorManagementTablet : UIElement
     [SerializeField] private ElevatorPassengerList _elevatorPassengerList;
     [SerializeField] private ElevatorPassengerInteractionModal _elevatorPassengerInteractionModal;
 
+    private List<Elevator> _allElevators;
+    private int _currentlySelectedElevatorIndex;
     private bool _isOn = false;
     private Vector3 _restingPosition;
 
@@ -19,6 +21,8 @@ public class ElevatorManagementTablet : UIElement
     {
         TurnOff(shouldSlide: false);
         _restingPosition = transform.position;
+
+        _allElevators = _buildingController.Elevators;
     }
 
     // Update is called once per frame
@@ -33,13 +37,52 @@ public class ElevatorManagementTablet : UIElement
 
         if (!shouldSlide)
         {
-            ShowAllComponents();
+            OnTabletStart();
         }
         else
         {
-            LeanTween.moveY(gameObject, 360, 0.5f).setOnComplete(ShowAllComponents);
+            LeanTween.moveY(gameObject, 360, 0.2f).setOnComplete(OnTabletStart);
         }
     }
+
+    public void OnClickNext()
+    {
+        if(_currentlySelectedElevatorIndex == _allElevators.Count - 1)
+        {
+            return;
+        }
+
+        _currentlySelectedElevatorIndex++;
+
+        UpdateView();
+    }
+
+    private void UpdateView()
+    {
+        Elevator currentElevator = _allElevators[_currentlySelectedElevatorIndex];
+        
+        _elevatorSelectComponent.SetInformation(_currentlySelectedElevatorIndex, _allElevators.Count);
+        _elevatorInfoComponent.SetInformation(currentElevator);
+        _elevatorPassengerList.SetPassengerInformation(currentElevator);
+    }
+
+    public void OnClickBack()
+    {
+        if(_currentlySelectedElevatorIndex == 0)
+        {
+            return;
+        }
+
+        _currentlySelectedElevatorIndex--;
+        UpdateView();
+    }
+
+    private void OnTabletStart()
+    {
+        UpdateView();
+
+        ShowAllComponents();
+    }    
 
     private void ShowAllComponents()
     {
@@ -60,7 +103,7 @@ public class ElevatorManagementTablet : UIElement
         else
         {
             HideAllComponents();
-            LeanTween.moveY(gameObject, -191, 0.5f);
+            LeanTween.moveY(gameObject, -191, 0.2f);
         }
     }
 
