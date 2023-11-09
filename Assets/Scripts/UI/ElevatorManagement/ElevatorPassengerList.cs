@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System.Linq;
 
 public class ElevatorPassengerList : UIElement
 {
     [SerializeField] private GameObject _passengerIconPrefab;
+
+    private List<PassengerIcon> _passengerIcons = new List<PassengerIcon>();
+    private List<Employee> _employees = new List<Employee>();
+    private int _currentSelectedPassengerIndex;
+
+    public UnityAction<Employee> OnSelectEmployeeEvent;
+
+    public Employee CurrentSelectedEmployee => GetCurrentSelectedEmployee();
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +28,18 @@ public class ElevatorPassengerList : UIElement
         
     }
 
+    private void OnClickPassengerIcon(int passengerIndex)
+    {
+        Debug.Log("ON CLICK AT ELEVATOR PASSENGER LIST");
+        Employee selectedEmployee = _employees[passengerIndex];
+        _currentSelectedPassengerIndex = passengerIndex;
+        if (OnSelectEmployeeEvent != null) OnSelectEmployeeEvent.Invoke(selectedEmployee);
+    }
+
     public void SetPassengerInformation(Elevator elevator)
     {
         Dictionary<int, List<Employee>> destinationMap = elevator.DestinationMap;
+        _employees.Clear();
 
         List<int> destinationKeys = destinationMap.Keys.ToList();
         destinationKeys.Sort();
@@ -51,11 +69,17 @@ public class ElevatorPassengerList : UIElement
             foreach(Employee employee in destinationMap[key])
             {
                 PassengerIcon passengerIcon = transform.GetChild(objectIndex).GetComponent<PassengerIcon>();
-                passengerIcon.SetData(employee);
+                passengerIcon.SetData(employee, objectIndex);
+                if (passengerIcon.OnIconClickEvent == null) passengerIcon.OnIconClickEvent += OnClickPassengerIcon;
                 transform.GetChild(objectIndex).gameObject.SetActive(true);
+
+                _passengerIcons.Add(passengerIcon);
+                _employees.Add(employee);
                 objectIndex++;
             }
         }
+
+        _currentSelectedPassengerIndex = 0;
     }
 
     private int GetNumberOfActiveChildren()
@@ -83,12 +107,12 @@ public class ElevatorPassengerList : UIElement
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
+    }
 
-        //int i = 0;
-        //while(i < amount)
-        //{
+    private Employee GetCurrentSelectedEmployee()
+    {
+        if (_employees == null || _employees.Count == 0) return null;
 
-        //    i++;
-        //}
+        return _employees[_currentSelectedPassengerIndex];
     }
 }

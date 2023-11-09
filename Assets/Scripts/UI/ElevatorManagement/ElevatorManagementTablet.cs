@@ -23,6 +23,8 @@ public class ElevatorManagementTablet : UIElement
         TurnOff(shouldSlide: false);
 
         _allElevators = _buildingController.Elevators;
+
+        _elevatorPassengerList.OnSelectEmployeeEvent += OnSelectEmployee;
     }
 
     // Update is called once per frame
@@ -66,6 +68,7 @@ public class ElevatorManagementTablet : UIElement
         _elevatorSelectComponent.SetInformation(_currentlySelectedElevatorIndex, _allElevators.Count);
         _elevatorInfoComponent.SetInformation(currentElevator);
         _elevatorPassengerList.SetPassengerInformation(currentElevator);
+        _elevatorPassengerInteractionModal.SetPassengerData(currentElevator, _elevatorPassengerList.CurrentSelectedEmployee);
     }
 
     public void OnClickBack()
@@ -117,6 +120,11 @@ public class ElevatorManagementTablet : UIElement
         _elevatorInfoComponent.Hide();
         _elevatorPassengerList.Hide();
         _elevatorPassengerInteractionModal.Hide();
+    }
+
+    private void OnSelectEmployee(Employee employee)
+    {
+        _elevatorPassengerInteractionModal.SetPassengerData(_allElevators[_currentlySelectedElevatorIndex], employee);
     }
 
     public void OnPowerButtonClick()
