@@ -11,16 +11,16 @@ public class ElevatorManagementTablet : UIElement
     [SerializeField] private ElevatorPassengerList _elevatorPassengerList;
     [SerializeField] private ElevatorPassengerInteractionModal _elevatorPassengerInteractionModal;
 
+    [SerializeField] private GameStateEventChannel _gameStateEventChannel;
+
     private List<Elevator> _allElevators;
     private int _currentlySelectedElevatorIndex;
     private bool _isOn = false;
-    private Vector3 _restingPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         TurnOff(shouldSlide: false);
-        _restingPosition = transform.position;
 
         _allElevators = _buildingController.Elevators;
     }
@@ -43,6 +43,8 @@ public class ElevatorManagementTablet : UIElement
         {
             LeanTween.moveY(gameObject, 360, 0.2f).setOnComplete(OnTabletStart);
         }
+
+        if (_gameStateEventChannel != null) _gameStateEventChannel.OnTabletStateChange(_isOn);
     }
 
     public void OnClickNext()
@@ -105,6 +107,8 @@ public class ElevatorManagementTablet : UIElement
             HideAllComponents();
             LeanTween.moveY(gameObject, -191, 0.2f);
         }
+
+        if (_gameStateEventChannel != null) _gameStateEventChannel.OnTabletStateChange(_isOn);
     }
 
     private void HideAllComponents()

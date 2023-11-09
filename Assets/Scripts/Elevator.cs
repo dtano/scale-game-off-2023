@@ -132,7 +132,7 @@ public class Elevator : MonoBehaviour, IDroppable
 
     public void StartJourney()
     {
-        if (_isMoving) return;
+        if (_isMoving || GameStateManager.Instance.IsTabletOn) return;
         if(_currentDirection == Direction.Up && _passengers.Count == 0)
         {
             Debug.Log("Can't start since lift is empty");
