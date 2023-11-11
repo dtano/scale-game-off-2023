@@ -13,6 +13,7 @@ public class ElevatorPassengerList : UIElement
     private int _currentSelectedPassengerIndex;
 
     public UnityAction<Employee> OnSelectEmployeeEvent;
+    public UnityAction<Employee> OnKickEmployeeEvent;
 
     public Employee CurrentSelectedEmployee => GetCurrentSelectedEmployee();
 
@@ -30,10 +31,18 @@ public class ElevatorPassengerList : UIElement
 
     private void OnClickPassengerIcon(int passengerIndex)
     {
-        Debug.Log("ON CLICK AT ELEVATOR PASSENGER LIST");
         Employee selectedEmployee = _employees[passengerIndex];
         _currentSelectedPassengerIndex = passengerIndex;
         if (OnSelectEmployeeEvent != null) OnSelectEmployeeEvent.Invoke(selectedEmployee);
+    }
+
+    public void OnKickEmployeeFromElevator()
+    {
+        Employee employeeToKick = _employees[_currentSelectedPassengerIndex];
+
+        _employees.RemoveAt(_currentSelectedPassengerIndex);
+
+        OnKickEmployeeEvent?.Invoke(employeeToKick);
     }
 
     public void SetPassengerInformation(Elevator elevator)
@@ -111,7 +120,7 @@ public class ElevatorPassengerList : UIElement
 
     private Employee GetCurrentSelectedEmployee()
     {
-        if (_employees == null || _employees.Count == 0) return null;
+        if (_employees == null || _employees.Count == 0 || _currentSelectedPassengerIndex < 0) return null;
 
         return _employees[_currentSelectedPassengerIndex];
     }

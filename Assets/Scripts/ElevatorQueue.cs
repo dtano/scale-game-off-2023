@@ -5,16 +5,26 @@ using UnityEngine;
 public class ElevatorQueue : MonoBehaviour
 {
     [SerializeField] private List<Employee> _queue;
+    [SerializeField] private int _maxCapacity;
+    [SerializeField] private bool _hasMaxCapacity = false;
 
+    public int Count => _queue.Count;
     void Awake()
     {
         _queue = new List<Employee>();
     }
 
-    public void AddToQueue(Employee employee)
+    public bool AddToQueue(Employee employee)
     {
+        if(_hasMaxCapacity && _queue.Count >= _maxCapacity)
+        {
+            return false;
+        }
+
         employee.gameObject.SetActive(false);
         _queue.Add(employee);
+
+        return true;
     }
 
     public void AddToTop(Employee employee)

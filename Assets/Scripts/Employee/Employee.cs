@@ -12,6 +12,12 @@ public enum BodyType
     Massive
 }
 
+public enum QueueType
+{
+    Normal,
+    Reserves
+}
+
 public class Employee : MonoBehaviour
 {
     [SerializeField] private Guid _id;
@@ -20,10 +26,10 @@ public class Employee : MonoBehaviour
     [SerializeField] private float _satisfactionLevel = 100f;
     [SerializeField] private BodyType _bodyType;
     [SerializeField] private EmployeeInfoUI _employeeInfoUI;
-    [SerializeField] private DragAndDropEventChannel _dragAndDropEventChannel;
 
     private SpriteRenderer _spriteRenderer;
     private DraggableObject _draggableComponent;
+    private QueueType _currentQueueType = QueueType.Normal;
 
     public Guid Id => _id;
     public int Weight => _weight;
@@ -32,6 +38,7 @@ public class Employee : MonoBehaviour
     public BodyType BodyType => _bodyType;
     public EmployeeInfoUI EmployeeInfoUI => _employeeInfoUI;
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
+    public QueueType CurrentQueueType { get => _currentQueueType; set => _currentQueueType = value; }
 
     // Start is called before the first frame update
     void Start()

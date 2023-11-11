@@ -7,9 +7,12 @@ public class BuildingController : MonoBehaviour
 {
     [SerializeField] private BuildingDataSO _buildingData;
     [SerializeField] private EmployeeSpawner _employeeSpawner;
+    [SerializeField] private ReservesController _reservesController;
     [SerializeField] private ElevatorQueue _elevatorQueue;
     [SerializeField] private List<Elevator> _elevators;
+
     [SerializeField] private DragAndDropEventChannel _dragAndDropEventChannel;
+    [SerializeField] private TabletInteractionEventChannel _tabletInteractionEventChannel;
 
     private Employee _currentFirstEmployee;
 
@@ -26,6 +29,11 @@ public class BuildingController : MonoBehaviour
         if (_dragAndDropEventChannel != null)
         {
             _dragAndDropEventChannel.OnSuccessfulDropEvent += OnAddEmployeeToElevator;
+        }
+
+        if(_tabletInteractionEventChannel != null)
+        {
+            _tabletInteractionEventChannel.OnKickEmployeeFromElevatorEvent += OnKickEmployeeFromElevator;
         }
 
         // Then initiate the steps
@@ -60,5 +68,14 @@ public class BuildingController : MonoBehaviour
                 Debug.Log("Reached the end of queue");
             }
         }
+    }
+
+    private void OnKickEmployeeFromElevator(Elevator elevator, Employee employee)
+    {
+        // Remove from elevator
+        elevator.RemoveFromElevator(employee);
+
+        // Add to reserves
+        _reservesController.AddToQueue(employee);
     }
 }

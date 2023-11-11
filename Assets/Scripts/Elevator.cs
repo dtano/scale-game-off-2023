@@ -91,13 +91,13 @@ public class Elevator : MonoBehaviour, IDroppable
         return true;
     }
 
-    public void RemoveFromElevator(Employee employee)
+    public bool RemoveFromElevator(Employee employee)
     {
         bool success = _passengers.Remove(employee);
         if (!success)
         {
             Debug.Log("Fail to remove employee to elevator");
-            return;
+            return false;
         }
 
         if (_destinationMap.ContainsKey(employee.DestinationFloor))
@@ -107,6 +107,8 @@ public class Elevator : MonoBehaviour, IDroppable
 
         _currentCapacity -= employee.Weight;
         if (_elevatorDisplayUI != null) _elevatorDisplayUI.SetInformation(_currentCapacity, _elevatorData.MaxCapacity);
+
+        return true;
     }
 
     private void ReleasePassengersAtGivenFloor(int floorNumber)

@@ -12,6 +12,7 @@ public class ElevatorManagementTablet : UIElement
     [SerializeField] private ElevatorPassengerInteractionModal _elevatorPassengerInteractionModal;
 
     [SerializeField] private GameStateEventChannel _gameStateEventChannel;
+    [SerializeField] private TabletInteractionEventChannel _tabletInteractionEventChannel;
 
     private List<Elevator> _allElevators;
     private int _currentlySelectedElevatorIndex;
@@ -25,6 +26,7 @@ public class ElevatorManagementTablet : UIElement
         _allElevators = _buildingController.Elevators;
 
         _elevatorPassengerList.OnSelectEmployeeEvent += OnSelectEmployee;
+        _elevatorPassengerList.OnKickEmployeeEvent += OnKickEmployeeFromElevator;
     }
 
     // Update is called once per frame
@@ -137,5 +139,15 @@ public class ElevatorManagementTablet : UIElement
         {
             TurnOn();
         }
+    }
+
+    public void OnKickEmployeeFromElevator(Employee employee)
+    {
+        Elevator currentSelectedElevator = _allElevators[_currentlySelectedElevatorIndex];
+
+        if (_tabletInteractionEventChannel != null) _tabletInteractionEventChannel.OnKickEmployeeFromElevator(currentSelectedElevator, employee);
+
+        // Need to update view now
+        UpdateView();
     }
 }
