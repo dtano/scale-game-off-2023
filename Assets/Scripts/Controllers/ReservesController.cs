@@ -10,6 +10,7 @@ public class ReservesController : MonoBehaviour
     [SerializeField] private GameObject _employeeParent;
     [SerializeField] private Transform _employeePositionMarker;
 
+    [SerializeField] private DroppableArea _droppableArea;
     private Employee _currentFirstEmployee;
 
     // Start is called before the first frame update
@@ -17,9 +18,10 @@ public class ReservesController : MonoBehaviour
     {
         if (_reservesQueue == null) _reservesQueue = GetComponent<ElevatorQueue>();
 
-        if(_channel != null)
+        _droppableArea = GetComponent<DroppableArea>();
+        if(_droppableArea != null)
         {
-            _channel.OnSuccessfulDropEvent += OnAddEmployeeToReserves;
+            _droppableArea.OnDropObjectEvent += OnDropEmployee;
         }
     }
 
@@ -29,12 +31,24 @@ public class ReservesController : MonoBehaviour
         
     }
 
-    private void OnAddEmployeeToReserves(DraggableObject draggableObject)
+    private bool OnDropEmployee(DraggableObject draggableObject)
     {
-        if(draggableObject.TryGetComponent(out Employee employee))
+        Debug.Log("On drop employee in reserves");
+        // Need to somehow prevent the employee from being readded
+        if (draggableObject.TryGetComponent(out Employee employee))
         {
-            AddToQueue(employee);
+            Debug.Log("Checking employee queue type " + employee.CurrentQueueType);
+            if (QueueType.Reserves == employee.CurrentQueueType)
+            {
+                Debug.Log("Tried to drop an employee that is already there");
+                return false;
+
+            }
+
+            return AddToQueue(employee);
         }
+
+        return false;
     }
 
     public bool AddToQueue(Employee employee)
@@ -65,9 +79,16 @@ public class ReservesController : MonoBehaviour
 
         // Change employee's queue type
         employee.CurrentQueueType = QueueType.Reserves;
+        employee.CurrentQueuePosition = _reservesQueue.Count - 1;
 
         // Update reserves UI
         _reservesUI.SetAmount(_reservesQueue.Count);
+
+        // Need to reset original position of the draggable object component
+        if(employee.DraggableComponent != null)
+        {
+            employee.DraggableComponent.ResetOriginalPosition();
+        }
 
         return true;
     }

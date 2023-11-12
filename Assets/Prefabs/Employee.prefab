@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 176909913}
   - component: {fileID: 176909916}
   - component: {fileID: 1963059412}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: DetailsUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 597749219}
   - component: {fileID: 597749221}
   - component: {fileID: 597749220}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 955422801}
   - component: {fileID: 955422803}
   - component: {fileID: 955422802}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Weight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1881906910}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: EmployeeInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 2052633172}
   - component: {fileID: 2052633174}
   - component: {fileID: 2052633173}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Destination
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 1761645811030872601}
   - component: {fileID: 1653328906}
   - component: {fileID: 621611100684013436}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Employee
   m_TagString: Untagged
   m_Icon: {fileID: 0}

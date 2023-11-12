@@ -12,6 +12,7 @@ public class BuildingController : MonoBehaviour
     [SerializeField] private List<Elevator> _elevators;
 
     [SerializeField] private DragAndDropEventChannel _dragAndDropEventChannel;
+    [SerializeField] private DragAndDropEventChannel _reservesDragAndDropEventChannel;
     [SerializeField] private TabletInteractionEventChannel _tabletInteractionEventChannel;
 
     private Employee _currentFirstEmployee;
@@ -29,6 +30,11 @@ public class BuildingController : MonoBehaviour
         if (_dragAndDropEventChannel != null)
         {
             _dragAndDropEventChannel.OnSuccessfulDropEvent += OnAddEmployeeToElevator;
+        }
+
+        if(_reservesDragAndDropEventChannel != null)
+        {
+            _reservesDragAndDropEventChannel.OnSuccessfulDropEvent += OnDropEmployeeInReserves;
         }
 
         if(_tabletInteractionEventChannel != null)
@@ -77,6 +83,22 @@ public class BuildingController : MonoBehaviour
             {
                 Debug.Log("Reached the end of queue");
             }
+        }
+    }
+
+    // I think I can find a way to use just one event channel for this
+    private void OnDropEmployeeInReserves(DraggableObject draggableObject)
+    {
+        // Remove from elevator queue
+        // Get next employee in queue
+        // 
+        Debug.Log("OnDropEmployeeInReserves");
+        if (draggableObject == null) return;
+
+        if (draggableObject.TryGetComponent(out Employee employee))
+        {
+            _elevatorQueue.RemoveFromQueue(employee);
+            _currentFirstEmployee = _elevatorQueue.GetNextInQueue();
         }
     }
 

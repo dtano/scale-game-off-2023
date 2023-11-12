@@ -2721,6 +2721,7 @@ MonoBehaviour:
   _channel: {fileID: 0}
   _employeeParent: {fileID: 1202297120}
   _employeePositionMarker: {fileID: 1057873680}
+  _droppableArea: {fileID: 0}
 --- !u!61 &1491960814
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4016,6 +4017,7 @@ MonoBehaviour:
   - {fileID: 745828051}
   - {fileID: 1482530146}
   _dragAndDropEventChannel: {fileID: 11400000, guid: 610fa0b803db06443b1b1e47e88ea8e3, type: 2}
+  _reservesDragAndDropEventChannel: {fileID: 11400000, guid: 7148f475f8eee3249b5d893cc12e7bd6, type: 2}
   _tabletInteractionEventChannel: {fileID: 11400000, guid: 73963c137a28aae44b61595854282574, type: 2}
 --- !u!114 &1977740141
 MonoBehaviour:

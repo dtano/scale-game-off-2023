@@ -186,7 +186,7 @@ public class Elevator : MonoBehaviour, IDroppable
                     break;
                 }
 
-                yield return new WaitForSeconds(2f); // This time depends on the elevator type
+                yield return new WaitForSeconds(_elevatorData.SpeedInSeconds); // This time depends on the elevator type
                 _currentFloor++;
                 if (_floorNumberIndicator != null) _floorNumberIndicator.SetFloorNumber(_currentFloor);
             }

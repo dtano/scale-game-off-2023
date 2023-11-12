@@ -30,6 +30,8 @@ public class Employee : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private DraggableObject _draggableComponent;
     private QueueType _currentQueueType = QueueType.Elevator;
+    private int _currentQueuePosition;
+    private int _originalQueuePosition;
 
     public Guid Id => _id;
     public int Weight => _weight;
@@ -38,9 +40,11 @@ public class Employee : MonoBehaviour
     public BodyType BodyType => _bodyType;
     public EmployeeInfoUI EmployeeInfoUI => _employeeInfoUI;
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
+    public DraggableObject DraggableComponent => _draggableComponent;
     public QueueType CurrentQueueType { get => _currentQueueType; set => _currentQueueType = value; }
+    public int CurrentQueuePosition { get => _currentQueuePosition; set => _currentQueuePosition = value; }
+    public int OriginalQueuePosition { get => _originalQueuePosition; set => _originalQueuePosition = value; }
 
-    // Start is called before the first frame update
     void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -62,20 +66,22 @@ public class Employee : MonoBehaviour
         if (_employeeInfoUI != null) _employeeInfoUI.Show();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
     // Sprite might also need to be added here
-    public void SetEmployeeData(Guid id, BodyType bodyType, int weight, int destinationFloor, Sprite sprite, float satisfactionLevel = 100f)
+    public void SetEmployeeData(Guid id, BodyType bodyType, int weight, int destinationFloor, Sprite sprite, int currentQueuePosition = 0, float satisfactionLevel = 100f)
     {
         _id = id;
         _bodyType = bodyType;
         _weight = weight;
         _destinationFloor = destinationFloor;
         _satisfactionLevel = satisfactionLevel;
+
+        _originalQueuePosition = currentQueuePosition;
+        _currentQueuePosition = currentQueuePosition;
 
         if(_employeeInfoUI != null) _employeeInfoUI.SetInformation(weight, destinationFloor);
         if (sprite != null) _spriteRenderer.sprite = sprite;

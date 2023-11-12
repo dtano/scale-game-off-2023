@@ -40,7 +40,6 @@ public class PassengerIcon : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"On Click Passenger With Index {_passengerIndex}");
         if (OnIconClickEvent != null) OnIconClickEvent.Invoke(_passengerIndex);
     }
 }

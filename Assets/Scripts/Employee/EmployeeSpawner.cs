@@ -27,11 +27,11 @@ public class EmployeeSpawner : MonoBehaviour
     {
         for(int i = 0; i < _numEmployeesToSpawn; i++)
         {
-            CreateEmployee(numFloors, false);
+            CreateEmployee(numFloors, i, false);
         }
     }
 
-    public void CreateEmployee(int numFloors, bool isContinuousSpawn = true)
+    public void CreateEmployee(int numFloors, int currentQueuePosition, bool isContinuousSpawn = true)
     {
         // Determine a random BodyType
         int randomBodyTypeIndex = UnityEngine.Random.Range(0, _bodyTypeDataCollection.Count);
@@ -48,7 +48,7 @@ public class EmployeeSpawner : MonoBehaviour
         if(employeeObject.TryGetComponent(out Employee employee))
         {
             Guid employeeId = Guid.NewGuid();
-            employee.SetEmployeeData(employeeId, bodyTypeData.BodyType, weight, destinationFloor, bodyTypeData.Sprite);
+            employee.SetEmployeeData(employeeId, bodyTypeData.BodyType, weight, destinationFloor, bodyTypeData.Sprite, currentQueuePosition);
             if(_elevatorQueue != null) _elevatorQueue.AddToQueue(employee);
         }
 
