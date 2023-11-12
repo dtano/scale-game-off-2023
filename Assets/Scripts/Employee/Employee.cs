@@ -14,7 +14,7 @@ public enum BodyType
 
 public enum QueueType
 {
-    Normal,
+    Elevator,
     Reserves
 }
 
@@ -29,7 +29,7 @@ public class Employee : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
     private DraggableObject _draggableComponent;
-    private QueueType _currentQueueType = QueueType.Normal;
+    private QueueType _currentQueueType = QueueType.Elevator;
 
     public Guid Id => _id;
     public int Weight => _weight;

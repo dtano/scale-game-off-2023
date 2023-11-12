@@ -55,12 +55,22 @@ public class BuildingController : MonoBehaviour
 
     private void OnAddEmployeeToElevator(DraggableObject draggableObject)
     {
+        Debug.Log("OnAddEmployeeToElevator");
         if (draggableObject == null) return;
 
         if(draggableObject.TryGetComponent(out Employee employee))
         {
-            _elevatorQueue.RemoveFromQueue(employee);
-            _currentFirstEmployee = _elevatorQueue.GetNextInQueue();
+            // Need to check where the employee was dragged from
+            if (QueueType.Elevator == employee.CurrentQueueType)
+            {
+                bool removalSuccess = _elevatorQueue.RemoveFromQueue(employee);
+                if (!removalSuccess) Debug.Log("Failed to remove an employee from the elevatorQueue");
+                _currentFirstEmployee = _elevatorQueue.GetNextInQueue();
+            }
+            else
+            {
+                _reservesController.RemoveEmployee(employee);
+            }
 
             // Need to check if we've reached the end of the queue
             if (_currentFirstEmployee == null)
