@@ -54,6 +54,11 @@ public class ElevatorQueue : MonoBehaviour
         return _queue.Remove(employee);
     }
 
+    public Employee GetByIndex(int index)
+    {
+        return _queue[index];
+    }
+
     public int GetRemainingCount()
     {
         return _queue.Count;

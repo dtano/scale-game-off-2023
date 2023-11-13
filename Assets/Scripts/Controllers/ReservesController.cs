@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ReservesController : MonoBehaviour
 {
     [SerializeField] private ElevatorQueue _reservesQueue;
     [SerializeField] private ReservesUI _reservesUI;
+    [SerializeField] private TextMeshProUGUI _queueCountText;
     [SerializeField] private DragAndDropEventChannel _channel;
     [SerializeField] private GameObject _employeeParent;
     [SerializeField] private Transform _employeePositionMarker;
 
     [SerializeField] private DroppableArea _droppableArea;
-    private Employee _currentFirstEmployee;
+    private Employee _currentDisplayedEmployee;
 
     // Start is called before the first frame update
     void Start()
@@ -69,12 +71,12 @@ public class ReservesController : MonoBehaviour
         // Change the parent of the given object
         employee.gameObject.transform.SetParent(_employeeParent.transform);
         employee.gameObject.transform.position = _employeePositionMarker.position;
-        if (_currentFirstEmployee == null)
+        if (_currentDisplayedEmployee == null)
         {
             employee.gameObject.SetActive(true);
             Debug.Log("Set employee object active");
-            _currentFirstEmployee = employee;
-            _currentFirstEmployee.EmployeeInfoUI.gameObject.SetActive(true);
+            _currentDisplayedEmployee = employee;
+            _currentDisplayedEmployee.EmployeeInfoUI.gameObject.SetActive(true);
         }
 
         // Change employee's queue type
@@ -82,7 +84,8 @@ public class ReservesController : MonoBehaviour
         employee.CurrentQueuePosition = _reservesQueue.Count - 1;
 
         // Update reserves UI
-        _reservesUI.SetAmount(_reservesQueue.Count);
+        UpdateUI();
+        
 
         // Need to reset original position of the draggable object component
         if(employee.DraggableComponent != null)
@@ -91,6 +94,20 @@ public class ReservesController : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void UpdateUI()
+    {
+        if(_reservesUI != null)
+        {
+            _reservesUI.UpdateView(_reservesQueue, _currentDisplayedEmployee);
+        }
+        SetQueueCountText();
+    }
+
+    private void SetQueueCountText()
+    {
+        _queueCountText.text = $"Reserves Size: {_reservesQueue.Count}";
     }
 
     public bool RemoveEmployee(Employee employee)
@@ -105,15 +122,15 @@ public class ReservesController : MonoBehaviour
         }
 
         // Update reserves UI
-        _reservesUI.SetAmount(_reservesQueue.Count);
+        UpdateUI();
 
-        if(_currentFirstEmployee == employee)
+        if(_currentDisplayedEmployee == employee)
         {
-            _currentFirstEmployee = _reservesQueue.GetNextInQueue();
-            if(_currentFirstEmployee != null)
+            _currentDisplayedEmployee = _reservesQueue.GetNextInQueue();
+            if(_currentDisplayedEmployee != null)
             {
-                _currentFirstEmployee.gameObject.SetActive(true);
-                _currentFirstEmployee.EmployeeInfoUI.Show();
+                _currentDisplayedEmployee.gameObject.SetActive(true);
+                _currentDisplayedEmployee.EmployeeInfoUI.Show();
             }
         }
 

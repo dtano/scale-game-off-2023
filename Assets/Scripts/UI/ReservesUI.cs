@@ -6,13 +6,20 @@ using TMPro;
 
 public class ReservesUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _amountInQueueText;
+    private const int MAX_ICONS_IN_PAGE = 5;
+    
     [SerializeField] private GameObject _employeeIconPrefab;
+    [SerializeField] private Transform _employeeIconsParent;
+    [SerializeField] private Button _rightArrow;
+    [SerializeField] private Button _leftArrow;
+
+    private int _currentPage = 0;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        InstantiateEmptyIcons();
     }
 
     // Update is called once per frame
@@ -21,8 +28,56 @@ public class ReservesUI : MonoBehaviour
         
     }
 
-    public void SetAmount(int queueLength)
+    public void OnClickRightArrow()
     {
-        _amountInQueueText.text = $"Reserves Size: {queueLength}";
+        // Need to know how many people are in the reserves queue
+        // Then use that amount to determine which page
+    }
+
+    public void OnClickLeftArrow()
+    {
+
+    }
+
+    public void UpdateView(ElevatorQueue reservesQueue, Employee currentDisplayedEmployee)
+    {
+        // Need to determine which reserves to show
+        List<Employee> employeesToDisplay = new List<Employee>();
+
+        int i = 0;
+        while(i < MAX_ICONS_IN_PAGE)
+        {
+            int index = i + _currentPage;
+            GameObject iconObject = _employeeIconsParent.GetChild(i).gameObject;
+
+            if (index >= reservesQueue.Count)
+            {
+                iconObject.SetActive(false);
+            }
+            else
+            {
+                if(iconObject.TryGetComponent(out PassengerIcon passengerIcon))
+                {
+                    passengerIcon.SetData(reservesQueue.GetByIndex(index), index);
+                }
+                iconObject.SetActive(true);
+            }
+
+            i++;
+        }
+    }
+
+    private void InstantiateEmptyIcons()
+    {
+        int originalChildCount = _employeeIconsParent.childCount;
+        for (int j = 0; j < MAX_ICONS_IN_PAGE - originalChildCount; j++)
+        {
+            Instantiate(_employeeIconPrefab, _employeeIconsParent);
+        }
+
+        foreach(Transform child in _employeeIconsParent)
+        {
+            child.gameObject.SetActive(false);
+        }
     }
 }
