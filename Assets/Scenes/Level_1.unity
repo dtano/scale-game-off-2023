@@ -3368,8 +3368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _queue: []
-  _maxCapacity: 0
-  _hasMaxCapacity: 0
+  _maxCapacity: 5
+  _hasMaxCapacity: 1
 --- !u!1 &1493168549
 GameObject:
   m_ObjectHideFlags: 0

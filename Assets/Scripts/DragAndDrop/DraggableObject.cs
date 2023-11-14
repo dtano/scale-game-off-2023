@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class DraggableObject : MonoBehaviour
 {
+    [SerializeField] private LayerMask _eligibleForRaycastLayers;
     private Vector3 _offset;
     private Collider2D _collider;
     private Vector3 _originalPosition;
@@ -51,7 +52,7 @@ public class DraggableObject : MonoBehaviour
         _collider.enabled = false;
         var rayOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        RaycastHit2D hitInfo = Physics2D.Raycast(rayOrigin, Vector2.zero);
+        RaycastHit2D hitInfo = Physics2D.Raycast(rayOrigin, Vector2.zero, _eligibleForRaycastLayers);
         Debug.DrawRay(new Vector2(rayOrigin.x, rayOrigin.y), Vector2.zero, Color.red);
         if (hitInfo && hitInfo.collider != null && hitInfo.collider.TryGetComponent(out DroppableArea droppableArea))
         {

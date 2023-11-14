@@ -25,6 +25,11 @@ public class ReservesController : MonoBehaviour
         {
             _droppableArea.OnDropObjectEvent += OnDropEmployee;
         }
+
+        if(_reservesUI != null)
+        {
+            _reservesUI.SetPassengerIconClickEvents(OnClickReservesEmployeeIcon);
+        }
     }
 
     // Update is called once per frame
@@ -73,10 +78,7 @@ public class ReservesController : MonoBehaviour
         employee.gameObject.transform.position = _employeePositionMarker.position;
         if (_currentDisplayedEmployee == null)
         {
-            employee.gameObject.SetActive(true);
-            Debug.Log("Set employee object active");
-            _currentDisplayedEmployee = employee;
-            _currentDisplayedEmployee.EmployeeInfoUI.gameObject.SetActive(true);
+            ShowNewEmployee(employee);
         }
 
         // Change employee's queue type
@@ -86,7 +88,6 @@ public class ReservesController : MonoBehaviour
         // Update reserves UI
         UpdateUI();
         
-
         // Need to reset original position of the draggable object component
         if(employee.DraggableComponent != null)
         {
@@ -105,9 +106,32 @@ public class ReservesController : MonoBehaviour
         SetQueueCountText();
     }
 
+    private void ShowNewEmployee(Employee employee)
+    {
+        _currentDisplayedEmployee = employee;
+        _currentDisplayedEmployee.gameObject.SetActive(true);
+        _currentDisplayedEmployee.EmployeeInfoUI.gameObject.SetActive(true);
+    }
+
     private void SetQueueCountText()
     {
         _queueCountText.text = $"Reserves Size: {_reservesQueue.Count}";
+    }
+
+    private void OnClickReservesEmployeeIcon(int index)
+    {
+        if(index < 0 || index >= _reservesQueue.Count)
+        {
+            Debug.Log("Tried to click icon that has no valid index");
+            return;
+        }
+
+        // Turn off previous displayed employee
+        _currentDisplayedEmployee.gameObject.SetActive(false);
+        
+        ShowNewEmployee(_reservesQueue.GetByIndex(index));
+
+        UpdateUI();
     }
 
     public bool RemoveEmployee(Employee employee)
@@ -121,9 +145,6 @@ public class ReservesController : MonoBehaviour
             return false;
         }
 
-        // Update reserves UI
-        UpdateUI();
-
         if(_currentDisplayedEmployee == employee)
         {
             _currentDisplayedEmployee = _reservesQueue.GetNextInQueue();
@@ -133,6 +154,9 @@ public class ReservesController : MonoBehaviour
                 _currentDisplayedEmployee.EmployeeInfoUI.Show();
             }
         }
+
+        // Update reserves UI
+        UpdateUI();
 
         return false;
     }

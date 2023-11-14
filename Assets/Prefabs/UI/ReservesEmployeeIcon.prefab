@@ -267,6 +267,7 @@ MonoBehaviour:
   _icon: {fileID: 1912104882178021684}
   _weightText: {fileID: 1912104881754826243}
   _destinationFloorText: {fileID: 1912104880292647758}
+  _selectedIndicator: {fileID: 72083348}
 --- !u!1 &1912104881754826241
 GameObject:
   m_ObjectHideFlags: 0

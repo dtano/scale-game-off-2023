@@ -11,6 +11,7 @@ public class PassengerIcon : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Image _icon;
     [SerializeField] private TextMeshProUGUI _weightText;
     [SerializeField] private TextMeshProUGUI _destinationFloorText;
+    [SerializeField] private Image _selectedIndicator;
 
     private Employee _passenger;
     private int _passengerIndex;
@@ -36,6 +37,12 @@ public class PassengerIcon : MonoBehaviour, IPointerClickHandler
 
         _weightText.text = $"{passenger.Weight}kg";
         _destinationFloorText.text = $"{passenger.DestinationFloor}f";
+    }
+
+    public void SetSelectedIndicator(bool isSelected)
+    {
+        if (_selectedIndicator == null) return;
+        _selectedIndicator.gameObject.SetActive(isSelected);
     }
 
     public void OnPointerClick(PointerEventData eventData)

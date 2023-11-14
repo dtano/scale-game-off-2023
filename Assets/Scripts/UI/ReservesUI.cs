@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 
 public class ReservesUI : MonoBehaviour
@@ -13,11 +14,13 @@ public class ReservesUI : MonoBehaviour
     [SerializeField] private Button _rightArrow;
     [SerializeField] private Button _leftArrow;
 
+    public UnityAction<int> OnClickPassengerIconEvent;
+
+    private List<PassengerIcon> _passengerIcons = new List<PassengerIcon>();
     private int _currentPage = 0;
 
-
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         InstantiateEmptyIcons();
     }
@@ -49,6 +52,7 @@ public class ReservesUI : MonoBehaviour
         {
             int index = i + _currentPage;
             GameObject iconObject = _employeeIconsParent.GetChild(i).gameObject;
+            PassengerIcon passengerIcon = _passengerIcons[i];
 
             if (index >= reservesQueue.Count)
             {
@@ -56,10 +60,18 @@ public class ReservesUI : MonoBehaviour
             }
             else
             {
-                if(iconObject.TryGetComponent(out PassengerIcon passengerIcon))
+                Employee employeeToSet = reservesQueue.GetByIndex(index);
+                passengerIcon.SetData(employeeToSet, index);
+
+                if (currentDisplayedEmployee != null && currentDisplayedEmployee == employeeToSet)
                 {
-                    passengerIcon.SetData(reservesQueue.GetByIndex(index), index);
+                    passengerIcon.SetSelectedIndicator(true);
                 }
+                else
+                {
+                    passengerIcon.SetSelectedIndicator(false);
+                }
+
                 iconObject.SetActive(true);
             }
 
@@ -77,7 +89,19 @@ public class ReservesUI : MonoBehaviour
 
         foreach(Transform child in _employeeIconsParent)
         {
+            if (child.TryGetComponent(out PassengerIcon passengerIcon))
+            {
+                _passengerIcons.Add(passengerIcon);
+            }
             child.gameObject.SetActive(false);
+        }
+    }
+
+    public void SetPassengerIconClickEvents(UnityAction<int> onClickEvent)
+    {
+        foreach(PassengerIcon passengerIcon in _passengerIcons)
+        {
+            passengerIcon.OnIconClickEvent += onClickEvent;
         }
     }
 }
