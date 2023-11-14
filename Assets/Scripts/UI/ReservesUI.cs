@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
+using System;
 
 public class ReservesUI : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class ReservesUI : MonoBehaviour
     [SerializeField] private Button _leftArrow;
 
     public UnityAction<int> OnClickPassengerIconEvent;
+    public UnityAction OnClickArrowEvent;
 
     private List<PassengerIcon> _passengerIcons = new List<PassengerIcon>();
     private int _currentPage = 0;
@@ -23,6 +25,9 @@ public class ReservesUI : MonoBehaviour
     void Awake()
     {
         InstantiateEmptyIcons();
+
+        _leftArrow.gameObject.SetActive(false);
+        _rightArrow.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,22 +40,31 @@ public class ReservesUI : MonoBehaviour
     {
         // Need to know how many people are in the reserves queue
         // Then use that amount to determine which page
+        _currentPage++;
+        OnClickArrowEvent?.Invoke();
     }
 
     public void OnClickLeftArrow()
     {
-
+        _currentPage--;
+        OnClickArrowEvent?.Invoke();
     }
 
     public void UpdateView(ElevatorQueue reservesQueue, Employee currentDisplayedEmployee)
     {
-        // Need to determine which reserves to show
-        List<Employee> employeesToDisplay = new List<Employee>();
+        // Need to check if the amount of people in the reserves still allow for the current page to be displayed
+        double pagesInDecimal = (double) reservesQueue.Count / MAX_ICONS_IN_PAGE;
+        int maxPages = (int) Math.Ceiling(pagesInDecimal);
+
+        if (_currentPage > maxPages - 1 && _currentPage > 0)
+        {
+            _currentPage--;
+        }
 
         int i = 0;
         while(i < MAX_ICONS_IN_PAGE)
-        {
-            int index = i + _currentPage;
+        {            
+            int index = i + (_currentPage * MAX_ICONS_IN_PAGE); // I'm wrong here
             GameObject iconObject = _employeeIconsParent.GetChild(i).gameObject;
             PassengerIcon passengerIcon = _passengerIcons[i];
 
@@ -76,6 +90,25 @@ public class ReservesUI : MonoBehaviour
             }
 
             i++;
+        }
+
+        // Determine which buttons to show
+        if (_currentPage - 1 < 0)
+        {
+            _leftArrow.gameObject.SetActive(false);
+        }
+        else
+        {
+            _leftArrow.gameObject.SetActive(true);
+        }
+
+        if (_currentPage >= maxPages - 1)
+        {
+            _rightArrow.gameObject.SetActive(false);
+        }
+        else
+        {
+            _rightArrow.gameObject.SetActive(true);
         }
     }
 

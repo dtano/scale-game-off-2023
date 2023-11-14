@@ -29,6 +29,7 @@ public class ReservesController : MonoBehaviour
         if(_reservesUI != null)
         {
             _reservesUI.SetPassengerIconClickEvents(OnClickReservesEmployeeIcon);
+            _reservesUI.OnClickArrowEvent += UpdateUI;
         }
     }
 
@@ -122,7 +123,6 @@ public class ReservesController : MonoBehaviour
     {
         if(index < 0 || index >= _reservesQueue.Count)
         {
-            Debug.Log("Tried to click icon that has no valid index");
             return;
         }
 
