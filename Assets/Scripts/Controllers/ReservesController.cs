@@ -102,7 +102,7 @@ public class ReservesController : MonoBehaviour
     {
         if(_reservesUI != null)
         {
-            _reservesUI.UpdateView(_reservesQueue, _currentDisplayedEmployee);
+            _reservesUI.UpdateView(_reservesQueue.Queue, _currentDisplayedEmployee);
         }
         SetQueueCountText();
     }

@@ -8,6 +8,7 @@ public class ElevatorQueue : MonoBehaviour
     [SerializeField] private int _maxCapacity;
     [SerializeField] private bool _hasMaxCapacity = false;
 
+    public List<Employee> Queue => _queue;
     public int Count => _queue.Count;
     void Awake()
     {
