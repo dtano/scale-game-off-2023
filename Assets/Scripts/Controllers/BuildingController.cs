@@ -117,7 +117,12 @@ public class BuildingController : MonoBehaviour
     {
         if (_elevatorQueueUI != null)
         {
-            _elevatorQueueUI.UpdateView(_elevatorQueue.Queue, null);
+            List<Employee> employeesToDisplay = new List<Employee>();
+            for(int i = 1; i < _elevatorQueue.Count; i++)
+            {
+                employeesToDisplay.Add(_elevatorQueue.GetByIndex(i));
+            }
+            _elevatorQueueUI.UpdateView(employeesToDisplay, null);
         }
     }
 
