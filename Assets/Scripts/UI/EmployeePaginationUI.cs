@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using TMPro;
 using System;
 
-public class ReservesUI : MonoBehaviour
+public class EmployeePaginationUI : MonoBehaviour
 {
-    private const int MAX_ICONS_IN_PAGE = 5;
-    
-    [SerializeField] private GameObject _employeeIconPrefab;
+    [SerializeField] private int _maxIconsPerPage;
     [SerializeField] private Transform _employeeIconsParent;
-    [SerializeField] private Button _rightArrow;
-    [SerializeField] private Button _leftArrow;
+    [SerializeField] private GameObject _employeeIconPrefab;
+    [SerializeField] private Button _backButton;
+    [SerializeField] private Button _nextButton;
 
     public UnityAction<int> OnClickPassengerIconEvent;
     public UnityAction OnClickArrowEvent; // Maybe this arrow event could be placed in an event channel?
@@ -26,8 +24,8 @@ public class ReservesUI : MonoBehaviour
     {
         InstantiateEmptyIcons();
 
-        _leftArrow.gameObject.SetActive(false);
-        _rightArrow.gameObject.SetActive(false);
+        _backButton.gameObject.SetActive(false);
+        _nextButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,30 +34,18 @@ public class ReservesUI : MonoBehaviour
         
     }
 
-    public void OnClickRightArrow()
-    {
-        _currentPage++;
-        OnClickArrowEvent?.Invoke();
-    }
-
-    public void OnClickLeftArrow()
-    {
-        _currentPage--;
-        OnClickArrowEvent?.Invoke();
-    }
-
     public void UpdateView(List<Employee> reservesQueue, Employee currentDisplayedEmployee)
     {
-        int maxPages = (int) Math.Ceiling((double)reservesQueue.Count / MAX_ICONS_IN_PAGE);
+        int maxPages = (int)Math.Ceiling((double)reservesQueue.Count / _maxIconsPerPage);
         if (_currentPage > maxPages - 1 && _currentPage > 0)
         {
             _currentPage--;
         }
 
         int i = 0;
-        while(i < MAX_ICONS_IN_PAGE)
-        {            
-            int index = i + (_currentPage * MAX_ICONS_IN_PAGE);
+        while (i < _maxIconsPerPage)
+        {
+            int index = i + (_currentPage * _maxIconsPerPage);
             GameObject iconObject = _employeeIconsParent.GetChild(i).gameObject;
             PassengerIcon passengerIcon = _passengerIcons[i];
 
@@ -95,32 +81,44 @@ public class ReservesUI : MonoBehaviour
         // Determine which buttons to show
         if (_currentPage - 1 < 0)
         {
-            _leftArrow.gameObject.SetActive(false);
+            _backButton.gameObject.SetActive(false);
         }
         else
         {
-            _leftArrow.gameObject.SetActive(true);
+            _backButton.gameObject.SetActive(true);
         }
 
         if (_currentPage >= maxPages - 1)
         {
-            _rightArrow.gameObject.SetActive(false);
+            _nextButton.gameObject.SetActive(false);
         }
         else
         {
-            _rightArrow.gameObject.SetActive(true);
+            _nextButton.gameObject.SetActive(true);
         }
+    }
+
+    public void OnClickNextButton()
+    {
+        _currentPage++;
+        OnClickArrowEvent?.Invoke();
+    }
+
+    public void OnClickBackButton()
+    {
+        _currentPage--;
+        OnClickArrowEvent?.Invoke();
     }
 
     private void InstantiateEmptyIcons()
     {
         int originalChildCount = _employeeIconsParent.childCount;
-        for (int j = 0; j < MAX_ICONS_IN_PAGE - originalChildCount; j++)
+        for (int j = 0; j < _maxIconsPerPage - originalChildCount; j++)
         {
             Instantiate(_employeeIconPrefab, _employeeIconsParent);
         }
 
-        foreach(Transform child in _employeeIconsParent)
+        foreach (Transform child in _employeeIconsParent)
         {
             if (child.TryGetComponent(out PassengerIcon passengerIcon))
             {
@@ -132,7 +130,7 @@ public class ReservesUI : MonoBehaviour
 
     public void SetPassengerIconClickEvents(UnityAction<int> onClickEvent)
     {
-        foreach(PassengerIcon passengerIcon in _passengerIcons)
+        foreach (PassengerIcon passengerIcon in _passengerIcons)
         {
             passengerIcon.OnIconClickEvent += onClickEvent;
         }

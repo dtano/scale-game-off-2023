@@ -13,7 +13,6 @@ public class PassengerIcon : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TextMeshProUGUI _destinationFloorText;
     [SerializeField] private Image _selectedIndicator;
 
-    private Employee _passenger;
     private int _passengerIndex;
 
     public UnityAction<int> OnIconClickEvent;
@@ -32,11 +31,10 @@ public class PassengerIcon : MonoBehaviour, IPointerClickHandler
     public void SetData(Employee passenger, int index)
     {
         if (passenger == null) return;
-        _passenger = passenger;
         _passengerIndex = index;
 
-        _weightText.text = $"{passenger.Weight}kg";
-        _destinationFloorText.text = $"{passenger.DestinationFloor}f";
+        if(_weightText != null) _weightText.text = $"{passenger.Weight}kg";
+        if(_destinationFloorText != null) _destinationFloorText.text = $"{passenger.DestinationFloor}f";
     }
 
     public void SetSelectedIndicator(bool isSelected)

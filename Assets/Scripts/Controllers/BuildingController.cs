@@ -14,6 +14,7 @@ public class BuildingController : MonoBehaviour
     [SerializeField] private DragAndDropEventChannel _dragAndDropEventChannel;
     [SerializeField] private DragAndDropEventChannel _reservesDragAndDropEventChannel;
     [SerializeField] private TabletInteractionEventChannel _tabletInteractionEventChannel;
+    [SerializeField] private EmployeePaginationUI _elevatorQueueUI;
 
     private Employee _currentFirstEmployee;
 
@@ -51,6 +52,13 @@ public class BuildingController : MonoBehaviour
         
         // Once employees are spawned, take out the first employee to be displayed in game
         _currentFirstEmployee = _elevatorQueue.GetNextInQueue();
+
+        if(_elevatorQueueUI != null)
+        {
+            _elevatorQueueUI.OnClickArrowEvent += UpdateElevatorQueueUI;
+            UpdateElevatorQueueUI();
+        }
+
     }
 
     // Update is called once per frame
@@ -72,6 +80,8 @@ public class BuildingController : MonoBehaviour
                 bool removalSuccess = _elevatorQueue.RemoveFromQueue(employee);
                 if (!removalSuccess) Debug.Log("Failed to remove an employee from the elevatorQueue");
                 _currentFirstEmployee = _elevatorQueue.GetNextInQueue();
+
+                UpdateElevatorQueueUI();
             }
             else
             {
@@ -99,6 +109,15 @@ public class BuildingController : MonoBehaviour
         {
             _elevatorQueue.RemoveFromQueue(employee);
             _currentFirstEmployee = _elevatorQueue.GetNextInQueue();
+            UpdateElevatorQueueUI();
+        }
+    }
+
+    private void UpdateElevatorQueueUI()
+    {
+        if (_elevatorQueueUI != null)
+        {
+            _elevatorQueueUI.UpdateView(_elevatorQueue.Queue, null);
         }
     }
 

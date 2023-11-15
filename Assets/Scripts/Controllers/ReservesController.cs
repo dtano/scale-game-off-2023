@@ -6,7 +6,7 @@ using TMPro;
 public class ReservesController : MonoBehaviour
 {
     [SerializeField] private ElevatorQueue _reservesQueue;
-    [SerializeField] private ReservesUI _reservesUI;
+    [SerializeField] private EmployeePaginationUI _reservesUI;
     [SerializeField] private TextMeshProUGUI _queueCountText;
     [SerializeField] private DragAndDropEventChannel _channel;
     [SerializeField] private GameObject _employeeParent;
