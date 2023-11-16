@@ -27,6 +27,9 @@ public class ElevatorManagementTablet : UIElement
 
         _elevatorPassengerList.OnSelectEmployeeEvent += OnSelectEmployee;
         _elevatorPassengerList.OnKickEmployeeEvent += OnKickEmployeeFromElevator;
+        
+        _gameStateEventChannel.OnTimeLimitReachedEvent += ForceTurnOff;
+        _gameStateEventChannel.OnAllEmployeesServedEvent += ForceTurnOff;
     }
 
     // Update is called once per frame
@@ -99,6 +102,11 @@ public class ElevatorManagementTablet : UIElement
         _elevatorPassengerInteractionModal.Show();
     }
 
+    private void ForceTurnOff()
+    {
+        TurnOff();
+    }
+
     private void TurnOff(bool shouldSlide = true)
     {
         _isOn = false;
@@ -131,6 +139,7 @@ public class ElevatorManagementTablet : UIElement
 
     public void OnPowerButtonClick()
     {
+        if (GameStateManager.Instance.IsGameOver) return;
         if (_isOn)
         {
             TurnOff();

@@ -24,9 +24,14 @@ public class DraggableObject : MonoBehaviour
         _originalPosition = transform.position;
     }
 
+    bool IsDraggable()
+    {
+        return !GameStateManager.Instance.IsTabletOn && !GameStateManager.Instance.IsGameOver;
+    }
+
     void OnMouseDown()
     {
-        if (GameStateManager.Instance.IsTabletOn) return;
+        if (!IsDraggable()) return;
 
         _offset = transform.position - MouseToWorldPosition();
         OnDragStarted?.Invoke();
@@ -34,7 +39,7 @@ public class DraggableObject : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (GameStateManager.Instance.IsTabletOn) return;
+        if (!IsDraggable()) return;
 
         transform.position = MouseToWorldPosition() + _offset;
         Debug.DrawRay(Camera.main.transform.position, MouseToWorldPosition() - Camera.main.transform.position, Color.red);
@@ -47,7 +52,7 @@ public class DraggableObject : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (GameStateManager.Instance.IsTabletOn) return;
+        if (!IsDraggable()) return;
 
         _collider.enabled = false;
         var rayOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);

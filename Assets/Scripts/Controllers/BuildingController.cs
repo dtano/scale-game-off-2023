@@ -14,9 +14,12 @@ public class BuildingController : MonoBehaviour
     [SerializeField] private DragAndDropEventChannel _dragAndDropEventChannel;
     [SerializeField] private DragAndDropEventChannel _reservesDragAndDropEventChannel;
     [SerializeField] private TabletInteractionEventChannel _tabletInteractionEventChannel;
+    [SerializeField] private GameStateEventChannel _gameStateEventChannel;
     [SerializeField] private EmployeePaginationUI _elevatorQueueUI;
 
     private Employee _currentFirstEmployee;
+    private int _totalEmployeesInBuilding;
+    private int _servedEmployeesCount;
 
     public List<Elevator> Elevators => _elevators;
 
@@ -43,8 +46,13 @@ public class BuildingController : MonoBehaviour
             _tabletInteractionEventChannel.OnKickEmployeeFromElevatorEvent += OnKickEmployeeFromElevator;
         }
 
+        if(_gameStateEventChannel != null)
+        {
+            _gameStateEventChannel.OnReleaseEmployeesInFloorEvent += RecordReleasedEmployeesInFloor;
+        }
+
         // Then initiate the steps
-        if (_employeeSpawner != null) _employeeSpawner.SpawnEmployees(_buildingData.NumFloors);
+        SpawnEmployees();
 
         foreach(Elevator elevator in _elevators){
             elevator.SetTotalFloors(_buildingData.NumFloors);
@@ -64,7 +72,34 @@ public class BuildingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // I'm placing it here cuz I'm worried that all the event calls will mess things up
+        if (_servedEmployeesCount == _totalEmployeesInBuilding && (!GameStateManager.Instance.IsTimeLimitReached && !GameStateManager.Instance.IsGameOver))
+        {
+            Debug.Log("GAME IS WON");
+            if (_gameStateEventChannel != null) _gameStateEventChannel.OnAllEmployeesServed();
+        }
+    }
+
+    private void RecordReleasedEmployeesInFloor(List<Employee> releasedEmployees, int floorNum)
+    {
+        int releasedCount = 0;
+        foreach(Employee employee in releasedEmployees)
+        {
+            if (employee == null) continue;
+            Debug.Log($"{floorNum} : {employee.Weight}");
+            //Destroy(employee); // Maybe destroying is unnecessary?
+            releasedCount++;
+        }
+
+        _servedEmployeesCount += releasedCount;
+    }
+
+    private void SpawnEmployees()
+    {
+        // Then initiate the steps
+        if (_employeeSpawner != null) _employeeSpawner.SpawnEmployees(_buildingData.NumFloors);
+
+        _totalEmployeesInBuilding = _elevatorQueue.Count;
     }
 
     private void OnAddEmployeeToElevator(DraggableObject draggableObject)

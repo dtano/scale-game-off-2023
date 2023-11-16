@@ -7,6 +7,7 @@ using TMPro;
 public class Clock : MonoBehaviour
 {
     private const float SECONDS_PER_MINUTE = 5f;
+    [SerializeField] private GameStateEventChannel _eventChannel;
     [SerializeField] private TextMeshProUGUI _clockText;
     [SerializeField] private int _startHour = 8;
     [SerializeField] private int _startMinute = 0;
@@ -26,6 +27,8 @@ public class Clock : MonoBehaviour
     {
         _currentHour = _startHour;
         _currentMinutes = _startMinute;
+
+        _eventChannel.OnAllEmployeesServedEvent += TurnOff;
     }
 
     // Update is called once per frame
@@ -58,7 +61,13 @@ public class Clock : MonoBehaviour
     private void OnTimerFinished()
     {
         Debug.Log("Timer finished");
+        
         // Trigger some events
+        if(_eventChannel != null)
+        {
+            _eventChannel.OnTimeLimitReached();
+        }
+
         TurnOff();
     }
 

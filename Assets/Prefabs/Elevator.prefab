@@ -1075,6 +1075,7 @@ MonoBehaviour:
   _currentDirection: 0
   _elevatorDisplayUI: {fileID: 1489373739}
   _floorNumberIndicator: {fileID: 430307204}
+  _gameStateEventChannel: {fileID: 11400000, guid: 6a4ec2c3b070dba40ad0e32f29383697, type: 2}
 --- !u!114 &2040404077
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class Elevator : MonoBehaviour, IDroppable
     [SerializeField] private Direction _currentDirection = Direction.Up;
     [SerializeField] private ElevatorDisplayUI _elevatorDisplayUI;
     [SerializeField] private FloorNumberIndicator _floorNumberIndicator;
+    [SerializeField] private GameStateEventChannel _gameStateEventChannel;
 
     private DroppableArea droppableArea;
     private Dictionary<int, List<Employee>> _destinationMap = new Dictionary<int, List<Employee>>();
@@ -119,11 +120,14 @@ public class Elevator : MonoBehaviour, IDroppable
         foreach (Employee passenger in passengersToRelease)
         {
             RemoveFromElevator(passenger);
-            Destroy(passenger.gameObject);
+            //Destroy(passenger.gameObject);
         }
 
         _destinationMap[floorNumber].Clear();
         _destinationMap.Remove(floorNumber);
+
+        // Need to somehow notify someone about this fact
+        if (_gameStateEventChannel != null) _gameStateEventChannel.OnReleaseEmployeesInFloorEvent(passengersToRelease, floorNumber);
     }
 
     private void OnReachedFloor(int floorNumber)
@@ -134,7 +138,7 @@ public class Elevator : MonoBehaviour, IDroppable
 
     public void StartJourney()
     {
-        if (_isMoving || GameStateManager.Instance.IsTabletOn) return;
+        if (_isMoving || (GameStateManager.Instance.IsTabletOn || GameStateManager.Instance.IsGameOver)) return;
         if(_currentDirection == Direction.Up && _passengers.Count == 0)
         {
             Debug.Log("Can't start since lift is empty");

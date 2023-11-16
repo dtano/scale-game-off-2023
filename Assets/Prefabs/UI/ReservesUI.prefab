@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6447679298395070447}
-  - component: {fileID: 6447679298395070446}
+  - component: {fileID: 5441791959064487065}
   m_Layer: 5
   m_Name: ReservesUI
   m_TagString: Untagged
@@ -40,7 +40,7 @@ RectTransform:
   m_AnchoredPosition: {x: -286.5808, y: 100.04999}
   m_SizeDelta: {x: 464.614, y: 200.1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6447679298395070446
+--- !u!114 &5441791959064487065
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,13 +49,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6447679298395070432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8d1493125291b546ba6334e78aac879, type: 3}
+  m_Script: {fileID: 11500000, guid: 59e17ba8cd91e3a499953554268e0065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _employeeIconPrefab: {fileID: 1912104881735614638, guid: b520e9933613043448e669d9292bb011, type: 3}
+  _maxIconsPerPage: 5
   _employeeIconsParent: {fileID: 6447679299181171376}
-  _rightArrow: {fileID: 6447679298417882771}
-  _leftArrow: {fileID: 6447679299472025830}
+  _employeeIconPrefab: {fileID: 1912104881735614638, guid: b520e9933613043448e669d9292bb011, type: 3}
+  _backButton: {fileID: 6447679299472025830}
+  _nextButton: {fileID: 6447679298417882771}
 --- !u!1 &6447679298417882773
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,9 +178,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6447679298395070446}
-        m_TargetAssemblyTypeName: ReservesUI, Assembly-CSharp
-        m_MethodName: OnClickRightArrow
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: EmployeePaginationUI, Assembly-CSharp
+        m_MethodName: OnClickNextButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -489,9 +490,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6447679298395070446}
-        m_TargetAssemblyTypeName: ReservesUI, Assembly-CSharp
-        m_MethodName: OnClickLeftArrow
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: EmployeePaginationUI, Assembly-CSharp
+        m_MethodName: OnClickBackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

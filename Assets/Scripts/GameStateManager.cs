@@ -8,8 +8,12 @@ public class GameStateManager : MonoBehaviour
     public static GameStateManager Instance { get; private set; }
 
     private bool _isTabletOn = false;
+    private bool _isGameOver = false;
+    private bool _isTimeLimitReached = false;
 
     public bool IsTabletOn { get => _isTabletOn; set => _isTabletOn = value; }
+    public bool IsGameOver { get => _isGameOver; set => _isGameOver = value; }
+    public bool IsTimeLimitReached { get => _isTimeLimitReached; set => _isTimeLimitReached = value; }
 
     void Awake()
     {
@@ -24,6 +28,8 @@ public class GameStateManager : MonoBehaviour
             if(_eventChannel != null)
             {
                 _eventChannel.OnTabletStateChangeEvent += SetTabletStatus;
+                _eventChannel.OnTimeLimitReachedEvent += SetTimeLimitReachedState;
+                _eventChannel.OnAllEmployeesServedEvent += SetGameIsOver;
             }
         }
     }
@@ -31,5 +37,16 @@ public class GameStateManager : MonoBehaviour
     public void SetTabletStatus(bool isOn)
     {
         _isTabletOn = isOn;
+    }
+
+    public void SetTimeLimitReachedState()
+    {
+        SetGameIsOver();
+        _isTimeLimitReached = true;
+    }
+
+    public void SetGameIsOver()
+    {
+        _isGameOver = true;
     }
 }
