@@ -27,7 +27,8 @@ public class Employee : MonoBehaviour
     [SerializeField] private BodyType _bodyType;
     [SerializeField] private EmployeeInfoUI _employeeInfoUI;
 
-    private SpriteRenderer _spriteRenderer;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    private BodyTypeDataSO _bodyTypeData;
     private DraggableObject _draggableComponent;
     private QueueType _currentQueueType = QueueType.Elevator;
     private int _currentQueuePosition;
@@ -40,6 +41,7 @@ public class Employee : MonoBehaviour
     public BodyType BodyType => _bodyType;
     public EmployeeInfoUI EmployeeInfoUI => _employeeInfoUI;
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
+    public BodyTypeDataSO BodyTypeData => _bodyTypeData;
     public DraggableObject DraggableComponent => _draggableComponent;
     public QueueType CurrentQueueType { get => _currentQueueType; set => _currentQueueType = value; }
     public int CurrentQueuePosition { get => _currentQueuePosition; set => _currentQueuePosition = value; }
@@ -48,6 +50,7 @@ public class Employee : MonoBehaviour
     void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        Debug.Log("Get Sprite Renderer " + _spriteRenderer);
         _draggableComponent = GetComponent<DraggableObject>();
         if(_draggableComponent != null)
         {
@@ -84,8 +87,26 @@ public class Employee : MonoBehaviour
         _currentQueuePosition = currentQueuePosition;
 
         if(_employeeInfoUI != null) _employeeInfoUI.SetInformation(weight, destinationFloor);
-        if (sprite != null) _spriteRenderer.sprite = sprite;
+        Debug.Log("Set sprite " + sprite);
+        if (sprite != null && _spriteRenderer != null) _spriteRenderer.sprite = sprite;
 
+        // Need to trigger some sort of fade in animation so that the player can tell that the employee has changed
+    }
+
+    public void SetEmployeeData(Guid id, BodyTypeDataSO bodyTypeData, int weight, int destinationFloor, int currentQueuePosition = 0, float satisfactionLevel = 100f)
+    {
+        _id = id;
+        _bodyTypeData = bodyTypeData;
+        _bodyType = bodyTypeData.BodyType;
+        _weight = weight;
+        _destinationFloor = destinationFloor;
+        _satisfactionLevel = satisfactionLevel;
+
+        _originalQueuePosition = currentQueuePosition;
+        _currentQueuePosition = currentQueuePosition;
+
+        if (_employeeInfoUI != null) _employeeInfoUI.SetInformation(weight, destinationFloor);
+        if (bodyTypeData.Sprite != null && _spriteRenderer != null) _spriteRenderer.sprite = bodyTypeData.Sprite;
         // Need to trigger some sort of fade in animation so that the player can tell that the employee has changed
     }
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a9cf68cde34aa9c4facecfe9d0121e81
+guid: a3d88d3fbb687fb49b9e7c6b912b73db
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -141,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tablet_0
+      name: EmployeeIcons_24x24_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 0
-        width: 68
-        height: 75
+        x: 4
+        y: 27
+        width: 17
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2ff52c31b55a22448c7845911913d2b
-      internalID: 578910022
+      spriteID: 93d1487fb295d6b4ba1bc48c48ab004d
+      internalID: 278042557
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tablet_1
+      name: EmployeeIcons_24x24_1
       rect:
         serializedVersion: 2
-        x: 74
-        y: 0
-        width: 68
-        height: 75
+        x: 28
+        y: 27
+        width: 17
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +176,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb88b1c5085a1c04b8e223e189615f60
-      internalID: -462297612
+      spriteID: 753c0a00a69215a42bf834f06a7bf99b
+      internalID: 584026261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmployeeIcons_24x24_2
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 3
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef183c4d9b77caf40a602a97e6f69af9
+      internalID: 619260345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmployeeIcons_24x24_3
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 3
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0867e121b4498804db1d57218cf3cd03
+      internalID: 449589250
       vertices: []
       indices: 
       edges: []
@@ -193,8 +235,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tablet_1: -462297612
-      Tablet_0: 578910022
+      EmployeeIcons_24x24_0: 278042557
+      EmployeeIcons_24x24_2: 619260345
+      EmployeeIcons_24x24_3: 449589250
+      EmployeeIcons_24x24_1: 584026261
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

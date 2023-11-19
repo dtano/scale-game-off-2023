@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a9cf68cde34aa9c4facecfe9d0121e81
+guid: 21d770cec8ab4da45b050447c357e322
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -141,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tablet_0
+      name: Arrow_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 0
-        width: 68
-        height: 75
+        x: 6
+        y: 30
+        width: 12
+        height: 11
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2ff52c31b55a22448c7845911913d2b
-      internalID: 578910022
+      spriteID: 00447bd0ddeba2b4da886cac58078abf
+      internalID: 399417217
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tablet_1
+      name: Arrow_1
       rect:
         serializedVersion: 2
-        x: 74
-        y: 0
-        width: 68
-        height: 75
+        x: 33
+        y: 29
+        width: 9
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +176,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb88b1c5085a1c04b8e223e189615f60
-      internalID: -462297612
+      spriteID: e2b43030cd096b749a00c8a737536341
+      internalID: -214046628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow_2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 7
+        width: 21
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87289fdc4ed23c34fbe64d6ee58255a7
+      internalID: -1839097079
       vertices: []
       indices: 
       edges: []
@@ -193,8 +214,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tablet_1: -462297612
-      Tablet_0: 578910022
+      Arrow_0: 399417217
+      Arrow_2: -1839097079
+      Arrow_1: -214046628
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

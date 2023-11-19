@@ -35,6 +35,11 @@ public class PassengerIcon : MonoBehaviour, IPointerClickHandler
 
         if(_weightText != null) _weightText.text = $"{passenger.Weight}kg";
         if(_destinationFloorText != null) _destinationFloorText.text = $"{passenger.DestinationFloor}f";
+
+        if(_icon != null && passenger.BodyTypeData != null)
+        {
+            _icon.sprite = passenger.BodyTypeData.IconSprite;
+        }
     }
 
     public void SetSelectedIndicator(bool isSelected)

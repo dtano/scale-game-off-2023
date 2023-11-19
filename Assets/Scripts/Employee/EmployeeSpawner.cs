@@ -48,7 +48,7 @@ public class EmployeeSpawner : MonoBehaviour
         if(employeeObject.TryGetComponent(out Employee employee))
         {
             Guid employeeId = Guid.NewGuid();
-            employee.SetEmployeeData(employeeId, bodyTypeData.BodyType, weight, destinationFloor, bodyTypeData.Sprite, currentQueuePosition);
+            employee.SetEmployeeData(employeeId, bodyTypeData, weight, destinationFloor, currentQueuePosition);
             if(_elevatorQueue != null) _elevatorQueue.AddToQueue(employee);
         }
 
