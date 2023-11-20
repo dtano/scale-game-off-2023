@@ -17,10 +17,12 @@ public class Elevator : MonoBehaviour, IDroppable
     [SerializeField] private FloorNumberIndicator _floorNumberIndicator;
     [SerializeField] private GameStateEventChannel _gameStateEventChannel;
 
+    private Animator _animator;
     private DroppableArea droppableArea;
     private Dictionary<int, List<Employee>> _destinationMap = new Dictionary<int, List<Employee>>();
     
     private bool _isMoving = false;
+    private bool _isOpen = false;
     private int _currentCapacity;
     private int _currentFloor;
     private int _totalFloors;
@@ -37,8 +39,20 @@ public class Elevator : MonoBehaviour, IDroppable
         droppableArea = GetComponent<DroppableArea>();
         droppableArea.OnDropObjectEvent += OnDropObject;
 
-        if(_elevatorDisplayUI != null) _elevatorDisplayUI.SetInformation(_currentCapacity, _elevatorData.MaxCapacity);
+        _animator = GetComponent<Animator>();
+
+        if(_elevatorDisplayUI != null)
+        {
+            _elevatorDisplayUI.SetInformation(_currentCapacity, _elevatorData.MaxCapacity);
+            _elevatorDisplayUI.Hide();
+        }
+
         if(_floorNumberIndicator != null) _floorNumberIndicator.SetFloorNumber(_currentFloor);
+
+        if (_animator != null)
+        {
+            _animator.SetBool("isOpen", true);
+        }
     }
 
     // Update is called once per frame
@@ -136,10 +150,11 @@ public class Elevator : MonoBehaviour, IDroppable
         ReleasePassengersAtGivenFloor(floorNumber);
     }
 
-    public void StartJourney()
+    public void OnPressCloseButton()
     {
         if (_isMoving || (GameStateManager.Instance.IsTabletOn || GameStateManager.Instance.IsGameOver)) return;
-        if(_currentDirection == Direction.Up && _passengers.Count == 0)
+
+        if (_currentDirection == Direction.Up && _passengers.Count == 0)
         {
             Debug.Log("Can't start since lift is empty");
             return;
@@ -151,6 +166,14 @@ public class Elevator : MonoBehaviour, IDroppable
         if (_elevatorDisplayUI != null) _elevatorDisplayUI.Hide();
         _isMoving = true;
 
+        if (_animator != null)
+        {
+            _animator.SetBool("isOpen", false);
+        }
+    }
+
+    public void StartJourney()
+    {
         StartCoroutine(ProcessTrip());
     }
 
@@ -207,7 +230,8 @@ public class Elevator : MonoBehaviour, IDroppable
             }
 
             // Once we've reached the bottom floor, trigger some function
-            OnElevatorReturn();
+            if (_animator != null) _animator.SetBool("isOpen", true);
+            //OnElevatorReturn(); // This should be triggered by an animation
         }
 
         Debug.Log("Trip Over");

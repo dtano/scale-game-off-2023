@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4590464922843853473}
   - component: {fileID: 4590464922843853474}
   - component: {fileID: 4590464922843853475}
+  - component: {fileID: 3256723957714557757}
   m_Layer: 0
   m_Name: CargoElevator
   m_TagString: Untagged
@@ -106,14 +107,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.6875, y: 3}
+    oldSize: {x: 3.8125, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.6875, y: 3}
+  m_Size: {x: 3.8125, y: 3}
   m_EdgeRadius: 0
 --- !u!212 &4590464922843853475
 SpriteRenderer:
@@ -156,7 +157,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1947470467, guid: ba29d26ef392f604e82a05a4da2e3a67, type: 3}
+  m_Sprite: {fileID: 422896120, guid: fda781c5251eda34292eb6bb736e7abb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -167,6 +168,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3256723957714557757
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970644203017050359}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b7bc9268eeae16b46aa7c60e9a87dd17, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3859279681544139661
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +502,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1970644203396235416}
         m_TargetAssemblyTypeName: Elevator, Assembly-CSharp
-        m_MethodName: StartJourney
+        m_MethodName: OnPressCloseButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -746,7 +767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.32915, y: -0.000000026077}
+  m_AnchoredPosition: {x: 0.385, y: -0.000000026077}
   m_SizeDelta: {x: 0.2457, y: 0.1983}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4590464923573119305
@@ -777,7 +798,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1839097079, guid: 21d770cec8ab4da45b050447c357e322, type: 3}
+  m_Sprite: {fileID: -1754180292, guid: 6555395e10e926a42b913fea8f95439b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -822,7 +843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.32914987, y: -0.000000026077}
+  m_AnchoredPosition: {x: -0.385, y: -0.000000026077}
   m_SizeDelta: {x: 0.2457, y: 0.19853}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4590464923664934001
@@ -853,7 +874,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1839097079, guid: 21d770cec8ab4da45b050447c357e322, type: 3}
+  m_Sprite: {fileID: -1754180292, guid: 6555395e10e926a42b913fea8f95439b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

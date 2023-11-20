@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ba29d26ef392f604e82a05a4da2e3a67
+guid: 6555395e10e926a42b913fea8f95439b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -141,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Elevators_0
+      name: ElevatorArrows_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 48
-        width: 48
-        height: 48
+        x: 2
+        y: 7
+        width: 21
+        height: 11
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a9cd7fc4b05e8149af67cbe314ce9d4
-      internalID: -1053088473
+      spriteID: d7c706973e8047b4990b60d83d21a218
+      internalID: -1754180292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Elevators_1
+      name: ElevatorArrows_1
       rect:
         serializedVersion: 2
-        x: 84
-        y: 48
-        width: 48
-        height: 48
+        x: 26
+        y: 6
+        width: 21
+        height: 11
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,92 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6c9722d9744cae4fbb9eea00b4470af
-      internalID: -193866160
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Elevators_2
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 48
-        width: 40
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc4fffbd8d40db549962d3d363568ab2
-      internalID: 626516412
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Elevators_3
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 40
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b40d0d16e47a57a48b0d55e6b2eadc1f
-      internalID: -2112543718
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Elevators_4
-      rect:
-        serializedVersion: 2
-        x: 79
-        y: 0
-        width: 59
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 578808b8a747b1349b8e5742345aa120
-      internalID: -1947470467
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Elevators_5
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 0
-        width: 59
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4fddabbecc8971d4f9aa48d43ee99f16
-      internalID: -906889656
+      spriteID: 21bbe760f25a1bb44a707000b23d9d2a
+      internalID: 970396490
       vertices: []
       indices: 
       edges: []
@@ -277,12 +193,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Elevators_1: -193866160
-      Elevators_2: 626516412
-      Elevators_0: -1053088473
-      Elevators_5: -906889656
-      Elevators_3: -2112543718
-      Elevators_4: -1947470467
+      ElevatorArrows_0: -1754180292
+      ElevatorArrows_1: 970396490
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
