@@ -123,6 +123,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &63375908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6915872006563604346, guid: 58b6abcd58d9b224da353247f4f694ac, type: 3}
+  m_PrefabInstance: {fileID: 8010437628966666620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &63375912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63375908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bccface66d6ba824baffe3473985a04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!1 &146353882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,6 +2678,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6447679299221887988, guid: 870c68dad57c8e44088b917ba486e6d6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447679299221887988, guid: 870c68dad57c8e44088b917ba486e6d6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447679299221887988, guid: 870c68dad57c8e44088b917ba486e6d6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447679299221887988, guid: 870c68dad57c8e44088b917ba486e6d6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 870c68dad57c8e44088b917ba486e6d6, type: 3}
 --- !u!1001 &8010437628966666620
@@ -2673,6 +2707,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 8869739420120742572, guid: 58b6abcd58d9b224da353247f4f694ac, type: 3}
+      propertyPath: _floorIndicator
+      value: 
+      objectReference: {fileID: 63375912}
     - target: {fileID: 8869739420262949568, guid: 58b6abcd58d9b224da353247f4f694ac, type: 3}
       propertyPath: m_RootOrder
       value: 0
