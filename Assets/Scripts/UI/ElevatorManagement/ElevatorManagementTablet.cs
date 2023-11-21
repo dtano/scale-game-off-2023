@@ -11,6 +11,10 @@ public class ElevatorManagementTablet : UIElement
     [SerializeField] private ElevatorPassengerList _elevatorPassengerList;
     [SerializeField] private ElevatorPassengerInteractionModal _elevatorPassengerInteractionModal;
 
+    [SerializeField] private Image _tabletImage;
+    [SerializeField] private Sprite _tabletOnSprite;
+    [SerializeField] private Sprite _tabletOffSprite;
+
     [SerializeField] private GameStateEventChannel _gameStateEventChannel;
     [SerializeField] private TabletInteractionEventChannel _tabletInteractionEventChannel;
 
@@ -41,6 +45,7 @@ public class ElevatorManagementTablet : UIElement
     private void TurnOn(bool shouldSlide = true)
     {
         _isOn = true;
+        _tabletImage.sprite = _tabletOnSprite;
 
         if (!shouldSlide)
         {
@@ -110,6 +115,7 @@ public class ElevatorManagementTablet : UIElement
     private void TurnOff(bool shouldSlide = true)
     {
         _isOn = false;
+        _tabletImage.sprite = _tabletOffSprite;
 
         if (!shouldSlide)
         {
