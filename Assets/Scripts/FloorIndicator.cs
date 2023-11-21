@@ -23,6 +23,7 @@ public class FloorIndicator : MonoBehaviour
 
     public void SwitchDirection()
     {
+        Debug.Log("SWITCH DIRECTION");
         _animator.SetTrigger("switchDirection");
         StopMovement();
     }

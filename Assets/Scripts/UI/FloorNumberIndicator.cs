@@ -10,15 +10,26 @@ public class FloorNumberIndicator : MonoBehaviour
     [SerializeField] private Animator _animator;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StopMovement()
     {
-        
+        _animator.SetBool("isMoving", false);
+    }
+
+    public void StartMovement()
+    {
+        _animator.SetBool("isMoving", true);
+    }
+
+    public void SwitchDirection()
+    {
+        Debug.Log("SWITCH DIRECTION");
+        _animator.SetTrigger("switchDirection");
+        StopMovement();
     }
 
     public void SetFloorNumber(int floorNumber)

@@ -16,7 +16,6 @@ public class Elevator : MonoBehaviour, IDroppable
     [SerializeField] private ElevatorDisplayUI _elevatorDisplayUI;
     [SerializeField] private FloorNumberIndicator _floorNumberIndicator;
     [SerializeField] private GameStateEventChannel _gameStateEventChannel;
-    [SerializeField] private FloorIndicator _floorIndicator;
 
     private Animator _animator;
     private DroppableArea droppableArea;
@@ -147,7 +146,7 @@ public class Elevator : MonoBehaviour, IDroppable
 
     private void OnReachedFloor(int floorNumber)
     {
-        if (_floorIndicator != null) _floorIndicator.StopMovement();
+        if (_floorNumberIndicator != null) _floorNumberIndicator.StopMovement();
         // Play some sort of sound
         ReleasePassengersAtGivenFloor(floorNumber);
     }
@@ -189,9 +188,10 @@ public class Elevator : MonoBehaviour, IDroppable
 
     private void OnReachTop()
     {
-        if (_floorIndicator != null)
+        if (_floorNumberIndicator != null)
         {
-            _floorIndicator.SwitchDirection();
+            _floorNumberIndicator.StopMovement();
+            _floorNumberIndicator.SwitchDirection();
         }
 
         _currentDirection = Direction.Down;
@@ -200,9 +200,9 @@ public class Elevator : MonoBehaviour, IDroppable
 
     private IEnumerator ProcessTrip()
     {
-        if(_floorIndicator != null)
+        if(_floorNumberIndicator != null)
         {
-            _floorIndicator.StartMovement();
+            _floorNumberIndicator.StartMovement();
         }
         if (_currentDirection == Direction.Up)
         {
@@ -215,7 +215,7 @@ public class Elevator : MonoBehaviour, IDroppable
                     Debug.Log($"Stopping at floor {_currentFloor}");
                     OnReachedFloor(_currentFloor);
                     yield return new WaitForSeconds(1f);
-                    if(_floorIndicator != null) _floorIndicator.StartMovement();
+                    if(_floorNumberIndicator != null) _floorNumberIndicator.StartMovement();
                     Debug.Log("Moving On...");
                 }
                 
@@ -242,14 +242,14 @@ public class Elevator : MonoBehaviour, IDroppable
             }
 
             // Once we've reached the bottom floor, trigger some function
-            if (_floorIndicator != null)
+            if (_floorNumberIndicator != null)
             {
-                _floorIndicator.StopMovement();
-                _floorIndicator.SwitchDirection();
+                _floorNumberIndicator.StopMovement();
+                Debug.Log("Switching direction from coroutine");
+                _floorNumberIndicator.SwitchDirection();
             }
 
             if (_animator != null) _animator.SetBool("isOpen", true);
-            //OnElevatorReturn(); // This should be triggered by an animation
         }
 
         Debug.Log("Trip Over");

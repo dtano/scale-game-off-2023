@@ -116,7 +116,7 @@ public class ReservesController : MonoBehaviour
 
     private void SetQueueCountText()
     {
-        _queueCountText.text = $"Reserves Size: {_reservesQueue.Count}";
+        _queueCountText.text = $"{_reservesQueue.Count}/{_reservesQueue.MaxCapacity}";
     }
 
     private void OnClickReservesEmployeeIcon(int index)

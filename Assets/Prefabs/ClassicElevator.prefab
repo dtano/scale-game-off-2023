@@ -322,6 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 908822615989558362}
   - component: {fileID: 908822615989558365}
+  - component: {fileID: 1693891970}
   m_Layer: 0
   m_Name: FloorIndicator
   m_TagString: Untagged
@@ -360,6 +361,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _floorNumberText: {fileID: 908822616099065350}
   _animator: {fileID: 0}
+--- !u!95 &1693891970
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908822615989558363}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bd7df65df06644f46aae83a6677f37c5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &908822615995895975
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +565,7 @@ GameObject:
   - component: {fileID: 908822616181385308}
   - component: {fileID: 908822616181385309}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -620,7 +641,7 @@ GameObject:
   - component: {fileID: 908822616340571492}
   - component: {fileID: 908822616340571493}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Arrow (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
