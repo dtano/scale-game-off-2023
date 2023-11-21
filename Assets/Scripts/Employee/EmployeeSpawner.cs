@@ -12,6 +12,8 @@ public class EmployeeSpawner : MonoBehaviour
     [SerializeField] private List<BodyTypeDataSO> _bodyTypeDataCollection;
     [SerializeField] private ElevatorQueue _elevatorQueue;
 
+    public int NumEmployeesToSpawn => _numEmployeesToSpawn;
+
     // Start is called before the first frame update
     void Start()
     {

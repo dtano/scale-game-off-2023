@@ -16,6 +16,7 @@ public class BuildingController : MonoBehaviour
     [SerializeField] private TabletInteractionEventChannel _tabletInteractionEventChannel;
     [SerializeField] private GameStateEventChannel _gameStateEventChannel;
     [SerializeField] private EmployeePaginationUI _elevatorQueueUI;
+    [SerializeField] private ProgressIndicator _progressIndicator;
 
     private Employee _currentFirstEmployee;
     private int _totalEmployeesInBuilding;
@@ -61,12 +62,21 @@ public class BuildingController : MonoBehaviour
         // Once employees are spawned, take out the first employee to be displayed in game
         _currentFirstEmployee = _elevatorQueue.GetNextInQueue();
 
-        if(_elevatorQueueUI != null)
+        InitUI();
+
+    }
+
+    private void InitUI()
+    {
+        if(_progressIndicator != null)
+        {
+            _progressIndicator.InitValues(_employeeSpawner.NumEmployeesToSpawn);
+        }
+        if (_elevatorQueueUI != null)
         {
             _elevatorQueueUI.OnClickArrowEvent += UpdateElevatorQueueUI;
             UpdateElevatorQueueUI();
         }
-
     }
 
     // Update is called once per frame
@@ -92,6 +102,7 @@ public class BuildingController : MonoBehaviour
         }
 
         _servedEmployeesCount += releasedCount;
+        if (_progressIndicator != null) _progressIndicator.UpdateValue(_servedEmployeesCount);
     }
 
     private void SpawnEmployees()
