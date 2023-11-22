@@ -190,8 +190,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1259,8 +1259,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: -1148206537, guid: 794aa5cb7440fcf41b8f3a3650e0f49a, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2830,6 +2830,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1290723908}
     m_Modifications:
+    - target: {fileID: 6915872005984624129, guid: 58b6abcd58d9b224da353247f4f694ac, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6915872007662628212, guid: 58b6abcd58d9b224da353247f4f694ac, type: 3}
       propertyPath: m_Camera
       value: 
