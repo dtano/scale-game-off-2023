@@ -10,6 +10,8 @@ public enum Direction
 
 public class Elevator : MonoBehaviour, IDroppable
 {
+    private const string IS_OPEN_ANIMATION_PARAM = "isOpen";
+    
     [SerializeField] private ElevatorDataSO _elevatorData;
     [SerializeField] private HashSet<Employee> _passengers = new HashSet<Employee>();
     [SerializeField] private Direction _currentDirection = Direction.Up;
@@ -22,7 +24,6 @@ public class Elevator : MonoBehaviour, IDroppable
     private Dictionary<int, List<Employee>> _destinationMap = new Dictionary<int, List<Employee>>();
     
     private bool _isMoving = false;
-    private bool _isOpen = false;
     private int _currentCapacity;
     private int _currentFloor;
     private int _totalFloors;
@@ -47,11 +48,16 @@ public class Elevator : MonoBehaviour, IDroppable
             _elevatorDisplayUI.Hide();
         }
 
-        if(_floorNumberIndicator != null) _floorNumberIndicator.SetFloorNumber(_currentFloor);
+        if(_floorNumberIndicator != null)
+        {
+            _floorNumberIndicator.SetFloorNumber(_currentFloor);
+            _floorNumberIndicator.SwitchDirection(true);
+        }
+
 
         if (_animator != null)
         {
-            _animator.SetBool("isOpen", true);
+            _animator.SetBool(IS_OPEN_ANIMATION_PARAM, true);
         }
     }
 
@@ -169,7 +175,7 @@ public class Elevator : MonoBehaviour, IDroppable
 
         if (_animator != null)
         {
-            _animator.SetBool("isOpen", false);
+            _animator.SetBool(IS_OPEN_ANIMATION_PARAM, false);
         }
     }
 
@@ -190,8 +196,7 @@ public class Elevator : MonoBehaviour, IDroppable
     {
         if (_floorNumberIndicator != null)
         {
-            _floorNumberIndicator.StopMovement();
-            _floorNumberIndicator.SwitchDirection();
+            _floorNumberIndicator.SwitchDirection(false);
         }
 
         _currentDirection = Direction.Down;
@@ -208,24 +213,23 @@ public class Elevator : MonoBehaviour, IDroppable
         {
             while (_currentFloor != _totalFloors)
             {
-                Debug.Log($"Currently at floor {_currentFloor}");
-                // After 2 seconds the elevator has reached a floor
                 if (_destinationMap.ContainsKey(_currentFloor))
                 {
-                    Debug.Log($"Stopping at floor {_currentFloor}");
                     OnReachedFloor(_currentFloor);
                     yield return new WaitForSeconds(1f);
-                    if(_floorNumberIndicator != null) _floorNumberIndicator.StartMovement();
+
+                    if (_destinationMap.Keys.Count == 0)
+                    {
+                        // Means that all of the destination floors have been visited
+                        break;
+                    }
+
+                    // Should stop movement start if we've reached the last floor
+                    if (_floorNumberIndicator != null) _floorNumberIndicator.StartMovement();
                     Debug.Log("Moving On...");
                 }
-                
-                if (_destinationMap.Keys.Count == 0)
-                {
-                    // Means that all of the destination floors have been visited
-                    break;
-                }
 
-                yield return new WaitForSeconds(_elevatorData.SpeedInSeconds); // This time depends on the elevator type
+                yield return new WaitForSeconds(_elevatorData.SpeedInSeconds);
                 _currentFloor++;
                 if (_floorNumberIndicator != null) _floorNumberIndicator.SetFloorNumber(_currentFloor);
             }
@@ -236,7 +240,7 @@ public class Elevator : MonoBehaviour, IDroppable
         {
             while(_currentFloor != 0)
             {
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(_elevatorData.SpeedInSeconds);
                 _currentFloor--;
                 if (_floorNumberIndicator != null) _floorNumberIndicator.SetFloorNumber(_currentFloor);
             }
@@ -244,15 +248,11 @@ public class Elevator : MonoBehaviour, IDroppable
             // Once we've reached the bottom floor, trigger some function
             if (_floorNumberIndicator != null)
             {
-                _floorNumberIndicator.StopMovement();
-                Debug.Log("Switching direction from coroutine");
-                _floorNumberIndicator.SwitchDirection();
+                _floorNumberIndicator.SwitchDirection(true);
             }
 
-            if (_animator != null) _animator.SetBool("isOpen", true);
+            if (_animator != null) _animator.SetBool(IS_OPEN_ANIMATION_PARAM, true);
         }
-
-        Debug.Log("Trip Over");
     }
 
     public bool OnDropObject(DraggableObject draggableObject)

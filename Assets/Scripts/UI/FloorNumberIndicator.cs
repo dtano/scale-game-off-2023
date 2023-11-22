@@ -6,6 +6,9 @@ using TMPro;
 
 public class FloorNumberIndicator : MonoBehaviour
 {
+    private const string MOVEMENT_ANIMATION_PARAM = "isMoving";
+    private const string ARROW_DIRECTION_ANIMATION_PARAM = "isPointingUp";
+    
     [SerializeField] private TextMeshProUGUI _floorNumberText;
     [SerializeField] private Animator _animator;
 
@@ -17,18 +20,17 @@ public class FloorNumberIndicator : MonoBehaviour
 
     public void StopMovement()
     {
-        _animator.SetBool("isMoving", false);
+        _animator.SetBool(MOVEMENT_ANIMATION_PARAM, false);
     }
 
     public void StartMovement()
     {
-        _animator.SetBool("isMoving", true);
+        _animator.SetBool(MOVEMENT_ANIMATION_PARAM, true);
     }
 
-    public void SwitchDirection()
+    public void SwitchDirection(bool isPointingUp)
     {
-        Debug.Log("SWITCH DIRECTION");
-        _animator.SetTrigger("switchDirection");
+        _animator.SetBool(ARROW_DIRECTION_ANIMATION_PARAM, isPointingUp);
         StopMovement();
     }
 
