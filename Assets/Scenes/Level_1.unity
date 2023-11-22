@@ -871,7 +871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _employeePrefab: {fileID: 1761645811030872597, guid: b5a3a809765ae164b98667d061367a8a, type: 3}
   _employeeObjParent: {fileID: 1809085095}
-  _numEmployeesToSpawn: 10
+  _numEmployeesToSpawn: 50
   _bodyTypeDataCollection:
   - {fileID: 11400000, guid: 506ebbf278ddea14dbff24231bcac372, type: 2}
   - {fileID: 11400000, guid: ce8a8b693d8ee0f43ad153662ce9af41, type: 2}
@@ -1500,7 +1500,7 @@ MonoBehaviour:
   _eventChannel: {fileID: 11400000, guid: 6a4ec2c3b070dba40ad0e32f29383697, type: 2}
   _clockText: {fileID: 146353884}
   _startHour: 8
-  _startMinute: 30
+  _startMinute: 0
   _timerDurationInMinutes: 30
 --- !u!114 &1629858959 stripped
 MonoBehaviour:

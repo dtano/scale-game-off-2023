@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Classic
   m_EditorClassIdentifier: 
   _model: The Classic
-  _maxCapacity: 200
+  _maxCapacity: 500
   _sprite: {fileID: 0}
   _speedInSeconds: 1.5

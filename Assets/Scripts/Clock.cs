@@ -6,7 +6,7 @@ using TMPro;
 
 public class Clock : MonoBehaviour
 {
-    private const float SECONDS_PER_MINUTE = 5f;
+    private const float SECONDS_PER_MINUTE = 10f;
     [SerializeField] private GameStateEventChannel _eventChannel;
     [SerializeField] private TextMeshProUGUI _clockText;
     [SerializeField] private int _startHour = 8;

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Speedy
   m_EditorClassIdentifier: 
   _model: Speedy
-  _maxCapacity: 120
+  _maxCapacity: 300
   _sprite: {fileID: 626516412, guid: ba29d26ef392f604e82a05a4da2e3a67, type: 3}
   _speedInSeconds: 0.5

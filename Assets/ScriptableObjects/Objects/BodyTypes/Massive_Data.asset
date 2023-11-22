@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bodyType: 4
   _minWeight: 86
-  _maxWeight: 105
+  _maxWeight: 100
   _sprite: {fileID: 1859053872, guid: 5832b4486362f99448a06a85bfd04476, type: 3}
   _uiSprite: {fileID: 449589250, guid: a3d88d3fbb687fb49b9e7c6b912b73db, type: 3}
   _baseAppearanceChance: 0
