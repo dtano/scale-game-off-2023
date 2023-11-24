@@ -18,7 +18,7 @@ public class EmployeeInfoUI : MonoBehaviour
     public void SetInformation(int weight, int destinationFloor)
     {
         _weightText.text = $"{weight} kg";
-        _destinationFloorText.text = destinationFloor.ToString();
+        _destinationFloorText.text = $"{destinationFloor}f";
 
         Show();
     }

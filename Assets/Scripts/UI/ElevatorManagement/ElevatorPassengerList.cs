@@ -97,7 +97,10 @@ public class ElevatorPassengerList : UIElement
         }
 
         _currentSelectedPassengerIndex = 0;
-        _passengerIcons[_currentSelectedPassengerIndex].SetSelectedIndicator(true);
+        if(_passengerIcons.Count > 0)
+        {
+            _passengerIcons[_currentSelectedPassengerIndex].SetSelectedIndicator(true);
+        }
     }
 
     private int GetNumberOfActiveChildren()
