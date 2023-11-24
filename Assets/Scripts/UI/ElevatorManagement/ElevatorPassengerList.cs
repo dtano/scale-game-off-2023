@@ -31,8 +31,15 @@ public class ElevatorPassengerList : UIElement
 
     private void OnClickPassengerIcon(int passengerIndex)
     {
+        // Unselect previously selected passenger
+        PassengerIcon previouslySelectedPassenger = _passengerIcons[_currentSelectedPassengerIndex];
+        if(previouslySelectedPassenger != null) previouslySelectedPassenger.SetSelectedIndicator(false);
+
         Employee selectedEmployee = _employees[passengerIndex];
         _currentSelectedPassengerIndex = passengerIndex;
+        PassengerIcon selectedPassengerIcon = _passengerIcons[passengerIndex];
+        selectedPassengerIcon.SetSelectedIndicator(true);
+
         if (OnSelectEmployeeEvent != null) OnSelectEmployeeEvent.Invoke(selectedEmployee);
     }
 
@@ -79,6 +86,7 @@ public class ElevatorPassengerList : UIElement
             {
                 PassengerIcon passengerIcon = transform.GetChild(objectIndex).GetComponent<PassengerIcon>();
                 passengerIcon.SetData(employee, objectIndex);
+                passengerIcon.SetSelectedIndicator(false);
                 if (passengerIcon.OnIconClickEvent == null) passengerIcon.OnIconClickEvent += OnClickPassengerIcon;
                 transform.GetChild(objectIndex).gameObject.SetActive(true);
 
@@ -89,6 +97,7 @@ public class ElevatorPassengerList : UIElement
         }
 
         _currentSelectedPassengerIndex = 0;
+        _passengerIcons[_currentSelectedPassengerIndex].SetSelectedIndicator(true);
     }
 
     private int GetNumberOfActiveChildren()
