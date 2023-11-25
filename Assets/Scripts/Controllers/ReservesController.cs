@@ -39,7 +39,12 @@ public class ReservesController : MonoBehaviour
         
     }
 
-    private bool OnDropEmployee(DraggableObject draggableObject)
+    private ErrorDTO CreateError()
+    {
+        return new ErrorDTO(ErrorSourceEnum.RESERVES_FULL, "Reserves is Full!");
+    }
+
+    private DropResultDTO OnDropEmployee(DraggableObject draggableObject)
     {
         Debug.Log("On drop employee in reserves");
         // Need to somehow prevent the employee from being readded
@@ -49,14 +54,16 @@ public class ReservesController : MonoBehaviour
             if (QueueType.Reserves == employee.CurrentQueueType)
             {
                 Debug.Log("Tried to drop an employee that is already there");
-                return false;
+                return new DropResultDTO();
 
             }
 
-            return AddToQueue(employee);
+            bool successAddToQueue = AddToQueue(employee);
+            if (!successAddToQueue) return new DropResultDTO(false, CreateError());
+            return new DropResultDTO(successAddToQueue);
         }
 
-        return false;
+        return new DropResultDTO();
     }
 
     public bool AddToQueue(Employee employee)

@@ -77,21 +77,26 @@ public class Elevator : MonoBehaviour, IDroppable
         _isMoving = true;
     }
 
-    // Before calling this, the employee must be removed from whatever queue they were in
-    public bool AddToElevator(Employee employee)
+    private ErrorDTO CreateError()
+    {
+        ErrorDTO errorDTO = new ErrorDTO(ErrorSourceEnum.ELEVATOR_FULL, "Elevator is Full!");
+        return errorDTO;
+    }
+
+    public DropResultDTO AddToElevator(Employee employee)
     {
         // Check weight here
         if (!CanAddToElevator(employee.Weight))
         {
             Debug.Log($"Failed to add since {_currentCapacity + employee.Weight} > {_elevatorData.MaxCapacity}");
-            return false;
+            return new DropResultDTO(CreateError());
         }
 
         bool success = _passengers.Add(employee);
         if (!success)
         {
             Debug.Log("Fail to add employee to elevator");
-            return false;
+            return new DropResultDTO(CreateError());
         }
 
         // Map it in the destinationMap
@@ -109,7 +114,7 @@ public class Elevator : MonoBehaviour, IDroppable
         _currentCapacity += employee.Weight;
         if (_elevatorDisplayUI != null) _elevatorDisplayUI.SetInformation(_currentCapacity, _elevatorData.MaxCapacity);
 
-        return true;
+        return new DropResultDTO(true);
     }
 
     public bool RemoveFromElevator(Employee employee)
@@ -255,27 +260,27 @@ public class Elevator : MonoBehaviour, IDroppable
         }
     }
 
-    public bool OnDropObject(DraggableObject draggableObject)
-    {
-        if (_isMoving) return false;
+    public DropResultDTO OnDropObject(DraggableObject draggableObject)
+    {   
+        if (_isMoving) return new DropResultDTO();
         // Need to get component from draggableObject
-        if (draggableObject == null) return false;
+        if (draggableObject == null) return new DropResultDTO();
 
-        if(draggableObject.gameObject.TryGetComponent(out Employee employee))
+        if (draggableObject.gameObject.TryGetComponent(out Employee employee))
         {
             Debug.Log("Dropping employee in elevator");
-            bool successfulAddition = AddToElevator(employee);
+            DropResultDTO dropOnElevatorResult = AddToElevator(employee);
 
-            if (successfulAddition)
+            if (dropOnElevatorResult.Success)
             {
                 // Hide the employee once they are added to the elevator
                 draggableObject.gameObject.SetActive(false);
             }
 
-            return successfulAddition;
+            return dropOnElevatorResult;
         }
 
-        return false;
+        return new DropResultDTO();
     }
 
     public void SetTotalFloors(int totalFloors)

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDroppable
 {
-    bool OnDropObject(DraggableObject draggableObject);
+    DropResultDTO OnDropObject(DraggableObject draggableObject);
 }

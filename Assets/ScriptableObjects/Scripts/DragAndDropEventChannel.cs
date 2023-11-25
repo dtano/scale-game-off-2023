@@ -8,7 +8,7 @@ public class DragAndDropEventChannel : ScriptableObject
     public delegate void OnSuccessfulDropDelegate(DraggableObject draggableObject);
     public event OnSuccessfulDropDelegate OnSuccessfulDropEvent;
 
-    public delegate void OnFailedDropDelegate(DraggableObject draggableObject);
+    public delegate void OnFailedDropDelegate(ErrorDTO errorDTO);
     public event OnFailedDropDelegate OnFailedDropEvent;
 
     public delegate void OnStartDragDelegate(DraggableObject draggableObject);
@@ -22,11 +22,11 @@ public class DragAndDropEventChannel : ScriptableObject
         }
     }
 
-    public void OnFailedDrop(DraggableObject draggableObject)
+    public void OnFailedDrop(ErrorDTO errorDTO)
     {
         if(OnFailedDropEvent != null)
         {
-            OnFailedDropEvent.Invoke(draggableObject);
+            OnFailedDropEvent.Invoke(errorDTO);
         }
     }
 

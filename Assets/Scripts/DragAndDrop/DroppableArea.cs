@@ -5,7 +5,7 @@ using UnityEngine;
 public class DroppableArea : MonoBehaviour
 {
     [SerializeField] private DragAndDropEventChannel eventChannel;
-    public delegate bool OnDropObjectDelegate(DraggableObject draggableObject);
+    public delegate DropResultDTO OnDropObjectDelegate(DraggableObject draggableObject);
     public event OnDropObjectDelegate OnDropObjectEvent;
 
     // Start is called before the first frame update
@@ -21,18 +21,20 @@ public class DroppableArea : MonoBehaviour
     }
 
     public bool OnDropObject(DraggableObject draggableObject)
-    {
-        Debug.Log("Dropped object in " + gameObject.name);
-        bool success = OnDropObjectEvent?.Invoke(draggableObject) ?? false;
+    {        
+        bool success = false;
+        DropResultDTO result = OnDropObjectEvent?.Invoke(draggableObject);
 
-        if (success)
+        if(result != null)
         {
-            Debug.Log("Call on succesful drop");
-            eventChannel.OnSuccessfulDrop(draggableObject);
-        }
-        else
-        {
-            eventChannel.OnFailedDrop(draggableObject);
+            if (result.Success)
+            {
+                eventChannel.OnSuccessfulDrop(draggableObject);
+            }
+            else
+            {
+                eventChannel.OnFailedDrop(result.Error);
+            }
         }
 
         return success;
