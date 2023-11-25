@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Cargo
   m_EditorClassIdentifier: 
   _model: Gigant
-  _maxCapacity: 700
-  _sprite: {fileID: -1947470467, guid: ba29d26ef392f604e82a05a4da2e3a67, type: 3}
-  _speedInSeconds: 2.5
+  _maxCapacity: 1000
+  _sprite: {fileID: 422896120, guid: fda781c5251eda34292eb6bb736e7abb, type: 3}
+  _speedInSeconds: 10

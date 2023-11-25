@@ -6,7 +6,6 @@ using TMPro;
 
 public class Clock : MonoBehaviour
 {
-    private const float SECONDS_PER_MINUTE = 10f;
     [SerializeField] private GameStateEventChannel _eventChannel;
     [SerializeField] private TextMeshProUGUI _clockText;
     [SerializeField] private int _startHour = 8;
@@ -43,7 +42,7 @@ public class Clock : MonoBehaviour
             }
 
             // Update time here
-            _currentTime += Time.deltaTime / SECONDS_PER_MINUTE;
+            _currentTime += Time.deltaTime / TimeConstants.SECONDS_PER_MINUTE;
 
             _minutesElapsed = Mathf.FloorToInt(_currentTime);
             _currentMinutes = Mathf.FloorToInt((_startMinute + _currentTime) % 60f);
@@ -79,5 +78,14 @@ public class Clock : MonoBehaviour
     public void TurnOff()
     {
         _isRunning = false;
+
+        // And store the time elapsed
+        Debug.Log("Minutes elapsed: " + _minutesElapsed);
+
+        float minutes = Mathf.FloorToInt(_currentTime / 60);
+        float seconds = Mathf.FloorToInt(_currentTime % 60);
+
+        string msFormat = string.Format("{0:00}:{1:00}", minutes, seconds);
+        Debug.Log($"Minutes and seconds elapsed: {msFormat}");
     }
 }

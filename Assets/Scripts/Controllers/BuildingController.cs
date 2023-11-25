@@ -115,7 +115,6 @@ public class BuildingController : MonoBehaviour
 
     private void OnAddEmployeeToElevator(DraggableObject draggableObject)
     {
-        Debug.Log("OnAddEmployeeToElevator");
         if (draggableObject == null) return;
 
         if(draggableObject.TryGetComponent(out Employee employee))

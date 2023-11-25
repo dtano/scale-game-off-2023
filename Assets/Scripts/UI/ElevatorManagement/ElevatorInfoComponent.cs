@@ -23,6 +23,7 @@ public class ElevatorInfoComponent : UIElement
 
     public void SetInformation(Elevator elevator)
     {
-        _capacityText.text = $"{elevator.CurrentCapacity}/{elevator.MaxCapacity}";
+        _capacityText.text = $"Capacity: {elevator.CurrentCapacity}/{elevator.MaxCapacity}";
+        _speedText.text = $"Speed: {elevator.Speed / TimeConstants.SECONDS_PER_MINUTE} minutes";
     }
 }

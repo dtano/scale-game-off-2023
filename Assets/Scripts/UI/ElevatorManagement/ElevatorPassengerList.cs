@@ -11,6 +11,7 @@ public class ElevatorPassengerList : UIElement
     private List<PassengerIcon> _passengerIcons = new List<PassengerIcon>();
     private List<Employee> _employees = new List<Employee>();
     private int _currentSelectedPassengerIndex;
+    private bool _isInteractable = true;
 
     public UnityAction<Employee> OnSelectEmployeeEvent;
     public UnityAction<Employee> OnKickEmployeeEvent;
@@ -31,6 +32,8 @@ public class ElevatorPassengerList : UIElement
 
     private void OnClickPassengerIcon(int passengerIndex)
     {
+        if (!_isInteractable) return;
+        
         // Unselect previously selected passenger
         PassengerIcon previouslySelectedPassenger = _passengerIcons[_currentSelectedPassengerIndex];
         if(previouslySelectedPassenger != null) previouslySelectedPassenger.SetSelectedIndicator(false);
@@ -45,6 +48,8 @@ public class ElevatorPassengerList : UIElement
 
     public void OnKickEmployeeFromElevator()
     {
+        // Shouldn't be allowed to kick if elevator is moving!!
+        if (!_isInteractable) return;
         Employee employeeToKick = _employees[_currentSelectedPassengerIndex];
 
         _employees.RemoveAt(_currentSelectedPassengerIndex);
@@ -78,6 +83,9 @@ public class ElevatorPassengerList : UIElement
             InstantiatePassengerIcons(totalCount - transform.childCount);
         }
 
+        // Determine if elevator is interactable or not
+        _isInteractable = !elevator.IsMoving;
+
         // Set the passenger info
         int objectIndex = 0;
         foreach(int key in destinationKeys)
@@ -97,7 +105,7 @@ public class ElevatorPassengerList : UIElement
         }
 
         _currentSelectedPassengerIndex = 0;
-        if(_passengerIcons.Count > 0)
+        if(_passengerIcons.Count > 0 && _isInteractable)
         {
             _passengerIcons[_currentSelectedPassengerIndex].SetSelectedIndicator(true);
         }

@@ -11,6 +11,7 @@ public class ElevatorPassengerInteractionModal : UIElement
     [SerializeField] private TextMeshProUGUI _employeeName;
     [SerializeField] private TextMeshProUGUI _weightAfterKickText;
     [SerializeField] private GameObject _emptySelectionObject;
+    [SerializeField] private GameObject _elevatorMovingText;
     [SerializeField] private Button _actionButton;
 
     // Start is called before the first frame update
@@ -33,6 +34,13 @@ public class ElevatorPassengerInteractionModal : UIElement
             return;
         }
 
+        _actionButton.interactable = !elevator.IsMoving;
+        if(elevator.IsMoving)
+        {
+            ShowElevatorMovingState();
+            return;
+        }
+
 
         HandleNonEmptySelectionState();
         _weightText.text = $"Weight: {employee.Weight}kg";
@@ -49,6 +57,7 @@ public class ElevatorPassengerInteractionModal : UIElement
         _employeeName.gameObject.SetActive(false);
         _weightAfterKickText.transform.parent.gameObject.SetActive(false);
         _actionButton.gameObject.SetActive(false);
+        _elevatorMovingText.gameObject.SetActive(false);
 
         _emptySelectionObject.gameObject.SetActive(true);
     }
@@ -62,5 +71,18 @@ public class ElevatorPassengerInteractionModal : UIElement
         _actionButton.gameObject.SetActive(true);
 
         _emptySelectionObject.gameObject.SetActive(false);
+        _elevatorMovingText.gameObject.SetActive(false);
+    }
+
+    private void ShowElevatorMovingState()
+    {
+        _destinationFloorText.gameObject.SetActive(false);
+        _weightText.gameObject.SetActive(false);
+        _employeeName.gameObject.SetActive(false);
+        _weightAfterKickText.transform.parent.gameObject.SetActive(false);
+        _actionButton.gameObject.SetActive(false);
+        _emptySelectionObject.gameObject.SetActive(false);
+
+        _elevatorMovingText.gameObject.SetActive(true);
     }
 }

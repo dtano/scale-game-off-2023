@@ -33,6 +33,8 @@ public class Elevator : MonoBehaviour, IDroppable
     public string Name => _elevatorData.Model;
     public int CurrentCapacity => _currentCapacity;
     public int MaxCapacity => _elevatorData.MaxCapacity;
+    public float Speed => _elevatorData.SpeedInSeconds;
+    public bool IsMoving => _isMoving;
 
     // Start is called before the first frame update
     void Awake()

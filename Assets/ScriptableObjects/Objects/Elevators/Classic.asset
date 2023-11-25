@@ -15,4 +15,4 @@ MonoBehaviour:
   _model: The Classic
   _maxCapacity: 500
   _sprite: {fileID: 0}
-  _speedInSeconds: 1.5
+  _speedInSeconds: 5
