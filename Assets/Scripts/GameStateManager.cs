@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameStateManager : MonoBehaviour
 {
     [SerializeField] private GameStateEventChannel _eventChannel;
+    [SerializeField] private GameFinishedUI _gameFinishedUI;
     public static GameStateManager Instance { get; private set; }
 
     private bool _isTabletOn = false;
@@ -29,7 +30,7 @@ public class GameStateManager : MonoBehaviour
             {
                 _eventChannel.OnTabletStateChangeEvent += SetTabletStatus;
                 _eventChannel.OnTimeLimitReachedEvent += SetTimeLimitReachedState;
-                _eventChannel.OnAllEmployeesServedEvent += SetGameIsOver;
+                _eventChannel.OnAllEmployeesServedEvent += SetGameWonState;
             }
         }
     }
@@ -43,6 +44,13 @@ public class GameStateManager : MonoBehaviour
     {
         SetGameIsOver();
         _isTimeLimitReached = true;
+    }
+
+    public void SetGameWonState()
+    {
+        SetGameIsOver();
+
+        //if(_gameFinishedUI)
     }
 
     public void SetGameIsOver()

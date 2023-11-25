@@ -10,6 +10,9 @@ public class BuildingController : MonoBehaviour
     [SerializeField] private ReservesController _reservesController;
     [SerializeField] private ElevatorQueue _elevatorQueue;
     [SerializeField] private List<Elevator> _elevators;
+    [SerializeField] private BuildingInfoUI _buildingInfoUI;
+    [SerializeField] private GameFinishedUI _gameFinishedUI;
+    [SerializeField] private Clock _clock;
 
     [SerializeField] private DragAndDropEventChannel _dragAndDropEventChannel;
     [SerializeField] private DragAndDropEventChannel _reservesDragAndDropEventChannel;
@@ -50,6 +53,8 @@ public class BuildingController : MonoBehaviour
         if(_gameStateEventChannel != null)
         {
             _gameStateEventChannel.OnReleaseEmployeesInFloorEvent += RecordReleasedEmployeesInFloor;
+            _gameStateEventChannel.OnAllEmployeesServedEvent += TriggerGameWon;
+            _gameStateEventChannel.OnTimeLimitReachedEvent += TriggerGameOver;
         }
 
         // Then initiate the steps
@@ -63,7 +68,6 @@ public class BuildingController : MonoBehaviour
         _currentFirstEmployee = _elevatorQueue.GetNextInQueue();
 
         InitUI();
-
     }
 
     private void InitUI()
@@ -77,6 +81,10 @@ public class BuildingController : MonoBehaviour
             _elevatorQueueUI.OnClickArrowEvent += UpdateElevatorQueueUI;
             UpdateElevatorQueueUI();
         }
+        if(_buildingInfoUI != null)
+        {
+            _buildingInfoUI.SetInformation(_buildingData);
+        }
     }
 
     // Update is called once per frame
@@ -87,6 +95,24 @@ public class BuildingController : MonoBehaviour
         {
             Debug.Log("GAME IS WON");
             if (_gameStateEventChannel != null) _gameStateEventChannel.OnAllEmployeesServed();
+        }
+    }
+
+    private void TriggerGameWon()
+    {
+        if(_gameFinishedUI != null)
+        {
+            _gameFinishedUI.Show();
+            _gameFinishedUI.ShowGameWon(_servedEmployeesCount, _totalEmployeesInBuilding, _clock.ElapsedTime);
+        }
+    }
+
+    private void TriggerGameOver()
+    {
+        if (_gameFinishedUI != null)
+        {
+            _gameFinishedUI.Show();
+            _gameFinishedUI.ShowGameOver(_servedEmployeesCount, _totalEmployeesInBuilding);
         }
     }
 

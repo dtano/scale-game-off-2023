@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 794aa5cb7440fcf41b8f3a3650e0f49a
+guid: ad45a441f51431c478a643fae3b90651
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ClockBackground_Thick_0
+      name: ClockBackground_Thick 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -155,14 +155,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3259fce157a98140afe8fa55210bbef
-      internalID: -1148206537
+      spriteID: 84b56f70992878444878d210408e3727
+      internalID: 1313829793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClockBackground_Thick_1
+      name: ClockBackground_Thick 1_1
       rect:
         serializedVersion: 2
         x: 48
@@ -176,14 +176,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39ee1634f4015634280e548f020074b1
-      internalID: -1571242958
+      spriteID: 91130f5002c5d044e99d941298fc296f
+      internalID: 959587514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClockBackground_Thick_2
+      name: ClockBackground_Thick 1_2
       rect:
         serializedVersion: 2
         x: 0
@@ -197,8 +197,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b81c8be4bc13b184d856bc595d335224
-      internalID: 1144334064
+      spriteID: c59c73562ac3d64468d205908cd61a50
+      internalID: 1634322104
       vertices: []
       indices: 
       edges: []
@@ -214,9 +214,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ClockBackground_Thick_0: -1148206537
-      ClockBackground_Thick_1: -1571242958
-      ClockBackground_Thick_2: 1144334064
+      ClockBackground_Thick 1_1: 959587514
+      ClockBackground_Thick 1_2: 1634322104
+      ClockBackground_Thick 1_0: 1313829793
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -20,6 +20,7 @@ public class Clock : MonoBehaviour
     private float _currentTime;
 
     public bool IsRunning { get => _isRunning; set => _isRunning = value; }
+    public float ElapsedTime => _currentTime;
 
     // Start is called before the first frame update
     void Awake()
