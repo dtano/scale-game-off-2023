@@ -6,12 +6,16 @@ using TMPro;
 
 public class Clock : MonoBehaviour
 {
+    private const float MINIMUM_PERCENTAGE_TO_ACTIVATE_BLINKING = 0.75f;
+    private const string IS_BLINKING_PARAM = "isBlinking";
+
     [SerializeField] private GameStateEventChannel _eventChannel;
     [SerializeField] private TextMeshProUGUI _clockText;
     [SerializeField] private int _startHour = 8;
     [SerializeField] private int _startMinute = 0;
     [SerializeField] private int _timerDurationInMinutes;
 
+    private Animator _animator;
     private bool _isRunning = true;
     private int _currentHour;
     private int _currentMinutes;
@@ -25,6 +29,7 @@ public class Clock : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        _animator = GetComponent<Animator>();
         _currentHour = _startHour;
         _currentMinutes = _startMinute;
 
@@ -49,7 +54,19 @@ public class Clock : MonoBehaviour
             _currentMinutes = Mathf.FloorToInt((_startMinute + _currentTime) % 60f);
             _currentHour = Mathf.FloorToInt(_startHour + ((_startMinute + _currentTime) / 60f));
 
+            CheckTimeAlmostUp();
+
             UpdateTimeText();
+        }
+    }
+
+    private void CheckTimeAlmostUp()
+    {
+        // If minutes elapsed is 90% of the total duration, then we'll trigger the animation
+        float percentageOfDurationPassed = (_minutesElapsed / (float) _timerDurationInMinutes);
+        if(percentageOfDurationPassed >= MINIMUM_PERCENTAGE_TO_ACTIVATE_BLINKING && !_animator.GetBool(IS_BLINKING_PARAM))
+        {
+            _animator.SetBool(IS_BLINKING_PARAM, true);
         }
     }
 
@@ -78,6 +95,7 @@ public class Clock : MonoBehaviour
 
     public void TurnOff()
     {
+        _animator.SetBool(IS_BLINKING_PARAM, false);
         _isRunning = false;
 
         // And store the time elapsed
