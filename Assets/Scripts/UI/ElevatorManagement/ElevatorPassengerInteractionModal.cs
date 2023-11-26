@@ -12,7 +12,10 @@ public class ElevatorPassengerInteractionModal : UIElement
     [SerializeField] private TextMeshProUGUI _weightAfterKickText;
     [SerializeField] private GameObject _emptySelectionObject;
     [SerializeField] private GameObject _elevatorMovingText;
+    [SerializeField] private TextMeshProUGUI _currentFloorText;
     [SerializeField] private Button _actionButton;
+
+    private Elevator _elevator;
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +26,16 @@ public class ElevatorPassengerInteractionModal : UIElement
     // Update is called once per frame
     void Update()
     {
-        
+        // Don't know abt this yet
+        if(_elevator != null && _elevator.IsMoving)
+        {
+            _currentFloorText.text = $"{_elevator.CurrentFloor}f";
+        }
     }
 
     public void SetPassengerData(Elevator elevator, Employee employee)
     {
+        _elevator = elevator;
         if(employee == null)
         {
             ShowEmptySelectionState();
@@ -37,7 +45,7 @@ public class ElevatorPassengerInteractionModal : UIElement
         _actionButton.interactable = !elevator.IsMoving;
         if(elevator.IsMoving)
         {
-            ShowElevatorMovingState();
+            ShowElevatorMovingState(elevator.CurrentFloor);
             return;
         }
 
@@ -74,7 +82,7 @@ public class ElevatorPassengerInteractionModal : UIElement
         _elevatorMovingText.gameObject.SetActive(false);
     }
 
-    private void ShowElevatorMovingState()
+    private void ShowElevatorMovingState(int currentFloor)
     {
         _destinationFloorText.gameObject.SetActive(false);
         _weightText.gameObject.SetActive(false);

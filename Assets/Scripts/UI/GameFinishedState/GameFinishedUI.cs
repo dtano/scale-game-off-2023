@@ -26,7 +26,7 @@ public class GameFinishedUI : UIElement
 
     private string BuildPercentageText(int numEmployeesServed, int totalEmployees)
     {
-        int percentage = Mathf.FloorToInt((numEmployeesServed / totalEmployees) * 100);
+        int percentage = Mathf.FloorToInt((numEmployeesServed / (float)totalEmployees) * 100);
         return $"{percentage}% ({numEmployeesServed}/{totalEmployees})";
     }
 
