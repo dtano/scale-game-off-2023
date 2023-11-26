@@ -50,7 +50,6 @@ public class Employee : MonoBehaviour
     void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        Debug.Log("Get Sprite Renderer " + _spriteRenderer);
         _draggableComponent = GetComponent<DraggableObject>();
         if(_draggableComponent != null)
         {

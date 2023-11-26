@@ -20,6 +20,8 @@ public class BuildingController : MonoBehaviour
     [SerializeField] private GameStateEventChannel _gameStateEventChannel;
     [SerializeField] private EmployeePaginationUI _elevatorQueueUI;
     [SerializeField] private ProgressIndicator _progressIndicator;
+    [SerializeField] private HUDController _hudController;
+    [SerializeField] private GameDetailsSO _gameDetailsSO;
 
     private Employee _currentFirstEmployee;
     private int _totalEmployeesInBuilding;
@@ -35,34 +37,71 @@ public class BuildingController : MonoBehaviour
             _elevatorQueue = GetComponent<ElevatorQueue>();
         }
 
+        InitEventListeners();
+    }
+
+    private void InitEventListeners()
+    {
         if (_dragAndDropEventChannel != null)
         {
             _dragAndDropEventChannel.OnSuccessfulDropEvent += OnAddEmployeeToElevator;
         }
 
-        if(_reservesDragAndDropEventChannel != null)
+        if (_reservesDragAndDropEventChannel != null)
         {
             _reservesDragAndDropEventChannel.OnSuccessfulDropEvent += OnDropEmployeeInReserves;
         }
 
-        if(_tabletInteractionEventChannel != null)
+        if (_tabletInteractionEventChannel != null)
         {
             _tabletInteractionEventChannel.OnKickEmployeeFromElevatorEvent += OnKickEmployeeFromElevator;
         }
 
-        if(_gameStateEventChannel != null)
+        if (_gameStateEventChannel != null)
         {
             _gameStateEventChannel.OnReleaseEmployeesInFloorEvent += RecordReleasedEmployeesInFloor;
             _gameStateEventChannel.OnAllEmployeesServedEvent += TriggerGameWon;
             _gameStateEventChannel.OnTimeLimitReachedEvent += TriggerGameOver;
             _gameStateEventChannel.OnSceneTransitionOverEvent += StartGame;
+            _gameStateEventChannel.OnEndTutorialEvent += StartGame;
+        }
+    }
+
+    private void UnregisterEventListeners()
+    {
+        if (_dragAndDropEventChannel != null)
+        {
+            _dragAndDropEventChannel.OnSuccessfulDropEvent -= OnAddEmployeeToElevator;
         }
 
-        //StartGame();
+        if (_reservesDragAndDropEventChannel != null)
+        {
+            _reservesDragAndDropEventChannel.OnSuccessfulDropEvent -= OnDropEmployeeInReserves;
+        }
+
+        if (_tabletInteractionEventChannel != null)
+        {
+            _tabletInteractionEventChannel.OnKickEmployeeFromElevatorEvent -= OnKickEmployeeFromElevator;
+        }
+
+        if (_gameStateEventChannel != null)
+        {
+            _gameStateEventChannel.OnReleaseEmployeesInFloorEvent -= RecordReleasedEmployeesInFloor;
+            _gameStateEventChannel.OnAllEmployeesServedEvent -= TriggerGameWon;
+            _gameStateEventChannel.OnTimeLimitReachedEvent -= TriggerGameOver;
+            _gameStateEventChannel.OnSceneTransitionOverEvent -= StartGame;
+            _gameStateEventChannel.OnEndTutorialEvent -= StartGame;
+        }
     }
 
     private void StartGame()
     {
+        if(_gameDetailsSO != null && _gameDetailsSO.ShowTutorialScreen)
+        {
+            _gameDetailsSO.ShowTutorialScreen = false;
+            _hudController.ShowTutorial();
+            return;
+        }
         InitLevel();
     }
 
@@ -219,5 +258,15 @@ public class BuildingController : MonoBehaviour
 
         // Add to reserves
         _reservesController.AddToQueue(employee);
+    }
+
+    private void OnDisable()
+    {
+        UnregisterEventListeners();
+    }
+
+    private void OnDestroy()
+    {
+        UnregisterEventListeners();
     }
 }

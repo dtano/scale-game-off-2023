@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "New Game State Event Channel", menuName = "Scriptable Objects/Event Channels/Game State")]
+// A tad bit worried about whether or not these listeners will be 
 public class GameStateEventChannel : ScriptableObject
 {
     public UnityAction<bool> OnTabletStateChangeEvent;
@@ -11,6 +12,8 @@ public class GameStateEventChannel : ScriptableObject
     public UnityAction OnAllEmployeesServedEvent;
     public UnityAction<List<Employee>, int> OnReleaseEmployeesInFloorEvent;
     public UnityAction OnSceneTransitionOverEvent;
+    public UnityAction OnShowTutorialEvent;
+    public UnityAction OnEndTutorialEvent;
 
     public void OnTabletStateChange(bool isOn)
     {
@@ -36,5 +39,15 @@ public class GameStateEventChannel : ScriptableObject
     public void OnSceneTransitionOver()
     {
         if(OnSceneTransitionOverEvent != null) OnSceneTransitionOverEvent.Invoke();
+    }
+
+    public void OnShowTutorial()
+    {
+        if (OnShowTutorialEvent != null) OnShowTutorialEvent.Invoke();
+    }
+
+    public void OnEndTutorial()
+    {
+        if (OnEndTutorialEvent != null) OnEndTutorialEvent.Invoke();
     }
 }

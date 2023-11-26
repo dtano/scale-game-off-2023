@@ -156,7 +156,7 @@ public class Elevator : MonoBehaviour, IDroppable
         _destinationMap.Remove(floorNumber);
 
         // Need to somehow notify someone about this fact
-        if (_gameStateEventChannel != null) _gameStateEventChannel.OnReleaseEmployeesInFloorEvent(passengersToRelease, floorNumber);
+        if (_gameStateEventChannel != null) _gameStateEventChannel.OnReleaseEmployeesInFloor(passengersToRelease, floorNumber);
     }
 
     private void OnReachedFloor(int floorNumber)
