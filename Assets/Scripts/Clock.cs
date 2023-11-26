@@ -16,7 +16,7 @@ public class Clock : MonoBehaviour
     [SerializeField] private int _timerDurationInMinutes;
 
     private Animator _animator;
-    private bool _isRunning = true;
+    private bool _isRunning = false;
     private int _currentHour;
     private int _currentMinutes;
     private int _minutesElapsed;

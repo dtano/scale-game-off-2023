@@ -55,12 +55,6 @@ public class Elevator : MonoBehaviour, IDroppable
             _floorNumberIndicator.SetFloorNumber(_currentFloor);
             _floorNumberIndicator.SwitchDirection(true);
         }
-
-
-        if (_animator != null)
-        {
-            _animator.SetBool(IS_OPEN_ANIMATION_PARAM, true);
-        }
     }
 
     // Update is called once per frame
@@ -72,6 +66,14 @@ public class Elevator : MonoBehaviour, IDroppable
     private bool CanAddToElevator(int weightToAdd)
     {
         return !_isMoving && (_currentCapacity + weightToAdd < _elevatorData.MaxCapacity);
+    }
+
+    public void OpenElevator()
+    {
+        if (_animator != null)
+        {
+            _animator.SetBool(IS_OPEN_ANIMATION_PARAM, true);
+        }
     }
 
     public void InitiateMovement()

@@ -10,6 +10,7 @@ public class GameStateEventChannel : ScriptableObject
     public UnityAction OnTimeLimitReachedEvent;
     public UnityAction OnAllEmployeesServedEvent;
     public UnityAction<List<Employee>, int> OnReleaseEmployeesInFloorEvent;
+    public UnityAction OnSceneTransitionOverEvent;
 
     public void OnTabletStateChange(bool isOn)
     {
@@ -30,5 +31,10 @@ public class GameStateEventChannel : ScriptableObject
     public void OnReleaseEmployeesInFloor(List<Employee> employees, int floorNum)
     {
         if(OnReleaseEmployeesInFloorEvent != null) OnReleaseEmployeesInFloorEvent.Invoke(employees, floorNum);
+    }
+
+    public void OnSceneTransitionOver()
+    {
+        if(OnSceneTransitionOverEvent != null) OnSceneTransitionOverEvent.Invoke();
     }
 }

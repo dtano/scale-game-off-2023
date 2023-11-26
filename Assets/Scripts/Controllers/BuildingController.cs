@@ -55,19 +55,34 @@ public class BuildingController : MonoBehaviour
             _gameStateEventChannel.OnReleaseEmployeesInFloorEvent += RecordReleasedEmployeesInFloor;
             _gameStateEventChannel.OnAllEmployeesServedEvent += TriggerGameWon;
             _gameStateEventChannel.OnTimeLimitReachedEvent += TriggerGameOver;
+            _gameStateEventChannel.OnSceneTransitionOverEvent += StartGame;
+        }
+
+        //StartGame();
+    }
+
+    private void StartGame()
+    {
+        InitLevel();
+    }
+
+    private void InitLevel()
+    {
+        foreach (Elevator elevator in _elevators)
+        {
+            elevator.SetTotalFloors(_buildingData.NumFloors);
+            elevator.OpenElevator();
         }
 
         // Then initiate the steps
         SpawnEmployees();
 
-        foreach(Elevator elevator in _elevators){
-            elevator.SetTotalFloors(_buildingData.NumFloors);
-        }
-        
         // Once employees are spawned, take out the first employee to be displayed in game
         _currentFirstEmployee = _elevatorQueue.GetNextInQueue();
 
         InitUI();
+
+        _clock.TurnOn();
     }
 
     private void InitUI()
@@ -91,7 +106,7 @@ public class BuildingController : MonoBehaviour
     void Update()
     {
         // I'm placing it here cuz I'm worried that all the event calls will mess things up
-        if (_servedEmployeesCount == _totalEmployeesInBuilding && (!GameStateManager.Instance.IsTimeLimitReached && !GameStateManager.Instance.IsGameOver))
+        if (_totalEmployeesInBuilding > 0 && _servedEmployeesCount == _totalEmployeesInBuilding && (!GameStateManager.Instance.IsTimeLimitReached && !GameStateManager.Instance.IsGameOver))
         {
             Debug.Log("GAME IS WON");
             if (_gameStateEventChannel != null) _gameStateEventChannel.OnAllEmployeesServed();
