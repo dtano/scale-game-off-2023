@@ -35,4 +35,22 @@ public class ErrorDisplay : MonoBehaviour
         _errorDisplayText.text = errorDTO.Message;
         if (_animator != null) _animator.SetTrigger("ShowError");
     }
+
+    private void UnregisterListeners()
+    {
+        if (_elevatorDragAndDropEventChannel != null)
+        {
+            _elevatorDragAndDropEventChannel.OnFailedDropEvent -= ShowError;
+        }
+
+        if (_reservesDragAndDropEventChannel != null)
+        {
+            _reservesDragAndDropEventChannel.OnFailedDropEvent -= ShowError;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        UnregisterListeners();
+    }
 }

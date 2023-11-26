@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219249376ecbae5489742b93c54b23ed, type: 3}
   m_Name: GameDetailsTracker
   m_EditorClassIdentifier: 
-  _showTutorialScreen: 1
+  _showTutorialScreen: 0

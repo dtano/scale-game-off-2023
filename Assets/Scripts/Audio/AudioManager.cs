@@ -23,4 +23,9 @@ public class AudioManager : MonoBehaviour
     {
 
     }
+
+    private void OnDestroy()
+    {
+        _sfxEventChannel.OnAudioCueRequested -= PlayAudioCue;
+    }
 }
