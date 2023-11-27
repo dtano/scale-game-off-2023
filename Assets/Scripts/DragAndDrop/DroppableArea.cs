@@ -5,6 +5,9 @@ using UnityEngine;
 public class DroppableArea : MonoBehaviour
 {
     [SerializeField] private DragAndDropEventChannel eventChannel;
+    [SerializeField] private AudioEventChannel audioChannel;
+    [SerializeField] private AudioCueSO successfulDropSfx;
+    [SerializeField] private AudioCueSO failedDropSfx;
     public delegate DropResultDTO OnDropObjectDelegate(DraggableObject draggableObject);
     public event OnDropObjectDelegate OnDropObjectEvent;
 
@@ -30,10 +33,12 @@ public class DroppableArea : MonoBehaviour
             if (result.Success)
             {
                 eventChannel.OnSuccessfulDrop(draggableObject);
+                if (audioChannel != null) audioChannel.RaiseEvent(successfulDropSfx);
             }
             else
             {
                 eventChannel.OnFailedDrop(result.Error);
+                if (audioChannel != null) audioChannel.RaiseEvent(failedDropSfx);
             }
         }
 

@@ -1141,6 +1141,7 @@ MonoBehaviour:
   _weightAfterKickText: {fileID: 8830353597600707819}
   _emptySelectionObject: {fileID: 844239692}
   _elevatorMovingText: {fileID: 3698060904999325486}
+  _currentFloorText: {fileID: 0}
   _actionButton: {fileID: 8830353597389329534}
 --- !u!1 &8830353596880009088
 GameObject:
@@ -1207,6 +1208,8 @@ MonoBehaviour:
   _tabletOffSprite: {fileID: 578910022, guid: a9cf68cde34aa9c4facecfe9d0121e81, type: 3}
   _gameStateEventChannel: {fileID: 11400000, guid: 6a4ec2c3b070dba40ad0e32f29383697, type: 2}
   _tabletInteractionEventChannel: {fileID: 11400000, guid: 73963c137a28aae44b61595854282574, type: 2}
+  _sfxAudioEventChannel: {fileID: 11400000, guid: aa970078ef058a644abd2a10368a05ef, type: 2}
+  _tabletSwipeSfx: {fileID: 11400000, guid: 955fcd55f0f694146a359051395a86e7, type: 2}
 --- !u!1 &8830353597188588493
 GameObject:
   m_ObjectHideFlags: 0

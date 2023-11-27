@@ -18,8 +18,10 @@ public class Elevator : MonoBehaviour, IDroppable
     [SerializeField] private ElevatorDisplayUI _elevatorDisplayUI;
     [SerializeField] private FloorNumberIndicator _floorNumberIndicator;
     [SerializeField] private GameStateEventChannel _gameStateEventChannel;
+    [SerializeField] private AudioEventChannel _sfxEventChannel;
 
     private Animator _animator;
+    private AudioSource _audioSource;
     private DroppableArea droppableArea;
     private Dictionary<int, List<Employee>> _destinationMap = new Dictionary<int, List<Employee>>();
     
@@ -44,6 +46,7 @@ public class Elevator : MonoBehaviour, IDroppable
         droppableArea.OnDropObjectEvent += OnDropObject;
 
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
 
         if(_elevatorDisplayUI != null)
         {
@@ -75,6 +78,8 @@ public class Elevator : MonoBehaviour, IDroppable
         {
             _animator.SetBool(IS_OPEN_ANIMATION_PARAM, true);
         }
+
+        if (_elevatorData.SfxCollection != null) PlaySound(_elevatorData.SfxCollection.OpenSfx);
     }
 
     public void InitiateMovement()
@@ -86,6 +91,16 @@ public class Elevator : MonoBehaviour, IDroppable
     {
         ErrorDTO errorDTO = new ErrorDTO(ErrorSourceEnum.ELEVATOR_FULL, "Elevator is Full!");
         return errorDTO;
+    }
+
+    private void PlaySound(AudioCueSO audioCue)
+    {
+        if(_audioSource == null || audioCue == null) return;
+
+        _audioSource.loop = audioCue.IsLooping;
+        _audioSource.pitch = audioCue.Pitch;
+        _audioSource.clip = audioCue.Clip;
+        _audioSource.Play();
     }
 
     public DropResultDTO AddToElevator(Employee employee)
@@ -163,7 +178,10 @@ public class Elevator : MonoBehaviour, IDroppable
     private void OnReachedFloor(int floorNumber)
     {
         if (_floorNumberIndicator != null) _floorNumberIndicator.StopMovement();
+
         // Play some sort of sound
+        if (_elevatorData.SfxCollection != null) PlaySound(_elevatorData.SfxCollection.ReachedDestinationSfx);
+        
         ReleasePassengersAtGivenFloor(floorNumber);
     }
 
@@ -180,6 +198,11 @@ public class Elevator : MonoBehaviour, IDroppable
         if (_currentDirection == Direction.Down && _currentFloor == 0) return;
 
         Debug.Log("Starting Journey");
+        if (_elevatorData.SfxCollection != null)
+        {
+            PlaySound(_elevatorData.SfxCollection.CloseSfx);
+            if (_sfxEventChannel != null) _sfxEventChannel.RaiseEvent(_elevatorData.SfxCollection.PressCloseButtonSfx);
+        }
         if (_elevatorDisplayUI != null) _elevatorDisplayUI.Hide();
         _isMoving = true;
 
@@ -213,12 +236,21 @@ public class Elevator : MonoBehaviour, IDroppable
         StartCoroutine(ProcessTrip());
     }
 
+    private void PlayMovementSound()
+    {
+        if (_elevatorData.SfxCollection == null) return;
+        PlaySound(_elevatorData.SfxCollection.MovementSfx);
+    }
+
     private IEnumerator ProcessTrip()
     {
         if(_floorNumberIndicator != null)
         {
             _floorNumberIndicator.StartMovement();
         }
+
+        PlayMovementSound();
+
         if (_currentDirection == Direction.Up)
         {
             while (_currentFloor != _totalFloors)
@@ -235,6 +267,7 @@ public class Elevator : MonoBehaviour, IDroppable
                     }
 
                     // Should stop movement start if we've reached the last floor
+                    PlayMovementSound();
                     if (_floorNumberIndicator != null) _floorNumberIndicator.StartMovement();
                     Debug.Log("Moving On...");
                 }
@@ -261,7 +294,7 @@ public class Elevator : MonoBehaviour, IDroppable
                 _floorNumberIndicator.SwitchDirection(true);
             }
 
-            if (_animator != null) _animator.SetBool(IS_OPEN_ANIMATION_PARAM, true);
+            OpenElevator();
         }
     }
 

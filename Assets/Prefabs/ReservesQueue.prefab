@@ -292,6 +292,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventChannel: {fileID: 11400000, guid: 7148f475f8eee3249b5d893cc12e7bd6, type: 2}
+  audioChannel: {fileID: 11400000, guid: aa970078ef058a644abd2a10368a05ef, type: 2}
+  successfulDropSfx: {fileID: 11400000, guid: 553b4c28dd12c7047beaa27c56228f67, type: 2}
+  failedDropSfx: {fileID: 11400000, guid: 0a758326b30dd5e4b95f58559c3502b7, type: 2}
 --- !u!114 &5511756311554898127
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class AudioEventChannel : ScriptableObject
 {
     public UnityAction<AudioCueSO> OnAudioCueRequested;
 
+
     public void RaiseEvent(AudioCueSO audioCue)
     {
         if(OnAudioCueRequested != null)

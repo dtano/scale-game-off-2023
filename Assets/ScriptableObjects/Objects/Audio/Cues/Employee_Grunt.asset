@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcabe376f5b5ab444b6bdb2ea044e17f, type: 3}
-  m_Name: OnStartDragSFX
+  m_Name: Employee_Grunt
   m_EditorClassIdentifier: 
-  _name: On Start Drag
-  _clip: {fileID: 0}
+  _name: Employee Grunt
+  _clip: {fileID: 8300000, guid: 31bc74e3ca1a0f8469044b151dd5dd86, type: 3}
+  _pitch: 1
+  _isLooping: 0

@@ -17,6 +17,8 @@ public class ElevatorManagementTablet : UIElement
 
     [SerializeField] private GameStateEventChannel _gameStateEventChannel;
     [SerializeField] private TabletInteractionEventChannel _tabletInteractionEventChannel;
+    [SerializeField] private AudioEventChannel _sfxAudioEventChannel;
+    [SerializeField] private AudioCueSO _tabletSwipeSfx;
 
     private List<Elevator> _allElevators;
     private int _currentlySelectedElevatorIndex;
@@ -54,6 +56,7 @@ public class ElevatorManagementTablet : UIElement
         else
         {
             LeanTween.moveY(gameObject, 360, 0.2f).setOnComplete(OnTabletStart);
+            if (_sfxAudioEventChannel != null) _sfxAudioEventChannel.RaiseEvent(_tabletSwipeSfx);
         }
 
         if (_gameStateEventChannel != null) _gameStateEventChannel.OnTabletStateChange(_isOn);

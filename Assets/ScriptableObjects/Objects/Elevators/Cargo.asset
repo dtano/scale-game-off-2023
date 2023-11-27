@@ -16,3 +16,4 @@ MonoBehaviour:
   _maxCapacity: 1000
   _sprite: {fileID: 422896120, guid: fda781c5251eda34292eb6bb736e7abb, type: 3}
   _speedInSeconds: 10
+  _sfxCollection: {fileID: 11400000, guid: 6447e50f8cfdbf544b64f4228935305c, type: 2}

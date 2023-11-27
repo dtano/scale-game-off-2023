@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Massive_Data
   m_EditorClassIdentifier: 
   _bodyType: 4
+  _employeeSfxCollection: {fileID: 11400000, guid: 5e1ac5e6e763b4f48ad87acad23b8ac2, type: 2}
   _minWeight: 86
   _maxWeight: 100
   _sprite: {fileID: 1859053872, guid: 5832b4486362f99448a06a85bfd04476, type: 3}

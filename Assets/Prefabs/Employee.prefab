@@ -586,6 +586,7 @@ MonoBehaviour:
   _satisfactionLevel: 100
   _bodyType: 0
   _employeeInfoUI: {fileID: 1963059412}
+  _audioEventChannel: {fileID: 11400000, guid: aa970078ef058a644abd2a10368a05ef, type: 2}
   _spriteRenderer: {fileID: 1761645811030872598}
 --- !u!114 &621611100684013436
 MonoBehaviour:

@@ -26,6 +26,7 @@ public class Employee : MonoBehaviour
     [SerializeField] private float _satisfactionLevel = 100f;
     [SerializeField] private BodyType _bodyType;
     [SerializeField] private EmployeeInfoUI _employeeInfoUI;
+    [SerializeField] private AudioEventChannel _audioEventChannel;
 
     [SerializeField] private SpriteRenderer _spriteRenderer;
     private BodyTypeDataSO _bodyTypeData;
@@ -61,6 +62,12 @@ public class Employee : MonoBehaviour
     private void OnDrag()
     {
         if (_employeeInfoUI != null) _employeeInfoUI.Hide();
+        
+        // Need to trigger some event too
+        if(_bodyTypeData != null && _bodyTypeData.SfxCollection != null && _audioEventChannel != null)
+        {
+            _audioEventChannel.RaiseEvent(_bodyTypeData.SfxCollection.OnDragSfx);
+        }
     }
 
     private void OnDragFailed()

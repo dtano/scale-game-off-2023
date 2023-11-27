@@ -6,6 +6,7 @@ using UnityEngine;
 public class BodyTypeDataSO : ScriptableObject
 {
     [SerializeField] private BodyType _bodyType;
+    [SerializeField] private EmployeeSfxCollection _employeeSfxCollection;
     [SerializeField] private int _minWeight;
     [SerializeField] private int _maxWeight;
     [SerializeField] private Sprite _sprite;
@@ -13,6 +14,7 @@ public class BodyTypeDataSO : ScriptableObject
     [SerializeField] private float _baseAppearanceChance;
 
     public BodyType BodyType => _bodyType;
+    public EmployeeSfxCollection SfxCollection => _employeeSfxCollection;
     public int MinWeight => _minWeight;
     public int MaxWeight => _maxWeight;
     public Sprite Sprite => _sprite;
