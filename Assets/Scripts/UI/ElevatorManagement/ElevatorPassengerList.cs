@@ -14,7 +14,9 @@ public class ElevatorPassengerList : UIElement
     private bool _isInteractable = true;
 
     public UnityAction<Employee> OnSelectEmployeeEvent;
-    public UnityAction<Employee> OnKickEmployeeEvent;
+
+    public delegate bool OnKickEmployeeDelegate(Employee employee);
+    public event OnKickEmployeeDelegate OnKickEmployeeEvent;
 
     public Employee CurrentSelectedEmployee => GetCurrentSelectedEmployee();
 
@@ -50,11 +52,15 @@ public class ElevatorPassengerList : UIElement
     {
         // Shouldn't be allowed to kick if elevator is moving!!
         if (!_isInteractable) return;
+
         Employee employeeToKick = _employees[_currentSelectedPassengerIndex];
+        bool canEmployeeBeKicked = OnKickEmployeeEvent.Invoke(employeeToKick);
 
-        _employees.RemoveAt(_currentSelectedPassengerIndex);
-
-        OnKickEmployeeEvent?.Invoke(employeeToKick);
+        // Don't remove yet if it fails
+        if (canEmployeeBeKicked)
+        {
+            _employees.RemoveAt(_currentSelectedPassengerIndex);
+        }
     }
 
     public void SetPassengerInformation(Elevator elevator)

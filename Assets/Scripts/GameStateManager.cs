@@ -11,10 +11,12 @@ public class GameStateManager : MonoBehaviour
     private bool _isTabletOn = false;
     private bool _isGameOver = false;
     private bool _isTimeLimitReached = false;
+    private bool _didPlayerWin = false;
 
     public bool IsTabletOn { get => _isTabletOn; set => _isTabletOn = value; }
     public bool IsGameOver { get => _isGameOver; set => _isGameOver = value; }
     public bool IsTimeLimitReached { get => _isTimeLimitReached; set => _isTimeLimitReached = value; }
+    public bool DidPlayerWin { get => _didPlayerWin; set => _didPlayerWin = value; }
 
     void Awake()
     {
@@ -51,6 +53,7 @@ public class GameStateManager : MonoBehaviour
         SetGameIsOver();
 
         //if(_gameFinishedUI)
+        _didPlayerWin = true;
     }
 
     public void SetGameIsOver()

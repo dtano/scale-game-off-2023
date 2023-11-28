@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcabe376f5b5ab444b6bdb2ea044e17f, type: 3}
-  m_Name: Speedy_ElevatorMovement
+  m_Name: GameOver
   m_EditorClassIdentifier: 
-  _name: Elevator Movement Speedy
-  _clip: {fileID: 8300000, guid: 78eae8dc050424c4d9f6f31a6e8075b4, type: 3}
+  _name: Game Over
+  _clip: {fileID: 8300000, guid: 8e3f7d689ac99784c950597039030efd, type: 3}
   _pitch: 1
   _isLooping: 0

@@ -11,6 +11,7 @@ public class ElevatorQueue : MonoBehaviour
     public List<Employee> Queue => _queue;
     public int Count => _queue.Count;
     public int MaxCapacity => _maxCapacity;
+    public bool IsFull => _hasMaxCapacity && _queue.Count >= _maxCapacity;
     void Awake()
     {
         _queue = new List<Employee>();

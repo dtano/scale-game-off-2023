@@ -159,13 +159,24 @@ public class ElevatorManagementTablet : UIElement
         }
     }
 
-    public void OnKickEmployeeFromElevator(Employee employee)
+    public bool OnKickEmployeeFromElevator(Employee employee)
     {
         Elevator currentSelectedElevator = _allElevators[_currentlySelectedElevatorIndex];
 
-        if (_tabletInteractionEventChannel != null) _tabletInteractionEventChannel.OnKickEmployeeFromElevator(currentSelectedElevator, employee);
+        bool isSuccessfullyKicked = false;
+        if (_tabletInteractionEventChannel != null)
+        {
+            isSuccessfullyKicked = _tabletInteractionEventChannel.OnKickEmployeeFromElevator(currentSelectedElevator, employee);
+        }
 
         // Need to update view now
         UpdateView();
+        return isSuccessfullyKicked;
+    }
+
+    private void OnDestroy()
+    {
+        _gameStateEventChannel.OnTimeLimitReachedEvent -= ForceTurnOff;
+        _gameStateEventChannel.OnAllEmployeesServedEvent -= ForceTurnOff;
     }
 }

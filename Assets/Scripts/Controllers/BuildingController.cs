@@ -17,6 +17,7 @@ public class BuildingController : MonoBehaviour
     [SerializeField] private DragAndDropEventChannel _dragAndDropEventChannel;
     [SerializeField] private DragAndDropEventChannel _reservesDragAndDropEventChannel;
     [SerializeField] private TabletInteractionEventChannel _tabletInteractionEventChannel;
+    [SerializeField] private AudioEventChannel _sfxEventChannel;
     [SerializeField] private GameStateEventChannel _gameStateEventChannel;
     [SerializeField] private EmployeePaginationUI _elevatorQueueUI;
     [SerializeField] private ProgressIndicator _progressIndicator;
@@ -156,6 +157,7 @@ public class BuildingController : MonoBehaviour
     {
         if(_gameFinishedUI != null)
         {
+            if (_sfxEventChannel != null) _sfxEventChannel.RaiseOnPlayerWonEvent();
             _gameFinishedUI.Show();
             _gameFinishedUI.ShowGameWon(_servedEmployeesCount, _totalEmployeesInBuilding, _clock.ElapsedTime);
         }
@@ -163,8 +165,10 @@ public class BuildingController : MonoBehaviour
 
     private void TriggerGameOver()
     {
+        if (GameStateManager.Instance.DidPlayerWin) return;
         if (_gameFinishedUI != null)
         {
+            if (_sfxEventChannel != null) _sfxEventChannel.RaiseOnPlayerLostEvent();
             _gameFinishedUI.Show();
             _gameFinishedUI.ShowGameOver(_servedEmployeesCount, _totalEmployeesInBuilding);
         }
@@ -251,13 +255,21 @@ public class BuildingController : MonoBehaviour
         }
     }
 
-    private void OnKickEmployeeFromElevator(Elevator elevator, Employee employee)
+    private bool OnKickEmployeeFromElevator(Elevator elevator, Employee employee)
     {
+        if (!_reservesController.AddToQueue(employee))
+        {
+            return false;
+        }
+
         // Remove from elevator
-        elevator.RemoveFromElevator(employee);
+        if (!elevator.RemoveFromElevator(employee))
+        {
+            return false;
+        }
 
         // Add to reserves
-        _reservesController.AddToQueue(employee);
+        return true;
     }
 
     private void OnDisable()

@@ -14,6 +14,8 @@ public class Clock : MonoBehaviour
     [SerializeField] private int _startHour = 8;
     [SerializeField] private int _startMinute = 0;
     [SerializeField] private int _timerDurationInMinutes;
+    
+    private AudioSource _audioSource;
 
     private Animator _animator;
     private bool _isRunning = false;
@@ -30,6 +32,7 @@ public class Clock : MonoBehaviour
     void Awake()
     {
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
         _currentHour = _startHour;
         _currentMinutes = _startMinute;
 
@@ -53,6 +56,11 @@ public class Clock : MonoBehaviour
             _minutesElapsed = Mathf.FloorToInt(_currentTime);
             _currentMinutes = Mathf.FloorToInt((_startMinute + _currentTime) % 60f);
             _currentHour = Mathf.FloorToInt(_startHour + ((_startMinute + _currentTime) / 60f));
+
+            if(_audioSource != null)
+            {
+                _audioSource.volume = (_minutesElapsed / (float)_timerDurationInMinutes) * 1;
+            }
 
             CheckTimeAlmostUp();
 
@@ -91,12 +99,14 @@ public class Clock : MonoBehaviour
     public void TurnOn()
     {
         _isRunning = true;
+        if(_audioSource != null) _audioSource.Play();
     }
 
     public void TurnOff()
     {
         _animator.SetBool(IS_BLINKING_PARAM, false);
         _isRunning = false;
+        if (_audioSource != null) _audioSource.Stop();
 
         // And store the time elapsed
         Debug.Log("Minutes elapsed: " + _minutesElapsed);

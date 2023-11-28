@@ -7,7 +7,8 @@ using UnityEngine.Events;
 public class AudioEventChannel : ScriptableObject
 {
     public UnityAction<AudioCueSO> OnAudioCueRequested;
-
+    public UnityAction OnPlayerLost;
+    public UnityAction OnPlayerWon;
 
     public void RaiseEvent(AudioCueSO audioCue)
     {
@@ -19,5 +20,15 @@ public class AudioEventChannel : ScriptableObject
         {
             Debug.LogWarning("An audio cue was requested, but nobody picked it up");
         }
+    }
+
+    public void RaiseOnPlayerLostEvent()
+    {
+        if (OnPlayerLost != null) OnPlayerLost.Invoke();
+    }
+
+    public void RaiseOnPlayerWonEvent()
+    {
+        if(OnPlayerWon != null) OnPlayerWon.Invoke();
     }
 }

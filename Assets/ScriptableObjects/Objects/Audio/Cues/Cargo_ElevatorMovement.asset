@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Cargo_ElevatorMovement
   m_EditorClassIdentifier: 
   _name: Elevator Open Cargo
-  _clip: {fileID: 0}
+  _clip: {fileID: 8300000, guid: 78eae8dc050424c4d9f6f31a6e8075b4, type: 3}
   _pitch: 0.5
+  _isLooping: 0

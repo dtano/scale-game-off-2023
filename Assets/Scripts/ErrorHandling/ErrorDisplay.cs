@@ -8,9 +8,9 @@ public class ErrorDisplay : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private TextMeshProUGUI _errorDisplayText;
     
-    // Damn I forgot I'm using 2 channels for drag and drop
     [SerializeField] private DragAndDropEventChannel _elevatorDragAndDropEventChannel;
     [SerializeField] private DragAndDropEventChannel _reservesDragAndDropEventChannel;
+    [SerializeField] private ErrorDisplayEventChannel _errorDisplayEventChannel;
 
     // Start is called before the first frame update
     void Awake()
@@ -25,6 +25,11 @@ public class ErrorDisplay : MonoBehaviour
         if (_reservesDragAndDropEventChannel != null)
         {
             _reservesDragAndDropEventChannel.OnFailedDropEvent += ShowError;
+        }
+
+        if(_errorDisplayEventChannel != null)
+        {
+            _errorDisplayEventChannel.OnRequestErrorEvent += ShowError;
         }
     }
 
@@ -46,6 +51,11 @@ public class ErrorDisplay : MonoBehaviour
         if (_reservesDragAndDropEventChannel != null)
         {
             _reservesDragAndDropEventChannel.OnFailedDropEvent -= ShowError;
+        }
+
+        if (_errorDisplayEventChannel != null)
+        {
+            _errorDisplayEventChannel.OnRequestErrorEvent -= ShowError;
         }
     }
 

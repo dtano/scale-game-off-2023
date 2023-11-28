@@ -9,6 +9,7 @@ public class ReservesController : MonoBehaviour
     [SerializeField] private EmployeePaginationUI _reservesUI;
     [SerializeField] private TextMeshProUGUI _queueCountText;
     [SerializeField] private DragAndDropEventChannel _channel;
+    [SerializeField] private ErrorDisplayEventChannel _errorDisplayEventChannel;
     [SerializeField] private GameObject _employeeParent;
     [SerializeField] private Transform _employeePositionMarker;
 
@@ -78,6 +79,7 @@ public class ReservesController : MonoBehaviour
         if (!successfullyAddToQueue)
         {
             Debug.Log("Failed to add");
+            if (_errorDisplayEventChannel != null) _errorDisplayEventChannel.RequestError(CreateError());
             return false;
         }
 

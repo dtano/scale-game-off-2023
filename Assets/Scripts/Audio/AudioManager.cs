@@ -6,12 +6,16 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioEventChannel _sfxEventChannel;
+    [SerializeField] private AudioCueSO _playerLostSfx;
+    [SerializeField] private AudioCueSO _playerWonSfx;
     private AudioSource _sfxAudioSource;
 
     // Start is called before the first frame update
     void Awake()
     {
         _sfxEventChannel.OnAudioCueRequested += PlayAudioCue;
+        _sfxEventChannel.OnPlayerLost += OnPlayerLost;
+        _sfxEventChannel.OnPlayerWon += OnPlayerWon;
         _sfxAudioSource = GetComponent<AudioSource>();
     }
 
@@ -25,15 +29,27 @@ public class AudioManager : MonoBehaviour
     {
         if (audioCue == null) return;
 
-        Debug.Log("PLAYING AUDIO CUE!!");
+        Debug.Log("PLAYING AUDIO CUE!! " + audioCue.Name);
         _sfxAudioSource.loop = audioCue.IsLooping;
         _sfxAudioSource.pitch = audioCue.Pitch;
         _sfxAudioSource.clip = audioCue.Clip;
         _sfxAudioSource.Play();
     }
 
+    private void OnPlayerLost()
+    {
+        PlayAudioCue(_playerLostSfx);
+    }
+
+    private void OnPlayerWon()
+    {
+        PlayAudioCue(_playerWonSfx);
+    }
+
     private void OnDestroy()
     {
         _sfxEventChannel.OnAudioCueRequested -= PlayAudioCue;
+        _sfxEventChannel.OnPlayerWon -= OnPlayerWon;
+        _sfxEventChannel.OnPlayerLost -= OnPlayerLost;
     }
 }

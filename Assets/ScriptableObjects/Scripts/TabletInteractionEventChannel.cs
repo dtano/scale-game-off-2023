@@ -6,10 +6,16 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "Tablet Interaction Event Channel", menuName = "Scriptable Objects/Event Channels/Tablet")]
 public class TabletInteractionEventChannel : ScriptableObject
 {
-    public UnityAction<Elevator, Employee> OnKickEmployeeFromElevatorEvent;
+    public delegate bool OnKickEmployeeFromElevatorDelegate(Elevator elevator, Employee employee);
+    public event OnKickEmployeeFromElevatorDelegate OnKickEmployeeFromElevatorEvent;
 
-    public void OnKickEmployeeFromElevator(Elevator elevator, Employee employee)
+    public bool OnKickEmployeeFromElevator(Elevator elevator, Employee employee)
     {
-        if(OnKickEmployeeFromElevatorEvent != null) OnKickEmployeeFromElevatorEvent.Invoke(elevator, employee);
+        if (OnKickEmployeeFromElevatorEvent != null)
+        {
+            return OnKickEmployeeFromElevatorEvent.Invoke(elevator, employee);
+        }
+
+        return false;
     }
 }
