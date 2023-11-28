@@ -14,6 +14,7 @@ public class GameStateEventChannel : ScriptableObject
     public UnityAction OnSceneTransitionOverEvent;
     public UnityAction OnShowTutorialEvent;
     public UnityAction OnEndTutorialEvent;
+    public UnityAction OnRequestNextLevelEvent;
 
     public void OnTabletStateChange(bool isOn)
     {
@@ -49,5 +50,10 @@ public class GameStateEventChannel : ScriptableObject
     public void OnEndTutorial()
     {
         if (OnEndTutorialEvent != null) OnEndTutorialEvent.Invoke();
+    }
+
+    public void OnRequestNextLevel()
+    {
+        if (OnRequestNextLevelEvent != null) OnRequestNextLevelEvent.Invoke();
     }
 }

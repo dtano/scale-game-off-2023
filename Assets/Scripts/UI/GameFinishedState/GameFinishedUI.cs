@@ -6,6 +6,7 @@ using TMPro;
 
 public class GameFinishedUI : UIElement
 {
+    [SerializeField] private GameStateEventChannel _gameStateEventChannel;
     [SerializeField] private TextMeshProUGUI _titleText;
     [SerializeField] private GameWonUI _gameWonScreen;
     [SerializeField] private GameOverUI _gameOverScreen;
@@ -22,6 +23,11 @@ public class GameFinishedUI : UIElement
     void Update()
     {
         
+    }
+
+    public void OnClickContinue()
+    {
+        if(_gameStateEventChannel != null) _gameStateEventChannel.OnRequestNextLevel();
     }
 
     private string BuildPercentageText(int numEmployeesServed, int totalEmployees)

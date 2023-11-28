@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
     [SerializeField] private GameStateEventChannel _eventChannel;
-    [SerializeField] private GameFinishedUI _gameFinishedUI;
     public static GameStateManager Instance { get; private set; }
 
     private bool _isTabletOn = false;
@@ -33,6 +33,7 @@ public class GameStateManager : MonoBehaviour
                 _eventChannel.OnTabletStateChangeEvent += SetTabletStatus;
                 _eventChannel.OnTimeLimitReachedEvent += SetTimeLimitReachedState;
                 _eventChannel.OnAllEmployeesServedEvent += SetGameWonState;
+                _eventChannel.OnRequestNextLevelEvent += LoadNextLevel;
             }
         }
     }
@@ -59,5 +60,22 @@ public class GameStateManager : MonoBehaviour
     public void SetGameIsOver()
     {
         _isGameOver = true;
+    }
+
+    public void LoadNextLevel()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene + 1);
+    }
+
+    private void OnDestroy()
+    {
+        if (_eventChannel != null)
+        {
+            _eventChannel.OnTabletStateChangeEvent -= SetTabletStatus;
+            _eventChannel.OnTimeLimitReachedEvent -= SetTimeLimitReachedState;
+            _eventChannel.OnAllEmployeesServedEvent -= SetGameWonState;
+            _eventChannel.OnRequestNextLevelEvent -= LoadNextLevel;
+        }
     }
 }
