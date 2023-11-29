@@ -1536,6 +1536,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 5511756311554898127, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
+      propertyPath: _maxCapacity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5511756311554898130, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
       propertyPath: _reservesUI
       value: 
@@ -1720,7 +1724,7 @@ PrefabInstance:
       objectReference: {fileID: 1977740141}
     - target: {fileID: 8655379100903884075, guid: 7fab76c1280c9e946b61a578914db799, type: 3}
       propertyPath: _numEmployeesToSpawn
-      value: 7
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fab76c1280c9e946b61a578914db799, type: 3}
@@ -2085,7 +2089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9015301126337844739, guid: 0d09c33566cee804595ccc8f5e699000, type: 3}
       propertyPath: _timerDurationInMinutes
-      value: 5
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d09c33566cee804595ccc8f5e699000, type: 3}

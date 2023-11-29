@@ -298,6 +298,12 @@ public class Elevator : MonoBehaviour, IDroppable
         }
     }
 
+    public void ForceStop()
+    {
+        StopAllCoroutines();
+        if(_audioSource != null) _audioSource.Stop();
+    }
+
     public DropResultDTO OnDropObject(DraggableObject draggableObject)
     {   
         if (_isMoving) return new DropResultDTO();

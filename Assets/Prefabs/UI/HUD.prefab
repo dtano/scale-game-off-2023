@@ -2287,6 +2287,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9015301126011578814}
     m_Modifications:
+    - target: {fileID: 3399042272137244902, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042272137244902, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042272137244902, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1839721410}
+    - target: {fileID: 3399042272137244902, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042272137244902, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickRetry
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042272137244902, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameFinishedUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042272137244902, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042273104921073, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042273104921073, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042273104921073, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1839721410}
+    - target: {fileID: 3399042273104921073, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042273104921073, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042273104921073, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameFinishedUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042273104921073, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3399042273129777648, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
       propertyPath: m_Name
       value: GameWonScreen

@@ -15,6 +15,8 @@ public class GameStateEventChannel : ScriptableObject
     public UnityAction OnShowTutorialEvent;
     public UnityAction OnEndTutorialEvent;
     public UnityAction OnRequestNextLevelEvent;
+    public UnityAction OnRequestRetryLevelEvent;
+    public UnityAction OnRequestExitGameEvent;
 
     public void OnTabletStateChange(bool isOn)
     {
@@ -55,5 +57,15 @@ public class GameStateEventChannel : ScriptableObject
     public void OnRequestNextLevel()
     {
         if (OnRequestNextLevelEvent != null) OnRequestNextLevelEvent.Invoke();
+    }
+
+    public void OnRequestRetryLevel()
+    {
+        if(OnRequestRetryLevelEvent != null) OnRequestRetryLevelEvent.Invoke();
+    }
+
+    public void OnRequestExitGame()
+    {
+        if (OnRequestExitGameEvent != null) OnRequestExitGameEvent.Invoke();
     }
 }

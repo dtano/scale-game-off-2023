@@ -17,7 +17,7 @@ public class Clock : MonoBehaviour
     
     private AudioSource _audioSource;
 
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
     private bool _isRunning = false;
     private int _currentHour;
     private int _currentMinutes;
@@ -31,7 +31,7 @@ public class Clock : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        _animator = GetComponent<Animator>();
+        if(_animator == null) _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         _currentHour = _startHour;
         _currentMinutes = _startMinute;
@@ -116,5 +116,10 @@ public class Clock : MonoBehaviour
 
         string msFormat = string.Format("{0:00}:{1:00}", minutes, seconds);
         Debug.Log($"Minutes and seconds elapsed: {msFormat}");
+    }
+
+    private void OnDestroy()
+    {
+        _eventChannel.OnAllEmployeesServedEvent -= TurnOff;
     }
 }

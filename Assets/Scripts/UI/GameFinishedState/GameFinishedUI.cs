@@ -30,6 +30,16 @@ public class GameFinishedUI : UIElement
         if(_gameStateEventChannel != null) _gameStateEventChannel.OnRequestNextLevel();
     }
 
+    public void OnClickRetry()
+    {
+        if(_gameStateEventChannel != null) _gameStateEventChannel.OnRequestRetryLevel();
+    }
+
+    public void OnClickExit()
+    {
+        if (_gameStateEventChannel != null) _gameStateEventChannel.OnRequestExitGame();
+    }
+
     private string BuildPercentageText(int numEmployeesServed, int totalEmployees)
     {
         int percentage = Mathf.FloorToInt((numEmployeesServed / (float)totalEmployees) * 100);

@@ -166,6 +166,13 @@ public class BuildingController : MonoBehaviour
     private void TriggerGameOver()
     {
         if (GameStateManager.Instance.DidPlayerWin) return;
+
+        // Need to go through all elevators and stop their coroutines?
+        foreach(Elevator elevator in _elevators)
+        {
+            elevator.ForceStop();
+        }
+
         if (_gameFinishedUI != null)
         {
             if (_sfxEventChannel != null) _sfxEventChannel.RaiseOnPlayerLostEvent();
@@ -272,10 +279,10 @@ public class BuildingController : MonoBehaviour
         return true;
     }
 
-    private void OnDisable()
-    {
-        UnregisterEventListeners();
-    }
+    //private void OnDisable()
+    //{
+    //    UnregisterEventListeners();
+    //}
 
     private void OnDestroy()
     {

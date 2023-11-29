@@ -28,12 +28,14 @@ public class GameStateManager : MonoBehaviour
         {
             Instance = this;
 
+            UnregisterEventListeners();
             if(_eventChannel != null)
             {
                 _eventChannel.OnTabletStateChangeEvent += SetTabletStatus;
                 _eventChannel.OnTimeLimitReachedEvent += SetTimeLimitReachedState;
                 _eventChannel.OnAllEmployeesServedEvent += SetGameWonState;
                 _eventChannel.OnRequestNextLevelEvent += LoadNextLevel;
+                _eventChannel.OnRequestRetryLevelEvent += RetryLevel;
             }
         }
     }
@@ -68,7 +70,18 @@ public class GameStateManager : MonoBehaviour
         SceneManager.LoadScene(currentScene + 1);
     }
 
+    public void RetryLevel()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
+    }
+
     private void OnDestroy()
+    {
+        UnregisterEventListeners();
+    }
+
+    private void UnregisterEventListeners()
     {
         if (_eventChannel != null)
         {

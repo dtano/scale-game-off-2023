@@ -31,6 +31,7 @@ public class ReservesController : MonoBehaviour
         {
             _reservesUI.SetPassengerIconClickEvents(OnClickReservesEmployeeIcon);
             _reservesUI.OnClickArrowEvent += UpdateUI;
+            UpdateUI();
         }
     }
 
