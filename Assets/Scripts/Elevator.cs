@@ -58,7 +58,7 @@ public class Elevator : MonoBehaviour, IDroppable
         if(_floorNumberIndicator != null)
         {
             _floorNumberIndicator.SetFloorNumber(_currentFloor);
-            _floorNumberIndicator.SwitchDirection(true);
+            //_floorNumberIndicator.SwitchDirection(true);
         }
     }
 

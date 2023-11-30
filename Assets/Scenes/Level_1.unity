@@ -1458,10 +1458,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5511756310860048607, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5511756311002544343, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 5511756311002544347, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511756311002544347, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5511756311554898127, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
       propertyPath: _maxCapacity
       value: 5
@@ -1521,6 +1533,30 @@ PrefabInstance:
     - target: {fileID: 5511756311554898132, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
       propertyPath: m_Name
       value: ReservesQueue
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511756311554898132, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511756311609156127, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511756311834310314, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511756311834310314, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511756311975604281, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511756312001602608, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcfbd99aa834ff04a902f30f7830d6ae, type: 3}

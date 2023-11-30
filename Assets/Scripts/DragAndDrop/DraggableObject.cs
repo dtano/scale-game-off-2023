@@ -26,6 +26,7 @@ public class DraggableObject : MonoBehaviour
 
     bool IsDraggable()
     {
+        if (GameStateManager.Instance.IsTabletOn || GameStateManager.Instance.IsGameOver) Debug.Log("Not draggabkle!!");
         return !GameStateManager.Instance.IsTabletOn && !GameStateManager.Instance.IsGameOver;
     }
 

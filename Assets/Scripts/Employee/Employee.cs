@@ -54,6 +54,7 @@ public class Employee : MonoBehaviour
         _draggableComponent = GetComponent<DraggableObject>();
         if(_draggableComponent != null)
         {
+            // Is start called every time I turn the game object on and off?
             _draggableComponent.OnDragStarted += OnDrag;
             _draggableComponent.OnDragFailed += OnDragFailed;
         }
@@ -131,5 +132,15 @@ public class Employee : MonoBehaviour
     public override int GetHashCode()
     {
         return _id.GetHashCode();
+    }
+
+    private void OnDisable()
+    {
+        if (_draggableComponent != null)
+        {
+            // Is start called every time I turn the game object on and off?
+            _draggableComponent.OnDragStarted -= OnDrag;
+            _draggableComponent.OnDragFailed -= OnDragFailed;
+        }
     }
 }
