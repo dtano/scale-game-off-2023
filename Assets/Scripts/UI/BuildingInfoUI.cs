@@ -23,6 +23,6 @@ public class BuildingInfoUI : MonoBehaviour
     public void SetInformation(BuildingDataSO buildingData)
     {
         _buildingNameText.text = buildingData.Name;
-        _floorsValueText.text = buildingData.NumFloors.ToString();
+        _floorsValueText.text = (buildingData.NumFloors > 0 ? buildingData.NumFloors - 1 : 0).ToString();
     }
 }

@@ -38,6 +38,7 @@ public class Elevator : MonoBehaviour, IDroppable
     public float Speed => _elevatorData.SpeedInSeconds;
     public bool IsMoving => _isMoving;
     public int CurrentFloor => _currentFloor;
+    public ElevatorDataSO Data => _elevatorData;
 
     // Start is called before the first frame update
     void Awake()

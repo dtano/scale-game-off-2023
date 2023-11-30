@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105c11d120f909b47938e3086b927a4f, type: 3}
   m_Name: Classic
   m_EditorClassIdentifier: 
-  _model: The Classic
+  _model: Classic
   _maxCapacity: 500
   _sprite: {fileID: 0}
   _speedInSeconds: 5

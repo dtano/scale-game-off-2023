@@ -42,7 +42,7 @@ public class ElevatorPassengerList : UIElement
 
         Employee selectedEmployee = _employees[passengerIndex];
         _currentSelectedPassengerIndex = passengerIndex;
-        PassengerIcon selectedPassengerIcon = _passengerIcons[passengerIndex];
+        PassengerIcon selectedPassengerIcon = _passengerIcons[passengerIndex]; // Passenger icons not updated properly
         selectedPassengerIcon.SetSelectedIndicator(true);
 
         if (OnSelectEmployeeEvent != null) OnSelectEmployeeEvent.Invoke(selectedEmployee);
@@ -55,18 +55,13 @@ public class ElevatorPassengerList : UIElement
 
         Employee employeeToKick = _employees[_currentSelectedPassengerIndex];
         bool canEmployeeBeKicked = OnKickEmployeeEvent.Invoke(employeeToKick);
-
-        // Don't remove yet if it fails
-        if (canEmployeeBeKicked)
-        {
-            _employees.RemoveAt(_currentSelectedPassengerIndex);
-        }
     }
 
     public void SetPassengerInformation(Elevator elevator)
     {
         Dictionary<int, List<Employee>> destinationMap = elevator.DestinationMap;
         _employees.Clear();
+        _passengerIcons.Clear();
 
         List<int> destinationKeys = destinationMap.Keys.ToList();
         destinationKeys.Sort();

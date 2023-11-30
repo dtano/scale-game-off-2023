@@ -30,12 +30,12 @@ public class ElevatorSelectComponent : UIElement
         _elevatorNameText.text = name;
     }
 
-    public void SetInformation(int currentIndex, int totalElevators)
+    public void SetInformation(ElevatorDataSO elevatorData, int currentIndex, int totalElevators)
     {
         _currentIndex = currentIndex;
         _totalElevators = totalElevators;
 
-        _elevatorNameText.text = $"Elevator {_currentIndex + 1}";
+        _elevatorNameText.text = $"{elevatorData.Model}";
 
         if(_currentIndex == 0)
         {

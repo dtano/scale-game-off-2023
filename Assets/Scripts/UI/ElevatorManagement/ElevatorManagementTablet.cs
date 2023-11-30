@@ -78,7 +78,7 @@ public class ElevatorManagementTablet : UIElement
     {
         Elevator currentElevator = _allElevators[_currentlySelectedElevatorIndex];
         
-        _elevatorSelectComponent.SetInformation(_currentlySelectedElevatorIndex, _allElevators.Count);
+        _elevatorSelectComponent.SetInformation(currentElevator.Data, _currentlySelectedElevatorIndex, _allElevators.Count);
         _elevatorInfoComponent.SetInformation(currentElevator);
         _elevatorPassengerList.SetPassengerInformation(currentElevator);
         _elevatorPassengerInteractionModal.SetPassengerData(currentElevator, _elevatorPassengerList.CurrentSelectedEmployee);

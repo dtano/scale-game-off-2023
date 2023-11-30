@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105c11d120f909b47938e3086b927a4f, type: 3}
   m_Name: Cargo
   m_EditorClassIdentifier: 
-  _model: Gigant
+  _model: Cargo
   _maxCapacity: 1000
   _sprite: {fileID: 422896120, guid: fda781c5251eda34292eb6bb736e7abb, type: 3}
   _speedInSeconds: 10
