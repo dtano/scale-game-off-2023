@@ -5267,7 +5267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4602861880163344035
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11085,6 +11085,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tutorialScreen: {fileID: 361485184}
+  _gameStateEventChannel: {fileID: 11400000, guid: 6a4ec2c3b070dba40ad0e32f29383697, type: 2}
+  _pauseMenu: {fileID: 0}
 --- !u!1 &9030417020977011252
 GameObject:
   m_ObjectHideFlags: 0
@@ -11520,6 +11522,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9015301126011578814}
     m_Modifications:
+    - target: {fileID: 7155034964801197598, guid: b5404bb7c5b60e145bbaf036e5bcec57, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155034965024395902, guid: b5404bb7c5b60e145bbaf036e5bcec57, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 363.3766
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155034965024395902, guid: b5404bb7c5b60e145bbaf036e5bcec57, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.2737
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155034965024395903, guid: b5404bb7c5b60e145bbaf036e5bcec57, type: 3}
+      propertyPath: m_text
+      value: Building Name
+      objectReference: {fileID: 0}
     - target: {fileID: 7155034965828944288, guid: b5404bb7c5b60e145bbaf036e5bcec57, type: 3}
       propertyPath: m_Name
       value: BuildingInformation
@@ -11935,12 +11953,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3668358301840337079, guid: 29b50f08a1c9c9e4ca8939de97e72f58, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 243830434}
+    - target: {fileID: 3668358301840337079, guid: 29b50f08a1c9c9e4ca8939de97e72f58, type: 3}
       propertyPath: _startMinute
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3668358301840337079, guid: 29b50f08a1c9c9e4ca8939de97e72f58, type: 3}
       propertyPath: _timerDurationInMinutes
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29b50f08a1c9c9e4ca8939de97e72f58, type: 3}
@@ -12200,6 +12222,14 @@ PrefabInstance:
     - target: {fileID: 3399042272137244902, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042272888606901, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 365.9315
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399042272888606901, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 175.23108
       objectReference: {fileID: 0}
     - target: {fileID: 3399042273104921073, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

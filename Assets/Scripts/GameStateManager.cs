@@ -73,6 +73,7 @@ public class GameStateManager : MonoBehaviour
 
     public void RetryLevel()
     {
+        Time.timeScale = 1;
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
     }
