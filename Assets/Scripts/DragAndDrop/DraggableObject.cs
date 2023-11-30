@@ -57,7 +57,7 @@ public class DraggableObject : MonoBehaviour
         _collider.enabled = false;
         var rayOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        RaycastHit2D hitInfo = Physics2D.Raycast(rayOrigin, Vector2.zero, _eligibleForRaycastLayers);
+        RaycastHit2D hitInfo = Physics2D.Raycast(rayOrigin, Vector2.zero, distance: Mathf.Infinity, layerMask: _eligibleForRaycastLayers);
         Debug.DrawRay(new Vector2(rayOrigin.x, rayOrigin.y), Vector2.zero, Color.red);
         if (hitInfo && hitInfo.collider != null && hitInfo.collider.TryGetComponent(out DroppableArea droppableArea))
         {

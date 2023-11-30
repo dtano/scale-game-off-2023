@@ -36,6 +36,7 @@ public class GameStateManager : MonoBehaviour
                 _eventChannel.OnAllEmployeesServedEvent += SetGameWonState;
                 _eventChannel.OnRequestNextLevelEvent += LoadNextLevel;
                 _eventChannel.OnRequestRetryLevelEvent += RetryLevel;
+                _eventChannel.OnRequestExitGameEvent += ExitGame;
             }
         }
     }
@@ -76,6 +77,11 @@ public class GameStateManager : MonoBehaviour
         SceneManager.LoadScene(currentScene);
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     private void OnDestroy()
     {
         UnregisterEventListeners();
@@ -89,6 +95,8 @@ public class GameStateManager : MonoBehaviour
             _eventChannel.OnTimeLimitReachedEvent -= SetTimeLimitReachedState;
             _eventChannel.OnAllEmployeesServedEvent -= SetGameWonState;
             _eventChannel.OnRequestNextLevelEvent -= LoadNextLevel;
+            _eventChannel.OnRequestRetryLevelEvent -= RetryLevel;
+            _eventChannel.OnRequestExitGameEvent -= ExitGame;
         }
     }
 }
