@@ -205,6 +205,14 @@ public class Elevator : MonoBehaviour, IDroppable
         StartCoroutine(ProcessTrip());
     }
 
+    private void OnElevatorReturn()
+    {
+        // Trigger Open elevator animation
+        if (_elevatorDisplayUI != null) _elevatorDisplayUI.Show();
+        _isMoving = false;
+        _currentDirection = Direction.Up;
+    }
+
     private void OnReachTop()
     {
         if (_floorNumberIndicator != null)

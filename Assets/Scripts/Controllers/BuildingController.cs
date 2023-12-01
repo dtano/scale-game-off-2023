@@ -23,6 +23,7 @@ public class BuildingController : MonoBehaviour
     [SerializeField] private HUDController _hudController;
     [SerializeField] private GameDetailsSO _gameDetailsSO;
 
+    private Employee _currentFirstEmployee;
     private int _totalEmployeesInBuilding;
     private int _servedEmployeesCount;
 

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GameDetailsTracker
   m_EditorClassIdentifier: 
   _showTutorialScreen: 1
+  _hasCompletedEntireGame: 0
