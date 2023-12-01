@@ -15,5 +15,5 @@ MonoBehaviour:
   _model: Classic
   _maxCapacity: 500
   _sprite: {fileID: 1152876434, guid: fda781c5251eda34292eb6bb736e7abb, type: 3}
-  _speedInSeconds: 5
+  _speedInSeconds: 4
   _sfxCollection: {fileID: 11400000, guid: cbc4f8ee7146849448ede9dc26f4b6c4, type: 2}

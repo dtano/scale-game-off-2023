@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioEventChannel _sfxEventChannel;
     [SerializeField] private AudioCueSO _playerLostSfx;
     [SerializeField] private AudioCueSO _playerWonSfx;
+    [SerializeField] private AudioSource _bgMusicAudioSource;
     private AudioSource _sfxAudioSource;
 
     // Start is called before the first frame update
@@ -37,11 +38,13 @@ public class AudioManager : MonoBehaviour
 
     private void OnPlayerLost()
     {
+        if(_bgMusicAudioSource != null) _bgMusicAudioSource.Stop();
         PlayAudioCue(_playerLostSfx);
     }
 
     private void OnPlayerWon()
     {
+        if (_bgMusicAudioSource != null) _bgMusicAudioSource.Stop();
         PlayAudioCue(_playerWonSfx);
     }
 

@@ -64,7 +64,7 @@ public class Elevator : MonoBehaviour, IDroppable
 
     private bool CanAddToElevator(int weightToAdd)
     {
-        return !_isMoving && (_currentCapacity + weightToAdd < _elevatorData.MaxCapacity);
+        return !_isMoving && (_currentCapacity + weightToAdd <= _elevatorData.MaxCapacity);
     }
 
     public void OpenElevator()

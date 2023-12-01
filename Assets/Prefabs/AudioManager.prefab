@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sfxEventChannel: {fileID: 11400000, guid: aa970078ef058a644abd2a10368a05ef, type: 2}
+  _playerLostSfx: {fileID: 0}
+  _playerWonSfx: {fileID: 0}
+  _bgMusicAudioSource: {fileID: 0}

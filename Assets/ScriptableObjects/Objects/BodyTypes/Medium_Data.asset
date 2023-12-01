@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bodyType: 2
   _employeeSfxCollection: {fileID: 11400000, guid: 5e1ac5e6e763b4f48ad87acad23b8ac2, type: 2}
-  _minWeight: 56
-  _maxWeight: 70
+  _minWeight: 66
+  _maxWeight: 75
   _sprite: {fileID: 1723185791, guid: 5832b4486362f99448a06a85bfd04476, type: 3}
   _uiSprite: {fileID: 584026261, guid: a3d88d3fbb687fb49b9e7c6b912b73db, type: 3}
   _baseAppearanceChance: 0
