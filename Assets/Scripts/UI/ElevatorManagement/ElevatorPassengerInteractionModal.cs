@@ -51,8 +51,8 @@ public class ElevatorPassengerInteractionModal : UIElement
 
 
         HandleNonEmptySelectionState();
-        _weightText.text = $"Weight: {employee.Weight}kg";
-        _destinationFloorText.text = $"Destination: {employee.DestinationFloor}f";
+        _weightText.text = $"Weight: <b>{employee.Weight}kg<b>";
+        _destinationFloorText.text = $"Destination: <b>{employee.DestinationFloor}f<b>";
 
         int elevatorWeightAfterEmployeeRemoval = elevator.CurrentCapacity - employee.Weight;
         _weightAfterKickText.text = $"{((elevatorWeightAfterEmployeeRemoval > 0) ? elevatorWeightAfterEmployeeRemoval : 0)}/{elevator.MaxCapacity}";
