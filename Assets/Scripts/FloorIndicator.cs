@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FloorIndicator : MonoBehaviour
 {
+    private const string IS_MOVING_ANIMATION_PARAM = "isMoving";
+    private const string SWITCH_DIRECTION_ANIMATION_PARAM = "switchDirection";
     [SerializeField] private Animator _animator;
     // Start is called before the first frame update
     void Awake()
@@ -13,24 +15,17 @@ public class FloorIndicator : MonoBehaviour
 
     public void StopMovement()
     {
-        _animator.SetBool("isMoving", false);
+        _animator.SetBool(IS_MOVING_ANIMATION_PARAM, false);
     }
 
     public void StartMovement()
     {
-        _animator.SetBool("isMoving", true);
+        _animator.SetBool(IS_MOVING_ANIMATION_PARAM, true);
     }
 
     public void SwitchDirection()
     {
-        Debug.Log("SWITCH DIRECTION");
-        _animator.SetTrigger("switchDirection");
+        _animator.SetTrigger(SWITCH_DIRECTION_ANIMATION_PARAM);
         StopMovement();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

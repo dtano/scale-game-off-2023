@@ -24,9 +24,8 @@ public class GameStateEventChannel : ScriptableObject
         if (OnTabletStateChangeEvent != null) OnTabletStateChangeEvent.Invoke(isOn);
     }
 
-    public void OnTimeLimitReached()
+    public void RaiseTimeLimitReached()
     {
-        Debug.Log("TIME LIMIT REACHED"); // Need to check whether the player finished right on the dot or not
         if(OnTimeLimitReachedEvent != null) OnTimeLimitReachedEvent.Invoke();
     }
 

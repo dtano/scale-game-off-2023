@@ -20,18 +20,6 @@ public class ElevatorPassengerList : UIElement
 
     public Employee CurrentSelectedEmployee => GetCurrentSelectedEmployee();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnClickPassengerIcon(int passengerIndex)
     {
         if (!_isInteractable) return;
@@ -54,7 +42,7 @@ public class ElevatorPassengerList : UIElement
         if (!_isInteractable) return;
 
         Employee employeeToKick = _employees[_currentSelectedPassengerIndex];
-        bool canEmployeeBeKicked = OnKickEmployeeEvent.Invoke(employeeToKick);
+        OnKickEmployeeEvent.Invoke(employeeToKick);
     }
 
     public void SetPassengerInformation(Elevator elevator)

@@ -69,14 +69,12 @@ public class ReservesController : MonoBehaviour
     {
         if(employee == null)
         {
-            Debug.Log("Tried to add null to queue");
             return false;
         }
 
         bool successfullyAddToQueue = _reservesQueue.AddToQueue(employee);
         if (!successfullyAddToQueue)
         {
-            Debug.Log("Failed to add");
             if (_errorDisplayEventChannel != null) _errorDisplayEventChannel.RequestError(CreateError());
             return false;
         }
@@ -118,11 +116,6 @@ public class ReservesController : MonoBehaviour
     {
         if(_currentDisplayedEmployee != null)
         {
-            //if (employee == _currentDisplayedEmployee)
-            //{
-            //    Debug.Log("Clicking on already displayed employee");
-            //    return;
-            //}
             _currentDisplayedEmployee.gameObject.SetActive(false);
         }
         
@@ -142,18 +135,10 @@ public class ReservesController : MonoBehaviour
         {
             return;
         }
-
-        // Turn off previous displayed employee
-        Debug.Log("Currently selected Employee index: " + _currentDisplayedEmployee.CurrentQueuePosition);
         
         ShowNewEmployee(_reservesQueue.GetByIndex(index));
 
         UpdateUI();
-    }
-
-    private void OnMouseDown()
-    {
-        Debug.Log("ON MOUSE DOWN RESERVES CONTROLLER");
     }
 
     public bool RemoveEmployee(Employee employee)
@@ -163,7 +148,6 @@ public class ReservesController : MonoBehaviour
         bool successfulRemoval = _reservesQueue.RemoveFromQueue(employee);
         if (!successfulRemoval)
         {
-            Debug.Log("Failed to remove employee from reserves");
             return false;
         }
 

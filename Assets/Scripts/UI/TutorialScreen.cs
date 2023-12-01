@@ -59,12 +59,6 @@ public class TutorialScreen : UIElement
         _pagesLeftText.text = $"{index + 1}/{totalPages}";
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void NextPage()
     {
         HidePage(_currentPageIndex);
@@ -81,7 +75,6 @@ public class TutorialScreen : UIElement
 
     public void OnClickEndTutorial()
     {
-        // We need to hide this screen and trigger some sort of event again
         _gameStateEventChannel.OnEndTutorial();
         Hide();
     }

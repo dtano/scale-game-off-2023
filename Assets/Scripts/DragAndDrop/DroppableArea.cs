@@ -23,11 +23,6 @@ public class DroppableArea : MonoBehaviour
         
     }
 
-    private void OnMouseDown()
-    {
-        Debug.Log("ON MOUSE DOWN DROPPABLE AREA");
-    }
-
     public bool OnDropObject(DraggableObject draggableObject)
     {        
         bool success = false;

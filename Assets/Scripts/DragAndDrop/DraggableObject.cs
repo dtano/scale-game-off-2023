@@ -26,13 +26,11 @@ public class DraggableObject : MonoBehaviour
 
     bool IsDraggable()
     {
-        if (GameStateManager.Instance.IsTabletOn || GameStateManager.Instance.IsGameOver) Debug.Log("Not draggabkle!!");
         return !GameStateManager.Instance.IsTabletOn && !GameStateManager.Instance.IsGameOver;
     }
 
     void OnMouseDown()
     {
-        Debug.Log("ON MOUSE DOWN DRAGGABLE OBJECT");
         if (!IsDraggable()) return;
 
         _offset = transform.position - MouseToWorldPosition();
@@ -56,7 +54,7 @@ public class DraggableObject : MonoBehaviour
     {
         if (!IsDraggable()) return;
 
-        //_collider.enabled = false;
+        _collider.enabled = false;
         var rayOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         RaycastHit2D hitInfo = Physics2D.Raycast(rayOrigin, Vector2.zero, distance: Mathf.Infinity, layerMask: _eligibleForRaycastLayers);
@@ -70,7 +68,7 @@ public class DraggableObject : MonoBehaviour
         {
             SetToOriginalPosition();
         }
-        //_collider.enabled = true;
+        _collider.enabled = true;
     }
 
     private Vector3 MouseToWorldPosition()
@@ -89,7 +87,6 @@ public class DraggableObject : MonoBehaviour
     {
         transform.position = _originalPosition;
 
-        // Need to trigger some event
         OnDragFailed?.Invoke();
     }
 }

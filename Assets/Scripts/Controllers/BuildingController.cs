@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// How can I tell if the game is over?
 public class BuildingController : MonoBehaviour
 {
     [SerializeField] private BuildingDataSO _buildingData;
@@ -24,7 +23,6 @@ public class BuildingController : MonoBehaviour
     [SerializeField] private HUDController _hudController;
     [SerializeField] private GameDetailsSO _gameDetailsSO;
 
-    private Employee _currentFirstEmployee;
     private int _totalEmployeesInBuilding;
     private int _servedEmployeesCount;
 
@@ -147,10 +145,8 @@ public class BuildingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // I'm placing it here cuz I'm worried that all the event calls will mess things up
         if (_totalEmployeesInBuilding > 0 && _servedEmployeesCount == _totalEmployeesInBuilding && (!GameStateManager.Instance.IsTimeLimitReached && !GameStateManager.Instance.IsGameOver))
         {
-            Debug.Log("GAME IS WON");
             if (_gameStateEventChannel != null) _gameStateEventChannel.OnAllEmployeesServed();
         }
     }
@@ -191,8 +187,6 @@ public class BuildingController : MonoBehaviour
         foreach(Employee employee in releasedEmployees)
         {
             if (employee == null) continue;
-            Debug.Log($"{floorNum} : {employee.Weight}");
-            //Destroy(employee); // Maybe destroying is unnecessary?
             releasedCount++;
         }
 
@@ -218,7 +212,6 @@ public class BuildingController : MonoBehaviour
             if (QueueType.Elevator == employee.CurrentQueueType)
             {
                 bool removalSuccess = _elevatorQueue.RemoveFromQueue(employee);
-                if (!removalSuccess) Debug.Log("Failed to remove an employee from the elevatorQueue");
                 _currentFirstEmployee = _elevatorQueue.GetNextInQueue();
 
                 UpdateElevatorQueueUI();
@@ -227,21 +220,12 @@ public class BuildingController : MonoBehaviour
             {
                 _reservesController.RemoveEmployee(employee);
             }
-
-            // Need to check if we've reached the end of the queue
-            if (_currentFirstEmployee == null)
-            {
-                Debug.Log("Reached the end of queue");
-            }
         }
     }
 
     // I think I can find a way to use just one event channel for this
     private void OnDropEmployeeInReserves(DraggableObject draggableObject)
     {
-        // Remove from elevator queue
-        // Get next employee in queue
-        // 
         if (draggableObject == null) return;
 
         if (draggableObject.TryGetComponent(out Employee employee))

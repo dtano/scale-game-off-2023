@@ -38,12 +38,6 @@ public class ElevatorManagementTablet : UIElement
         _gameStateEventChannel.OnAllEmployeesServedEvent += ForceTurnOff;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void TurnOn(bool shouldSlide = true)
     {
         _isOn = true;

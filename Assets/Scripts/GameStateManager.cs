@@ -57,7 +57,6 @@ public class GameStateManager : MonoBehaviour
     {
         SetGameIsOver();
 
-        //if(_gameFinishedUI)
         _didPlayerWin = true;
     }
 

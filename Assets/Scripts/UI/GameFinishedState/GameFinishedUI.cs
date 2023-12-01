@@ -19,12 +19,6 @@ public class GameFinishedUI : UIElement
         _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnClickContinue()
     {
         if(_gameStateEventChannel != null) _gameStateEventChannel.OnRequestNextLevel();

@@ -9,18 +9,6 @@ public class ElevatorInfoComponent : UIElement
     [SerializeField] private TextMeshProUGUI _capacityText;
     [SerializeField] private TextMeshProUGUI _speedText;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetInformation(Elevator elevator)
     {
         _capacityText.text = $"Capacity: {elevator.CurrentCapacity}/{elevator.MaxCapacity}";

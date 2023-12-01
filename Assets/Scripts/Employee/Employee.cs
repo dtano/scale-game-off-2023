@@ -81,25 +81,6 @@ public class Employee : MonoBehaviour
         
     }
 
-    // Sprite might also need to be added here
-    public void SetEmployeeData(Guid id, BodyType bodyType, int weight, int destinationFloor, Sprite sprite, int currentQueuePosition = 0, float satisfactionLevel = 100f)
-    {
-        _id = id;
-        _bodyType = bodyType;
-        _weight = weight;
-        _destinationFloor = destinationFloor;
-        _satisfactionLevel = satisfactionLevel;
-
-        _originalQueuePosition = currentQueuePosition;
-        _currentQueuePosition = currentQueuePosition;
-
-        if(_employeeInfoUI != null) _employeeInfoUI.SetInformation(weight, destinationFloor);
-        Debug.Log("Set sprite " + sprite);
-        if (sprite != null && _spriteRenderer != null) _spriteRenderer.sprite = sprite;
-
-        // Need to trigger some sort of fade in animation so that the player can tell that the employee has changed
-    }
-
     public void SetEmployeeData(Guid id, BodyTypeDataSO bodyTypeData, int weight, int destinationFloor, int currentQueuePosition = 0, float satisfactionLevel = 100f)
     {
         _id = id;
@@ -114,7 +95,6 @@ public class Employee : MonoBehaviour
 
         if (_employeeInfoUI != null) _employeeInfoUI.SetInformation(weight, destinationFloor);
         if (bodyTypeData.Sprite != null && _spriteRenderer != null) _spriteRenderer.sprite = bodyTypeData.Sprite;
-        // Need to trigger some sort of fade in animation so that the player can tell that the employee has changed
     }
 
     public override bool Equals(object obj)
@@ -133,15 +113,4 @@ public class Employee : MonoBehaviour
     {
         return _id.GetHashCode();
     }
-
-    //private void OnDisable()
-    //{
-    //    if (_draggableComponent != null)
-    //    {
-    //        // Is start called every time I turn the game object on and off?
-    //        Debug.Log("Unsubsribe onDrag");
-    //        _draggableComponent.OnDragStarted -= OnDrag;
-    //        _draggableComponent.OnDragFailed -= OnDragFailed;
-    //    }
-    //}
 }

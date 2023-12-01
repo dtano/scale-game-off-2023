@@ -84,13 +84,10 @@ public class Clock : MonoBehaviour
     }
 
     private void OnTimerFinished()
-    {
-        Debug.Log("Timer finished");
-        
-        // Trigger some events
+    {   
         if(_eventChannel != null)
         {
-            _eventChannel.OnTimeLimitReached();
+            _eventChannel.RaiseTimeLimitReached();
         }
 
         TurnOff();
@@ -107,15 +104,6 @@ public class Clock : MonoBehaviour
         _animator.SetBool(IS_BLINKING_PARAM, false);
         _isRunning = false;
         if (_audioSource != null) _audioSource.Stop();
-
-        // And store the time elapsed
-        Debug.Log("Minutes elapsed: " + _minutesElapsed);
-
-        float minutes = Mathf.FloorToInt(_currentTime / 60);
-        float seconds = Mathf.FloorToInt(_currentTime % 60);
-
-        string msFormat = string.Format("{0:00}:{1:00}", minutes, seconds);
-        Debug.Log($"Minutes and seconds elapsed: {msFormat}");
     }
 
     private void OnDestroy()

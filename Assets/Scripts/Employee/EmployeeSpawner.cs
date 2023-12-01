@@ -14,17 +14,6 @@ public class EmployeeSpawner : MonoBehaviour
 
     public int NumEmployeesToSpawn => _numEmployeesToSpawn;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SpawnEmployees(int numFloors)
     {
         for(int i = 0; i < _numEmployeesToSpawn; i++)

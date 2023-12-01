@@ -11,19 +11,6 @@ public class ElevatorSelectComponent : UIElement
     [SerializeField] private Button _backButton;
 
     private int _currentIndex;
-    private int _totalElevators;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void SetElevatorName(string name)
     {
@@ -33,7 +20,6 @@ public class ElevatorSelectComponent : UIElement
     public void SetInformation(ElevatorDataSO elevatorData, int currentIndex, int totalElevators)
     {
         _currentIndex = currentIndex;
-        _totalElevators = totalElevators;
 
         _elevatorNameText.text = $"{elevatorData.Model}";
 

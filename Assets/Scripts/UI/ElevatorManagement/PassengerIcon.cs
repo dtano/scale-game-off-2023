@@ -16,18 +16,7 @@ public class PassengerIcon : MonoBehaviour, IPointerClickHandler
     private int _passengerIndex;
 
     public UnityAction<int> OnIconClickEvent;
-    // Start is called before the first frame update
-    void Awake()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+  
     public void SetData(Employee passenger, int index)
     {
         if (passenger == null) return;

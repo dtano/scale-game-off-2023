@@ -5,17 +5,6 @@ using UnityEngine;
 public class PauseMenu : UIElement
 {
     [SerializeField] private GameStateEventChannel _gameStateEventChannel;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     public void OnClickResumeButton()
     {

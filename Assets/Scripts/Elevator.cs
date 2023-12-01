@@ -62,12 +62,6 @@ public class Elevator : MonoBehaviour, IDroppable
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private bool CanAddToElevator(int weightToAdd)
     {
         return !_isMoving && (_currentCapacity + weightToAdd < _elevatorData.MaxCapacity);
@@ -109,14 +103,12 @@ public class Elevator : MonoBehaviour, IDroppable
         // Check weight here
         if (!CanAddToElevator(employee.Weight))
         {
-            Debug.Log($"Failed to add since {_currentCapacity + employee.Weight} > {_elevatorData.MaxCapacity}");
             return new DropResultDTO(CreateError());
         }
 
         bool success = _passengers.Add(employee);
         if (!success)
         {
-            Debug.Log("Fail to add employee to elevator");
             return new DropResultDTO(CreateError());
         }
 
@@ -143,7 +135,6 @@ public class Elevator : MonoBehaviour, IDroppable
         bool success = _passengers.Remove(employee);
         if (!success)
         {
-            Debug.Log("Fail to remove employee to elevator");
             return false;
         }
 
@@ -166,13 +157,11 @@ public class Elevator : MonoBehaviour, IDroppable
         foreach (Employee passenger in passengersToRelease)
         {
             RemoveFromElevator(passenger);
-            //Destroy(passenger.gameObject);
         }
 
         _destinationMap[floorNumber].Clear();
         _destinationMap.Remove(floorNumber);
 
-        // Need to somehow notify someone about this fact
         if (_gameStateEventChannel != null) _gameStateEventChannel.OnReleaseEmployeesInFloor(passengersToRelease, floorNumber);
     }
 
@@ -192,13 +181,11 @@ public class Elevator : MonoBehaviour, IDroppable
 
         if (_currentDirection == Direction.Up && _passengers.Count == 0)
         {
-            Debug.Log("Can't start since lift is empty");
             return;
         }
 
         if (_currentDirection == Direction.Down && _currentFloor == 0) return;
 
-        Debug.Log("Starting Journey");
         if (_elevatorData.SfxCollection != null)
         {
             PlaySound(_elevatorData.SfxCollection.CloseSfx);
@@ -216,14 +203,6 @@ public class Elevator : MonoBehaviour, IDroppable
     public void StartJourney()
     {
         StartCoroutine(ProcessTrip());
-    }
-
-    private void OnElevatorReturn()
-    {
-        // Trigger Open elevator animation
-        if (_elevatorDisplayUI != null) _elevatorDisplayUI.Show();
-        _isMoving = false;
-        _currentDirection = Direction.Up;
     }
 
     private void OnReachTop()
@@ -313,7 +292,6 @@ public class Elevator : MonoBehaviour, IDroppable
 
         if (draggableObject.gameObject.TryGetComponent(out Employee employee))
         {
-            Debug.Log("Dropping employee in elevator");
             DropResultDTO dropOnElevatorResult = AddToElevator(employee);
 
             if (dropOnElevatorResult.Success)
