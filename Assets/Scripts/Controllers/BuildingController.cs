@@ -242,7 +242,6 @@ public class BuildingController : MonoBehaviour
         // Remove from elevator queue
         // Get next employee in queue
         // 
-        Debug.Log("OnDropEmployeeInReserves");
         if (draggableObject == null) return;
 
         if (draggableObject.TryGetComponent(out Employee employee))
@@ -282,11 +281,6 @@ public class BuildingController : MonoBehaviour
         // Add to reserves
         return true;
     }
-
-    //private void OnDisable()
-    //{
-    //    UnregisterEventListeners();
-    //}
 
     private void OnDestroy()
     {

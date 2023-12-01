@@ -23,6 +23,11 @@ public class DroppableArea : MonoBehaviour
         
     }
 
+    private void OnMouseDown()
+    {
+        Debug.Log("ON MOUSE DOWN DROPPABLE AREA");
+    }
+
     public bool OnDropObject(DraggableObject draggableObject)
     {        
         bool success = false;
@@ -30,7 +35,8 @@ public class DroppableArea : MonoBehaviour
 
         if(result != null)
         {
-            if (result.Success)
+            success = result.Success;
+            if (success)
             {
                 eventChannel.OnSuccessfulDrop(draggableObject);
                 if (audioChannel != null) audioChannel.RaiseEvent(successfulDropSfx);

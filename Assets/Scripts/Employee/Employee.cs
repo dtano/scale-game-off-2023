@@ -134,13 +134,14 @@ public class Employee : MonoBehaviour
         return _id.GetHashCode();
     }
 
-    private void OnDisable()
-    {
-        if (_draggableComponent != null)
-        {
-            // Is start called every time I turn the game object on and off?
-            _draggableComponent.OnDragStarted -= OnDrag;
-            _draggableComponent.OnDragFailed -= OnDragFailed;
-        }
-    }
+    //private void OnDisable()
+    //{
+    //    if (_draggableComponent != null)
+    //    {
+    //        // Is start called every time I turn the game object on and off?
+    //        Debug.Log("Unsubsribe onDrag");
+    //        _draggableComponent.OnDragStarted -= OnDrag;
+    //        _draggableComponent.OnDragFailed -= OnDragFailed;
+    //    }
+    //}
 }

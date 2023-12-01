@@ -48,14 +48,11 @@ public class ReservesController : MonoBehaviour
 
     private DropResultDTO OnDropEmployee(DraggableObject draggableObject)
     {
-        Debug.Log("On drop employee in reserves");
         // Need to somehow prevent the employee from being readded
         if (draggableObject.TryGetComponent(out Employee employee))
         {
-            Debug.Log("Checking employee queue type " + employee.CurrentQueueType);
             if (QueueType.Reserves == employee.CurrentQueueType)
             {
-                Debug.Log("Tried to drop an employee that is already there");
                 return new DropResultDTO();
 
             }
@@ -119,6 +116,16 @@ public class ReservesController : MonoBehaviour
 
     private void ShowNewEmployee(Employee employee)
     {
+        if(_currentDisplayedEmployee != null)
+        {
+            //if (employee == _currentDisplayedEmployee)
+            //{
+            //    Debug.Log("Clicking on already displayed employee");
+            //    return;
+            //}
+            _currentDisplayedEmployee.gameObject.SetActive(false);
+        }
+        
         _currentDisplayedEmployee = employee;
         _currentDisplayedEmployee.gameObject.SetActive(true);
         _currentDisplayedEmployee.EmployeeInfoUI.gameObject.SetActive(true);
@@ -137,11 +144,16 @@ public class ReservesController : MonoBehaviour
         }
 
         // Turn off previous displayed employee
-        _currentDisplayedEmployee.gameObject.SetActive(false);
+        Debug.Log("Currently selected Employee index: " + _currentDisplayedEmployee.CurrentQueuePosition);
         
         ShowNewEmployee(_reservesQueue.GetByIndex(index));
 
         UpdateUI();
+    }
+
+    private void OnMouseDown()
+    {
+        Debug.Log("ON MOUSE DOWN RESERVES CONTROLLER");
     }
 
     public bool RemoveEmployee(Employee employee)

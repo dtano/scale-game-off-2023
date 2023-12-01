@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 5511756311554898129}
   - component: {fileID: 5511756311554898128}
   - component: {fileID: 5511756311554898127}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ReservesQueue
   m_TagString: Untagged
   m_Icon: {fileID: 0}

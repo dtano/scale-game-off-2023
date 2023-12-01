@@ -1788,7 +1788,7 @@ PrefabInstance:
       objectReference: {fileID: 1977740141}
     - target: {fileID: 8655379100903884075, guid: 7fab76c1280c9e946b61a578914db799, type: 3}
       propertyPath: _numEmployeesToSpawn
-      value: 2
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fab76c1280c9e946b61a578914db799, type: 3}

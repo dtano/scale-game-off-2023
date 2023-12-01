@@ -3123,7 +3123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.81960785, g: 0.81960785, b: 0.81960785, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4668,7 +4668,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -156.6967}
+  m_AnchoredPosition: {x: 2, y: -156.6967}
   m_SizeDelta: {x: 255.4675, y: 42.0939}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6261672632870542711
@@ -7561,7 +7561,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -156.6967}
+  m_AnchoredPosition: {x: 3, y: -156.6967}
   m_SizeDelta: {x: 255.4675, y: 42.0939}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3520816354382186480
@@ -10753,7 +10753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.81960785, g: 0.81960785, b: 0.81960785, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10805,7 +10805,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -114.603615}
+  m_AnchoredPosition: {x: 2, y: -114.603615}
   m_SizeDelta: {x: 255.4675, y: 42.0939}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5039092491967882244
@@ -11202,7 +11202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -114.603615}
+  m_AnchoredPosition: {x: 3, y: -114.603615}
   m_SizeDelta: {x: 255.4675, y: 42.0939}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7610326031476392009
@@ -11361,7 +11361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.81960785, g: 0.81960785, b: 0.81960785, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12609,7 +12609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3399042273898889229, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3399042273898889230, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
       propertyPath: m_Pivot.x

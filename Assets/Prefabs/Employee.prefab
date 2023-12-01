@@ -602,7 +602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eligibleForRaycastLayers:
     serializedVersion: 2
-    m_Bits: 51
+    m_Bits: 55
 --- !u!61 &1761645812599168530
 BoxCollider2D:
   m_ObjectHideFlags: 0

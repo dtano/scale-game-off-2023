@@ -29,7 +29,6 @@ public class AudioManager : MonoBehaviour
     {
         if (audioCue == null) return;
 
-        Debug.Log("PLAYING AUDIO CUE!! " + audioCue.Name);
         _sfxAudioSource.loop = audioCue.IsLooping;
         _sfxAudioSource.pitch = audioCue.Pitch;
         _sfxAudioSource.clip = audioCue.Clip;
