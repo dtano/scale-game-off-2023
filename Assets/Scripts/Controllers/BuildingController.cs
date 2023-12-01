@@ -103,6 +103,8 @@ public class BuildingController : MonoBehaviour
             _hudController.ShowTutorial();
             return;
         }
+
+        // Play Music Here?
         InitLevel();
     }
 
@@ -158,6 +160,7 @@ public class BuildingController : MonoBehaviour
         if(_gameFinishedUI != null)
         {
             if (_sfxEventChannel != null) _sfxEventChannel.RaiseOnPlayerWonEvent();
+            // Stop the background music from playing
             _gameFinishedUI.Show();
             _gameFinishedUI.ShowGameWon(_servedEmployeesCount, _totalEmployeesInBuilding, _clock.ElapsedTime);
         }
@@ -176,6 +179,7 @@ public class BuildingController : MonoBehaviour
         if (_gameFinishedUI != null)
         {
             if (_sfxEventChannel != null) _sfxEventChannel.RaiseOnPlayerLostEvent();
+            // Stop the background music from playing
             _gameFinishedUI.Show();
             _gameFinishedUI.ShowGameOver(_servedEmployeesCount, _totalEmployeesInBuilding);
         }

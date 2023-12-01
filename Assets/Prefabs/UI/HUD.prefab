@@ -190,7 +190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &361485183
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1068,6 +1068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameStateEventChannel: {fileID: 11400000, guid: 6a4ec2c3b070dba40ad0e32f29383697, type: 2}
+  _shouldTriggerEvent: 1
 --- !u!225 &1238608309
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -12548,7 +12549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3399042273898889229, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3399042273898889230, guid: 4b7842ef680a3b545a87cd0d378574de, type: 3}
       propertyPath: m_Pivot.x

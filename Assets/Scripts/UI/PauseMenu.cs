@@ -5,8 +5,6 @@ using UnityEngine;
 public class PauseMenu : UIElement
 {
     [SerializeField] private GameStateEventChannel _gameStateEventChannel;
-
-    private bool _isGamePaused = false;
     
     // Start is called before the first frame update
     void Start()

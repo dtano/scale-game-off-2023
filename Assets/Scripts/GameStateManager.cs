@@ -68,6 +68,13 @@ public class GameStateManager : MonoBehaviour
     public void LoadNextLevel()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
+
+        if(currentScene == SceneManager.sceneCountInBuildSettings - 1)
+        {
+            SceneManager.LoadScene(0);
+            return;
+        }
+
         SceneManager.LoadScene(currentScene + 1);
     }
 
