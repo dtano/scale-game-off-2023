@@ -15,7 +15,7 @@ public class ElevatorInfoComponent : UIElement
 
         if(elevator.Speed % TimeConstants.SECONDS_PER_MINUTE == 0)
         {
-            _speedText.text = $"Speed: {elevator.Speed / TimeConstants.SECONDS_PER_MINUTE} minutes";
+            _speedText.text = $"Speed: {elevator.Speed / TimeConstants.SECONDS_PER_MINUTE} minute(s)";
         }
         else
         {

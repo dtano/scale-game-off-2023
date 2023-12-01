@@ -29,7 +29,7 @@ public class ElevatorInformationUI : MonoBehaviour
 
         if (_elevatorData.SpeedInSeconds % TimeConstants.SECONDS_PER_MINUTE == 0)
         {
-            _elevatorSpeed.text = $"{_elevatorData.SpeedInSeconds / TimeConstants.SECONDS_PER_MINUTE} minutes";
+            _elevatorSpeed.text = $"{_elevatorData.SpeedInSeconds / TimeConstants.SECONDS_PER_MINUTE} minute(s)";
         }
         else
         {

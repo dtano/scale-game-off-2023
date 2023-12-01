@@ -2064,7 +2064,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Thank you for playing Morning Rush!
+  m_text: Thank you for playing Morning Rush! Hope you enjoyed it!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1879a0df4c4e55f48b8f2317338d9983, type: 2}
   m_sharedMaterial: {fileID: -893706348503802852, guid: 1879a0df4c4e55f48b8f2317338d9983, type: 2}

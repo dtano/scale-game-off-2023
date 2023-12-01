@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6322b537318f4c64abed154854bce961, type: 3}
   m_Name: Medium_Building
   m_EditorClassIdentifier: 
-  _name: Mid Towers
+  _name: Central Towers
   _numFloors: 11

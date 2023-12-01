@@ -190,7 +190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &361485183
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6472,7 +6472,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The speed refers to how long it takes to reach a floor using in-game time
+  m_text: The speed refers to how long it takes to reach a floor based on the in-game
+    time
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1879a0df4c4e55f48b8f2317338d9983, type: 2}
   m_sharedMaterial: {fileID: -893706348503802852, guid: 1879a0df4c4e55f48b8f2317338d9983, type: 2}
