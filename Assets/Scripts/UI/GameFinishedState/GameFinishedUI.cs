@@ -43,8 +43,9 @@ public class GameFinishedUI : UIElement
     private string BuildTimeTakenText(float totalTimeTaken)
     {
         Debug.Log("Total time taken: " + totalTimeTaken);
-        float minutes = Mathf.FloorToInt(totalTimeTaken / 60);
-        float seconds = Mathf.FloorToInt(totalTimeTaken % 60);
+
+        float minutes = Mathf.FloorToInt(totalTimeTaken % 60);
+        float seconds = Mathf.FloorToInt((totalTimeTaken - minutes) * 60);
 
         string msFormat = string.Format("{0:00}:{1:00}", minutes, seconds);
 
