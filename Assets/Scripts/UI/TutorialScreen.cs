@@ -1,26 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 using TMPro;
 
 public class TutorialScreen : UIElement
 {
     [SerializeField] private GameStateEventChannel _gameStateEventChannel;
+    [SerializeField] private VideoEventChannel _videoEventChannel;
     [SerializeField] private Transform _pagesParent;
     [SerializeField] private TextMeshProUGUI _pagesLeftText;
 
     [SerializeField] GameObject _nextBtn;
     [SerializeField] GameObject _backBtn;
 
-    private Transform[] pages;
+    private TutorialPage[] pages;
     private int _currentPageIndex;
     
     void Awake()
     {
-        pages = new Transform[_pagesParent.transform.childCount];
+        pages = new TutorialPage[_pagesParent.transform.childCount];
         for (int i = 0; i < _pagesParent.transform.childCount; i++)
         {
-            pages[i] = _pagesParent.transform.GetChild(i);
+            pages[i] = _pagesParent.transform.GetChild(i).GetComponent<TutorialPage>();
+            pages[i].OnRequestPlayClipEvent += RequestPlayVideoClip;
             HidePage(i);
         }
 
@@ -29,14 +32,14 @@ public class TutorialScreen : UIElement
 
     private void HidePage(int index)
     {
-        pages[index].gameObject.SetActive(false);
+        pages[index].Hide();
     }
 
     private void ShowPage(int index)
     {
         int totalPages = pages.Length;
         
-        pages[index].gameObject.SetActive(true);
+        pages[index].Show();
         if (index == 0)
         {
             _nextBtn.SetActive(true);
@@ -81,5 +84,21 @@ public class TutorialScreen : UIElement
         // We need to hide this screen and trigger some sort of event again
         _gameStateEventChannel.OnEndTutorial();
         Hide();
+    }
+
+    private void RequestPlayVideoClip(VideoClip videoClip)
+    {
+        if (_videoEventChannel != null) _videoEventChannel.RaiseVideoRequest(videoClip);
+    }
+
+    private void OnDestroy()
+    {
+        foreach(TutorialPage page in pages)
+        {
+            if(page != null)
+            {
+                page.OnRequestPlayClipEvent -= RequestPlayVideoClip;
+            }
+        }
     }
 }
