@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameStateManager : MonoBehaviour
 {
     [SerializeField] private GameStateEventChannel _eventChannel;
+    [SerializeField] private GameDetailsSO _gameDetailsSO;
     public static GameStateManager Instance { get; private set; }
 
     private bool _isTabletOn = false;
@@ -71,6 +72,7 @@ public class GameStateManager : MonoBehaviour
 
         if(currentScene == SceneManager.sceneCountInBuildSettings - 1)
         {
+            if (_gameDetailsSO != null && !_gameDetailsSO.HasCompletedEntireGame) _gameDetailsSO.HasCompletedEntireGame = true;
             SceneManager.LoadScene(0);
             return;
         }

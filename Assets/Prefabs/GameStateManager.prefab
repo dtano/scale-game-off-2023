@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eventChannel: {fileID: 11400000, guid: 6a4ec2c3b070dba40ad0e32f29383697, type: 2}
+  _gameDetailsSO: {fileID: 11400000, guid: e2ecede2e936e1c44ae5cd127e621b69, type: 2}
