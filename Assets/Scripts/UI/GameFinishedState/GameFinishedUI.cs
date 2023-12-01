@@ -10,6 +10,9 @@ public class GameFinishedUI : UIElement
     [SerializeField] private TextMeshProUGUI _titleText;
     [SerializeField] private GameWonUI _gameWonScreen;
     [SerializeField] private GameOverUI _gameOverScreen;
+    [SerializeField] private Image _icon;
+    [SerializeField] private Sprite _gameWonSprite;
+    [SerializeField] private Sprite _gameOverSprite;
 
     private Animator _animator;
     
@@ -59,6 +62,7 @@ public class GameFinishedUI : UIElement
         
         _gameWonScreen.Show();
         // Update screen view here
+        _icon.sprite = _gameWonSprite;
         _gameWonScreen.SetInformation(BuildPercentageText(numEmployeesServed, totalEmployees), BuildTimeTakenText(totalTimeTaken));
     }
 
@@ -67,6 +71,7 @@ public class GameFinishedUI : UIElement
         _gameWonScreen.Hide();
 
         _titleText.text = "Time's Up";
+        _icon.sprite = _gameOverSprite;
         _gameOverScreen.Show();
         _gameOverScreen.SetInformation(BuildPercentageText(numEmployeesServed, totalEmployees));
     }
