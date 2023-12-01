@@ -2905,6 +2905,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4554176763697955987}
+  - component: {fileID: 4150866842144262069}
   m_Layer: 5
   m_Name: ElevatorInfo (2)
   m_TagString: Untagged
@@ -2937,6 +2938,23 @@ RectTransform:
   m_AnchoredPosition: {x: 397, y: 35.953}
   m_SizeDelta: {x: 277.4527, y: 355.49}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4150866842144262069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975552472206518492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e2c1b0ea53efa419be3c5a38e14ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _elevatorData: {fileID: 11400000, guid: 42ee93fcd53b9d943b351b2427267904, type: 2}
+  _elevatorName: {fileID: 9109757534397044565}
+  _elevatorMaxCapacity: {fileID: 293326535319019885}
+  _elevatorSpeed: {fileID: 5737275999204040501}
+  _elevatorImage: {fileID: 9190540986840822731}
 --- !u!1 &2107678926705877346
 GameObject:
   m_ObjectHideFlags: 0
@@ -4021,6 +4039,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4066314562336656250}
+  - component: {fileID: 5742980895566559006}
   m_Layer: 5
   m_Name: ElevatorInfo (1)
   m_TagString: Untagged
@@ -4053,6 +4072,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 35.953}
   m_SizeDelta: {x: 277.4527, y: 355.49}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5742980895566559006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2917712450012650520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e2c1b0ea53efa419be3c5a38e14ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _elevatorData: {fileID: 11400000, guid: 69b78cd802a02b7499e440d52be1dd7f, type: 2}
+  _elevatorName: {fileID: 6547847445806278452}
+  _elevatorMaxCapacity: {fileID: 8184843143809678510}
+  _elevatorSpeed: {fileID: 744977436152387812}
+  _elevatorImage: {fileID: 4275830475908727925}
 --- !u!1 &3053923547392626967
 GameObject:
   m_ObjectHideFlags: 0
@@ -4065,7 +4101,7 @@ GameObject:
   - component: {fileID: 4324481023967087466}
   - component: {fileID: 4275830475908727925}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ElevatorSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5817,7 +5853,7 @@ GameObject:
   - component: {fileID: 6438841903895549642}
   - component: {fileID: 1031980405070413299}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ElevatorSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7462,7 +7498,7 @@ GameObject:
   - component: {fileID: 7520246202714429198}
   - component: {fileID: 9190540986840822731}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ElevatorSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8202,6 +8238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4087086547133569913}
+  - component: {fileID: 1713612871160585135}
   m_Layer: 5
   m_Name: ElevatorInfo
   m_TagString: Untagged
@@ -8234,6 +8271,23 @@ RectTransform:
   m_AnchoredPosition: {x: -390, y: 35.953}
   m_SizeDelta: {x: 277.4527, y: 355.49}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1713612871160585135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7893237872864654094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e2c1b0ea53efa419be3c5a38e14ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _elevatorData: {fileID: 11400000, guid: 405f47a6263ff7145bd3a43840672af3, type: 2}
+  _elevatorName: {fileID: 4920183132859391282}
+  _elevatorMaxCapacity: {fileID: 5130903269623389613}
+  _elevatorSpeed: {fileID: 8871292553094944574}
+  _elevatorImage: {fileID: 1031980405070413299}
 --- !u!1 &8029840373898276924
 GameObject:
   m_ObjectHideFlags: 0

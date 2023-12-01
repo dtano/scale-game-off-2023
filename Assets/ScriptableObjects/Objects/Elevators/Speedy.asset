@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: Speedy
   _maxCapacity: 300
-  _sprite: {fileID: 626516412, guid: ba29d26ef392f604e82a05a4da2e3a67, type: 3}
+  _sprite: {fileID: 424187021, guid: fda781c5251eda34292eb6bb736e7abb, type: 3}
   _speedInSeconds: 2
   _sfxCollection: {fileID: 11400000, guid: 670de33aabe612f4cbefcae7719756a8, type: 2}
