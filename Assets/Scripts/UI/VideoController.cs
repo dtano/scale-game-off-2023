@@ -23,7 +23,7 @@ public class VideoController : MonoBehaviour
 
     public void PlayClip(VideoClip clip)
     {
-        _videoPlayer.clip = clip;
+        _videoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, $"{clip.name}.mp4");
         _videoPlayer.Play();
     }
 

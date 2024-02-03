@@ -1008,6 +1008,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VideoPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 2915008191558426908, guid: 1cd510e206bb0f44a854a3e31103e1db, type: 3}
+      propertyPath: m_DataSource
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2915008191558426909, guid: 1cd510e206bb0f44a854a3e31103e1db, type: 3}
       propertyPath: m_RootOrder
       value: 17
