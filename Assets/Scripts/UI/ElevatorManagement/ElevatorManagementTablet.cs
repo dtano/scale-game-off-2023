@@ -22,6 +22,7 @@ public class ElevatorManagementTablet : UIElement
 
     private List<Elevator> _allElevators;
     private int _currentlySelectedElevatorIndex;
+    private float _tabletSwipeOffset = 0.5f;
     private bool _isOn = false;
 
     // Start is called before the first frame update
@@ -49,7 +50,9 @@ public class ElevatorManagementTablet : UIElement
         }
         else
         {
-            LeanTween.moveY(gameObject, 360, 0.2f).setOnComplete(OnTabletStart);
+            float offset = Screen.height * _tabletSwipeOffset;
+            LeanTween.moveY(gameObject, transform.position.y + offset, 0.2f).setOnComplete(OnTabletStart);
+
             if (_sfxAudioEventChannel != null) _sfxAudioEventChannel.RaiseEvent(_tabletSwipeSfx);
         }
 
@@ -121,7 +124,9 @@ public class ElevatorManagementTablet : UIElement
         else
         {
             HideAllComponents();
-            LeanTween.moveY(gameObject, -191, 0.2f);
+
+            float offset = Screen.height * _tabletSwipeOffset;
+            LeanTween.moveY(gameObject, transform.position.y - offset, 0.2f);
         }
 
         if (_gameStateEventChannel != null) _gameStateEventChannel.OnTabletStateChange(_isOn);
